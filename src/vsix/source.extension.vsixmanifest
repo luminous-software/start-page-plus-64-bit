@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="96b389fd-48b6-48d9-bbf2-ec6ebd026b14" Version="2.0" Language="en-US" Publisher="Yann Duran" />
+        <DisplayName>Start Page+ (64 bit)</DisplayName>
+        <Description xml:space="preserve">Bring back Start Page! (a document tab, NOT a modal window)</Description>
+        <MoreInfo>https://luminous-software.solutions/start-page-plus/</MoreInfo>
+        <License>Resources\LICENSE</License>
+        <GettingStartedGuide>https://luminous-software.solutions/start-page-plus-64-bit/getting-started</GettingStartedGuide>
+        <ReleaseNotes>https://luminous-software.solutions/start-page-plus-64-bit/changelog</ReleaseNotes>
+        <Icon>Resources\logo.png</Icon>
+        <PreviewImage>Resources\logo.png</PreviewImage>
+        <Tags>Start Page+, start-page-plus, StartPagePlus, 64 bit, 64bit, start page, start-page, startpage, luminous, yannduran, yd</Tags>
+        <Preview>true</Preview>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+    </Installation>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    </Assets>
+</PackageManifest>

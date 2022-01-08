@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <Include href="VSGlobals.vsct"/>
+
+  <Commands package="StartPagePlus">
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="StartPagePlus" value="{6b4431b4-7dc5-40c7-bf16-8d7ebe2c4608}">
+      
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
