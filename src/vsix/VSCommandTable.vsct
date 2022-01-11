@@ -1,17 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <Extern href="stdidcmd.h"/>
-  <Extern href="vsshlids.h"/>
-  <Include href="KnownImageIds.vsct"/>
-  <Include href="VSGlobals.vsct"/>
+	<Extern href="stdidcmd.h"/>
+	<Extern href="vsshlids.h"/>
+	<Include href="KnownImageIds.vsct"/>
+	<Include href="VSGlobals.vsct"/>
 
-  <Commands package="StartPagePlus">
-  </Commands>
+	<Commands package="StartPagePlus">
+		<Buttons>
+			<!-- DN = 10, EL = 20, SP+ = 30 -->
 
-  <Symbols>
-    <GuidSymbol name="StartPagePlus" value="{6b4431b4-7dc5-40c7-bf16-8d7ebe2c4608}">
-      
-    </GuidSymbol>
-  </Symbols>
+			<Button guid="StartPagePlus" id="ViewWindow" priority="0x0030" type="Button">
+				<Parent guid="VSMainMenu" id="View.BrowserGroup"/>
+				<Icon guid="ImageCatalogGuid" id="Home" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<Strings>
+					<ButtonText>Start Page+</ButtonText>
+					<CommandName>Start Page+</CommandName>
+					<CanonicalName>.View.StartPagePlus</CanonicalName>
+				</Strings>
+			</Button>
+		</Buttons>
+	</Commands>
+
+	<Symbols>
+		<GuidSymbol name="StartPagePlus" value="{6b4431b4-7dc5-40c7-bf16-8d7ebe2c4608}">
+			<IDSymbol name="ViewWindow" value="0x0210" />
+		</GuidSymbol>
+	</Symbols>
 </CommandTable>

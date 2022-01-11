@@ -20,6 +20,6 @@ namespace StartPagePlus
     /// </summary>
     internal sealed partial class PackageIds
     {
-
+        public const int ViewWindow = 0x0210;
     }
 }

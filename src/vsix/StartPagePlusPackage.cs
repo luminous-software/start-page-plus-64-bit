@@ -8,6 +8,8 @@
 
     using Microsoft.VisualStudio.Shell;
 
+    using StartPagePlus.Commands;
+
     using Task = System.Threading.Tasks.Task;
 
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
@@ -19,7 +21,9 @@
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            //await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            await ViewWindow.InitializeAsync(this);
         }
     }
 }
