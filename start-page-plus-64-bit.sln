@@ -10,8 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\.editorconfig = ..\..\..\.editorconfig
 		.gitignore = .gitignore
 		src\GlobalSuppressions.cs = src\GlobalSuppressions.cs
-		LICENSE = LICENSE
-		README.md = README.md
+		gulpfile.js = gulpfile.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "art", "art", "{33A9B36C-3358-4B7D-BFB1-16AD478EA0DE}"
@@ -54,6 +53,45 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "art", "art", "{33A9B36C-335
 		art\vsip.png = art\vsip.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs-source-files", "docs-source-files", "{5F5701DC-F83A-42F8-9DC9-DA953B1CA980}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. initial", "0. initial", "{DAAB5A80-A3D4-4AF9-894F-7C7A02A64B2A}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		mkdocs.yml = mkdocs.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. main", "1. main", "{52B06F78-0B83-419D-B651-8C13DC72396A}"
+	ProjectSection(SolutionItems) = preProject
+		docs-source\getting-started.md = docs-source\getting-started.md
+		docs-source\index.md = docs-source\index.md
+		docs-source\marketplace.md = docs-source\marketplace.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. changes", "2. changes", "{DE352D5D-4242-494B-858E-FCBCAA56BA82}"
+	ProjectSection(SolutionItems) = preProject
+		docs-source\changelog.md = docs-source\changelog.md
+		docs-source\features.md = docs-source\features.md
+		docs-source\known-issues.md = docs-source\known-issues.md
+		docs-source\roadmap.md = docs-source\roadmap.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. versions", "3. versions", "{F23CF122-8FFB-4F83-ACDF-C59C3A32D127}"
+	ProjectSection(SolutionItems) = preProject
+		src\vsix\source.extension.vsixmanifest = src\vsix\source.extension.vsixmanifest
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{011D4E68-A073-4504-9EF9-59A43BC977EA}"
+	ProjectSection(SolutionItems) = preProject
+		docs-source\assets\images\developer-news.png = docs-source\assets\images\developer-news.png
+		docs-source\assets\images\options-developer-news.png = docs-source\assets\images\options-developer-news.png
+		docs-source\assets\images\options-general.png = docs-source\assets\images\options-general.png
+		docs-source\assets\images\options-recent-items.png = docs-source\assets\images\options-recent-items.png
+		docs-source\assets\images\options-start-tab.png = docs-source\assets\images\options-start-tab.png
+		docs-source\assets\images\start-page-plus.png = docs-source\assets\images\start-page-plus.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +111,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F5701DC-F83A-42F8-9DC9-DA953B1CA980} = {D9E3CC92-2D61-4E3F-973C-189AC210386C}
+		{DAAB5A80-A3D4-4AF9-894F-7C7A02A64B2A} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
+		{52B06F78-0B83-419D-B651-8C13DC72396A} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
+		{DE352D5D-4242-494B-858E-FCBCAA56BA82} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
+		{F23CF122-8FFB-4F83-ACDF-C59C3A32D127} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
+		{011D4E68-A073-4504-9EF9-59A43BC977EA} = {DE352D5D-4242-494B-858E-FCBCAA56BA82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A12DD3B5-EAFD-4095-9002-BA19EF465E67}

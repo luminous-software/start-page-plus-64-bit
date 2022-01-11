@@ -14,4 +14,4 @@ Due to Microsoft not making it easy to have a 32-bit & 64-bit extension be able 
 **VS 2022 or higher**.
 
 To use *Start Page+ 1.x* in VSS 2017 or 2019, plese refer to 
-the orriginal [Start Page+][start-page-plus-url] website.
+the original [Start Page+][start-page-plus-url] website.

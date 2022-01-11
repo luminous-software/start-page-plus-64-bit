@@ -7,8 +7,18 @@
 [license-url]: https://github.com/luminous-software/start-page-plus/blob/master/LICENSE
 [paypal-badge]: https://img.shields.io/badge/donate-paypal-green.svg?style=flat-square
 [paypal-url]: https://www.paypal.me/yannduran/10
+[marketplace-64-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus-64-bit
+[marketplace-32-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
 
-You can download this extension [from the Visual Studio Marketplace][marketplace-url]
+- For VS 2022 download the [**64-bit** extension][marketplace-64-bit-url]
+from the Visual Studio Marketplace.
+This version only supports VS 2022 and above.
+
+- For VS 2015 to VS 2019 download the [**32-bit** extension][marketplace-32-bit-url]
+from the Visual Studio Marketplace.
+This version does not support VS 2022.
+
+---
 
 If *Start Page+* has saved you time and hassle, please come back and show your support:
 
@@ -17,7 +27,6 @@ If *Start Page+* has saved you time and hassle, please come back and show your s
   - or [***shout me a coke***](https://www.paypal.me/yannduran/5) (I don't drink coffee or beer lol)
 
 [rate-or-review-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus#review-details
-[marketplace-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
 
 ## Please Note
 
