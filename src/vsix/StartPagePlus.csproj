@@ -49,7 +49,11 @@
       <Link>Properties\GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Commands\ViewWindow.cs" />
+    <Compile Include="Core\Strings\Constants.cs" />
     <Compile Include="Core\Dates\DateMethods.cs" />
+    <Compile Include="Options\Pages\GeneralOptions.cs" />
+    <Compile Include="Options\OptionsProvider.cs" />
+    <Compile Include="Options\Pages\Constants.cs" />
     <Compile Include="UI\AttachedProperties\Grids\Props.cs" />
     <Compile Include="UI\Constants\GuidConstants.cs" />
     <Compile Include="UI\Converters\BoolToPinConverter.cs" />
@@ -117,6 +121,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Design" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />

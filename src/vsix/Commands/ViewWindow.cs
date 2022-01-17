@@ -1,5 +1,7 @@
 ﻿namespace StartPagePlus.Commands
 {
+    using System;
+
     using Community.VisualStudio.Toolkit;
 
     using Microsoft.VisualStudio.Shell;
@@ -21,10 +23,9 @@
         {
             try
             {
-                //await VS.MessageBox.ShowAsync("Start Page+");
                 await MainWindow.ShowAsync();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 await VS.MessageBox.ShowErrorAsync(ex.Message);
             }

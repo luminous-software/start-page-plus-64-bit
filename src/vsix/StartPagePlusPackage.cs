@@ -8,17 +8,24 @@
 
     using Microsoft.VisualStudio.Shell;
 
+    using StartPagePlus.Options;
+    using StartPagePlus.Options.Pages;
     using StartPagePlus.UI.ToolWindows;
+
+    using static Vsix;
 
     using Task = System.Threading.Tasks.Task;
 
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [ProvideMenuResource("Menus.ctmenu", 1)]
-
-    [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
+    [InstalledProductRegistration(Name, Description, Vsix.Version)]
     [Guid(PackageGuids.StartPagePlusString)]
 
+    [ProvideMenuResource("Menus.ctmenu", 1)]
+
     [ProvideToolWindow(typeof(MainWindow.Pane), Style = VsDockStyle.Tabbed, Window = WindowGuids.DocumentWell, MultiInstances = false)]
+
+    [ProvideOptionPage(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
+    [ProvideProfile(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
