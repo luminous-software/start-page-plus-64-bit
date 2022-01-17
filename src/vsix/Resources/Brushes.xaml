@@ -1,0 +1,113 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+    >
+    <!-- Menu -->
+
+    <SolidColorBrush x:Key="MenuActiveBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowTabSelectedTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="MenuInactiveBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowTabSelectedTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="MenuBackgroundBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowBackgroundKey}}"
+        />
+
+    <!-- Content -->
+
+    <SolidColorBrush x:Key="TitleBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.AutoHideTabTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="ContentBackgroundBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.EnvironmentBackgroundKey}}"
+        />
+
+    <SolidColorBrush x:Key="TextLightBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.CaptionTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="TextDarkBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ActiveCaptionKey}}"
+        />
+
+    <!-- Columns -->
+
+    <SolidColorBrush x:Key="ColumnBorderBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowTabTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="ColumnBackgroundBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowBackgroundKey}}"
+        />
+
+    <SolidColorBrush x:Key="ColumnHeadingBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextHeadingSelectedKey}}"
+        />
+
+    <!-- Expanders -->
+
+    <SolidColorBrush x:Key="ExpanderIconBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedHoverKey}}"
+        />
+
+    <SolidColorBrush x:Key="ExpanderMouseOverBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedKey}}"
+        />
+
+    <SolidColorBrush x:Key="ExpanderIsPressedBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedHoverKey}}"
+        />
+
+    <!-- Items -->
+
+    <SolidColorBrush x:Key="ItemGroupCountBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedHoverKey}}"
+        />
+
+    <SolidColorBrush x:Key="ItemGroupNameBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedHoverKey}}"
+        />
+
+    <SolidColorBrush x:Key="ItemGroupIsMouseOverBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedKey}}"
+        />
+
+    <SolidColorBrush x:Key="ItemNameBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowTabSelectedTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="ItemDescriptionBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextBodyUnselectedKey}}"
+        />
+
+    <SolidColorBrush x:Key="ItemDateBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ToolWindowTextKey}}"
+        />
+
+    <SolidColorBrush x:Key="FilterForegroundBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ScrollBarThumbMouseOverBackgroundKey}}"
+        />
+
+    <SolidColorBrush x:Key="FilterBackgroundBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.ScrollBarBackgroundKey}}"
+        />
+
+    <!-- Commands -->
+
+    <SolidColorBrush x:Key="CommandActiveBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedHoverKey}}"
+        />
+
+    <SolidColorBrush x:Key="CommandInactiveBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextBodyUnselectedKey}}"
+        />
+
+    <SolidColorBrush x:Key="CommandMouseOverBrush"
+        Color="{DynamicResource {x:Static vsshell:VsColors.StartPageTextControlLinkSelectedKey}}"
+        />
+</ResourceDictionary>

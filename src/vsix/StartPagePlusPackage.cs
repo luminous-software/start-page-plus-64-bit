@@ -8,7 +8,7 @@
 
     using Microsoft.VisualStudio.Shell;
 
-    using StartPagePlus.Commands;
+    using StartPagePlus.UI.ToolWindows;
 
     using Task = System.Threading.Tasks.Task;
 
@@ -17,13 +17,16 @@
 
     [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
     [Guid(PackageGuids.StartPagePlusString)]
+
+    [ProvideToolWindow(typeof(MainWindow.Pane), Style = VsDockStyle.Tabbed, Window = WindowGuids.DocumentWell, MultiInstances = false)]
     public sealed class StartPagePlusPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            //await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await this.RegisterCommandsAsync();
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            await ViewWindow.InitializeAsync(this);
+            this.RegisterToolWindows();
         }
     }
 }

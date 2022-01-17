@@ -4,6 +4,8 @@
 
     using Microsoft.VisualStudio.Shell;
 
+    using StartPagePlus.UI.ToolWindows;
+
     //using StartPagePlus.Options.Models;
     //using StartPagePlus.UI.ToolWindows;
 
@@ -17,9 +19,15 @@
 
         protected async override Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
-            await VS.MessageBox.ShowAsync("Start Page+");
-            //using (await MainWindow.ShowAsync())
-            //{ };
+            try
+            {
+                //await VS.MessageBox.ShowAsync("Start Page+");
+                await MainWindow.ShowAsync();
+            }
+            catch (System.Exception ex)
+            {
+                await VS.MessageBox.ShowErrorAsync(ex.Message);
+            }
         }
     }
 }
