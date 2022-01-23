@@ -136,6 +136,9 @@
     <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.355" ExcludeAssets="Runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm">
+      <Version>7.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.15.0">
       <Version>17.0.31902.203</Version>
     </PackageReference>
