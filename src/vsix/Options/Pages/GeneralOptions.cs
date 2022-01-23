@@ -1,6 +1,7 @@
 ﻿namespace StartPagePlus.Options.Pages
 {
     using System.ComponentModel;
+    using System.Runtime.InteropServices;
 
     using Community.VisualStudio.Toolkit;
 
@@ -8,7 +9,8 @@
 
     internal partial class OptionsProvider
     {
-        public class General : BaseOptionPage<Pages.GeneralOptions> { }
+        [ComVisible(true)]
+        public class General : BaseOptionPage<GeneralOptions> { }
     }
 
     public class GeneralOptions : BaseOptionModel<GeneralOptions>
