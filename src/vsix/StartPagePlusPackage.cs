@@ -5,10 +5,11 @@
     using System.Threading;
 
     using Community.VisualStudio.Toolkit;
+    using Community.VisualStudio.Toolkit.DependencyInjection.Microsoft;
 
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.Shell;
 
-    using StartPagePlus.Options;
     using StartPagePlus.Options.Pages;
     using StartPagePlus.UI.ToolWindows;
 
@@ -26,7 +27,7 @@
 
     [ProvideOptionPage(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
-    public sealed class StartPagePlusPackage : ToolkitPackage
+    public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
@@ -34,6 +35,11 @@
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             this.RegisterToolWindows();
+        }
+
+        protected override void InitializeServices(IServiceCollection services)
+        {
+            //services.AddSingleton<IYourService, YourService>();
         }
     }
 }
