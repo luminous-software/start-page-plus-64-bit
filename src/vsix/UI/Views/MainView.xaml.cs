@@ -5,6 +5,8 @@
 
     using Community.VisualStudio.Toolkit;
 
+    using StartPagePlus.UI.ViewModels;
+
     //using StartPagePlus.UI.ViewModels;
 
     public partial class MainView : UserControl
@@ -15,7 +17,7 @@
 
             //MainViewModel.Package = package;
 
-            //DataContext = ViewModelLocator.MainViewModel;
+            DataContext = ViewModelManager.MainViewModel;
         }
 
         protected override void OnInitialized(EventArgs e)

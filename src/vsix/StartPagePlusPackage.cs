@@ -1,4 +1,5 @@
-﻿namespace StartPagePlus
+﻿namespace
+    StartPagePlus
 {
     using System;
     using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@
 
     using StartPagePlus.Options.Pages;
     using StartPagePlus.UI.ToolWindows;
+    using StartPagePlus.UI.ViewModels;
 
     using static Vsix;
 
@@ -29,17 +31,19 @@
     [ProvideProfile(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
-        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
-        {
-            await this.RegisterCommandsAsync();
-            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-
-            this.RegisterToolWindows();
-        }
-
         protected override void InitializeServices(IServiceCollection services)
         {
-            //services.AddSingleton<IYourService, YourService>();
+            ViewModelManager.RegisterViewModels(services);
+            //ServiceManager.RegisterServices(services);
+        }
+
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        {
+            await base.InitializeAsync(cancellationToken, progress);
+            await this.RegisterCommandsAsync();
+            //await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            this.RegisterToolWindows();
         }
     }
 }

@@ -89,12 +89,20 @@
     </VSCTCompile>
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Extensions\RecentItemExtensions.cs" />
+    <Compile Include="UI\Services\ServiceManager.cs" />
+    <Compile Include="UI\ViewModels\StartViewModel.cs" />
+    <Compile Include="UI\ViewModels\ViewModelManager.cs" />
     <Compile Include="UI\MarkupExtensions\MultValueConverterMarkupExtension.cs" />
     <Compile Include="UI\MarkupExtensions\ValueConverterMarkupExtension.cs" />
     <Compile Include="UI\ToolWindows\MainWindow.cs" />
     <Compile Include="UI\ViewModels\MainViewModel.cs" />
+    <Compile Include="UI\ViewModels\TabViewModel.cs" />
+    <Compile Include="UI\ViewModels\ViewModelBase.cs" />
     <Compile Include="UI\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\StartView.xaml.cs">
+      <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VSCommandTable.cs">
       <AutoGen>True</AutoGen>
@@ -163,6 +171,10 @@
     <Page Include="UI\Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup />

@@ -1,36 +1,37 @@
-﻿//namespace StartPagePlus.UI.ViewModels
-//{
-//    using System.Collections.ObjectModel;
+﻿namespace StartPagePlus.UI.ViewModels
+{
+    using System.Collections.ObjectModel;
 
-//    using Community.VisualStudio.Toolkit;
+    using Community.VisualStudio.Toolkit;
 
-//    using StartPagePlus.Options.Models;
+    using StartPagePlus.Options.Pages;
 
-//    public class MainViewModel : ViewModelBase
-//    {
-//        public MainViewModel()
-//        {
-//            Company = "Luminous Software Solutions";
-//            IsVisible = false;
-//            Tabs = new ObservableCollection<TabViewModel>
-//            {
-//                ViewModelLocator.StartViewModel//,
-//                //new FavoritesViewModel(),
-//                //new CreateViewModel(),
-//                //new NewsViewModel()
-//            };
-//        }
+    public class MainViewModel : ViewModelBase
+    {
+        public MainViewModel()
+        {
+            Company = "Luminous Software Solutions";
+            IsVisible = true;
+            Tabs = new ObservableCollection<TabViewModel>
+            {
+                ViewModelManager.StartViewModel//,
 
-//        public string Company { get; }
+                //new FavoritesViewModel(),
+                //new CreateViewModel(),
+                //new NewsViewModel()
+            };
+        }
 
-//        public bool IsVisible { get; }
+        public string Company { get; }
 
-//        public static ToolkitPackage Package { get; set; }
+        public bool IsVisible { get; }
 
-//        public ObservableCollection<TabViewModel> Tabs { get; }
+        public static ToolkitPackage Package { get; set; }
 
-//        public int MaxWidth
-//            => GeneralOptions.Instance.MaxWidth;
-//    }
+        public ObservableCollection<TabViewModel> Tabs { get; }
 
-//}
+        public int MaxWidth
+            => GeneralOptions.Instance.MaxWidth;
+    }
+
+}
