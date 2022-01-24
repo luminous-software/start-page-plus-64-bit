@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.ExtensionMethods.Exceptions
+﻿namespace StartPagePlus.Extensions.Exceptions
 {
     using System;
 
