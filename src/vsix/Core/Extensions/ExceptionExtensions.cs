@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.Extensions.Exceptions
+﻿namespace Luminous.Code.Extensions.Exceptions
 {
     using System;
 

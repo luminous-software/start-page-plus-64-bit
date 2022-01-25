@@ -11,7 +11,7 @@
         public MainViewModel()
         {
             Company = "Luminous Software Solutions";
-            IsVisible = true;
+            TabVisible = false;
             Tabs = new ObservableCollection<TabViewModel>
             {
                 ViewModelManager.StartViewModel//,
@@ -24,7 +24,7 @@
 
         public string Company { get; }
 
-        public bool IsVisible { get; }
+        public bool TabVisible { get; }
 
         public static ToolkitPackage Package { get; set; }
 
@@ -33,5 +33,4 @@
         public int MaxWidth
             => GeneralOptions.Instance.MaxWidth;
     }
-
 }

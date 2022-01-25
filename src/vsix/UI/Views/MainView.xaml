@@ -43,7 +43,7 @@
             Foreground="{DynamicResource TextLightBrush}"
             Text="{Binding Company}"
             TextAlignment="Center"
-            Visibility="{Binding IsVisible, Converter={c:BoolToVisibilityConverter}}"
+            Visibility="{Binding TabVisible, Converter={c:BoolToVisibilityConverter}}"
             />
 
         <TabControl x:Name="MainTabs"
@@ -130,7 +130,7 @@
                 <DataTemplate DataType="{x:Type vm:TabViewModel}">
                     <TextBlock
                         Text="{Binding Name}"
-                        Visibility="{Binding IsVisible, Converter={c:BoolToVisibilityConverter}}"
+                        Visibility="{Binding TabVisible, Converter={c:BoolToVisibilityConverter}}"
                         />
                 </DataTemplate>
             </TabControl.ItemTemplate>

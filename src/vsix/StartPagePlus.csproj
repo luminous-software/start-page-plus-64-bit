@@ -90,6 +90,7 @@
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Extensions\RecentItemExtensions.cs" />
     <Compile Include="UI\Services\ServiceManager.cs" />
+    <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\StartViewModel.cs" />
     <Compile Include="UI\ViewModels\ViewModelManager.cs" />
     <Compile Include="UI\MarkupExtensions\MultValueConverterMarkupExtension.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="UI\ViewModels\MainViewModel.cs" />
     <Compile Include="UI\ViewModels\TabViewModel.cs" />
     <Compile Include="UI\ViewModels\ViewModelBase.cs" />
+    <Compile Include="UI\ViewModels\ViewModelRecipient.cs" />
     <Compile Include="UI\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -153,6 +155,9 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5234">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.39</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

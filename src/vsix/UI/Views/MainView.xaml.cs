@@ -7,15 +7,13 @@
 
     using StartPagePlus.UI.ViewModels;
 
-    //using StartPagePlus.UI.ViewModels;
-
     public partial class MainView : UserControl
     {
         public MainView(ToolkitPackage package)
         {
             InitializeComponent();
 
-            //MainViewModel.Package = package;
+            MainViewModel.Package = package;
 
             DataContext = ViewModelManager.MainViewModel;
         }

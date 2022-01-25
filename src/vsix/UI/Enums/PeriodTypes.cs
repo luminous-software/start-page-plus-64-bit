@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Core.Extensions.Enums;
+    using Luminous.Code.Extensions.Enums;
 
     using Luminous.Code.Extensions.Dates;
 

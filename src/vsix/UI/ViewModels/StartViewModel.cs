@@ -1,5 +1,6 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
+    using System.Collections.ObjectModel;
 
     using StartPagePlus.Options.Pages;
 
@@ -10,16 +11,16 @@
 
             Name = "Start";
             Title = GeneralOptions.Instance.StartTabTitleText;
-            IsVisible = false;
-            //Columns = new ObservableCollection<ColumnViewModel>
-            //{
-            //    ViewModelLocator.RecentItemsViewModel,
+            TabVisible = false;
+            Columns = new ObservableCollection<ColumnViewModel>
+            {
+                ViewModelManager.RecentItemsViewModel,
             //    ViewModelLocator.StartItemsViewModel,
             //    ViewModelLocator.NewsItemsViewModel,
-            //};
+            };
         }
 
-        //public ObservableCollection<ColumnViewModel> Columns { get; set; }
+        public ObservableCollection<ColumnViewModel> Columns { get; set; }
 
         public bool ShowStartTabTitle
             => GeneralOptions.Instance.ShowStartTabTitle;

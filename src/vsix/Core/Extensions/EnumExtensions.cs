@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.Core.Extensions.Enums
+﻿namespace Luminous.Code.Extensions.Enums
 {
     using System;
     using System.ComponentModel;

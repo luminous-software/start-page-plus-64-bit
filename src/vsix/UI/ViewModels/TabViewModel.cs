@@ -6,6 +6,6 @@
 
         public string Title { get; set; }
 
-        public bool IsVisible { get; set; }
+        public bool TabVisible { get; set; }
     }
 }
