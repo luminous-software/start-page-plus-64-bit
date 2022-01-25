@@ -35,9 +35,6 @@
             var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
             var viewModel = serviceProvider.GetRequiredService<T>();
 
-            //var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
-            //var viewModel = serviceProvider.GetService<T>();
-
             return viewModel;
         }
     }
