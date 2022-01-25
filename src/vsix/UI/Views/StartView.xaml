@@ -62,6 +62,10 @@
                     <v:RecentItemsView IsTabStop="False"/>
                 </DataTemplate>
 
+                <!--<DataTemplate DataType="{x:Type vm:RecentItemsViewModel}">
+                    <v:RecentItemsView IsTabStop="False"/>
+                </DataTemplate>-->
+
                 <!--<DataTemplate DataType="{x:Type vm:StartItemsViewModel}">
                     <v:StartItemsView IsTabStop="False"/>
                 </DataTemplate>

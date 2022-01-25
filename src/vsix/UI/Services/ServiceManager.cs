@@ -1,25 +1,37 @@
-﻿//namespace StartPagePlus.UI.Services
-//{
+﻿namespace StartPagePlus.UI.Services
+{
 
-//    using Community.VisualStudio.Toolkit;
-//    using Community.VisualStudio.Toolkit.DependencyInjection.Core;
+    using Community.VisualStudio.Toolkit;
+    using Community.VisualStudio.Toolkit.DependencyInjection.Core;
 
-//    using Microsoft.Extensions.DependencyInjection;
+    using Luminous.Code.Interfaces;
 
-//    public static class ServiceManager
-//    {
-//        public static T GetService<T>()
-//            where T : class //YD to be revised
-//        {
-//            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
-//            var service = serviceProvider.GetService<T>();
+    using Microsoft.Extensions.DependencyInjection;
 
-//            return service;
-//        }
+    using StartPagePlus.UI.Interfaces;
 
-//        internal static void RegisterServices(IServiceCollection services)
-//        {
-//            //services.AddSingleton<IService, Service>();
-//        }
-//    }
-//}
+    public static class ServiceManager
+    {
+        public static IDateTimeService DateTimeService { get; set; }
+
+        public static IMruService MruService { get; set; }
+        
+        public static IRecentItemDataService RecentItemDataService { get; set; }
+
+        public static T GetService<T>()
+            where T : IService
+        {
+            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
+            var service = serviceProvider.GetService<T>();
+
+            return service;
+        }
+
+        internal static void RegisterServices(IServiceCollection services)
+        {
+            services.AddSingleton<IDateTimeService, DateTimeService>();
+            services.AddSingleton<IMruService, MruPrivateSettingsService>();
+            services.AddSingleton<IRecentItemDataService, RecentItemDataService>();
+        }
+    }
+}

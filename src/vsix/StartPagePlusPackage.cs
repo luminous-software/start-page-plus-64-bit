@@ -12,6 +12,7 @@
     using Microsoft.VisualStudio.Shell;
 
     using StartPagePlus.Options.Pages;
+    using StartPagePlus.UI.Services;
     using StartPagePlus.UI.ToolWindows;
     using StartPagePlus.UI.ViewModels;
 
@@ -29,12 +30,15 @@
 
     [ProvideOptionPage(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.General), Name, GeneralOptions.Category, 0, 0, true)]
+
+    [ProvideOptionPage(typeof(OptionsProvider.RecentItems), Name, RecentItemsOptions.Category, 0, 0, true)]
+    [ProvideProfile(typeof(OptionsProvider.RecentItems), Name, RecentItemsOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
         protected override void InitializeServices(IServiceCollection services)
         {
             ViewModelManager.RegisterViewModels(services);
-            //ServiceManager.RegisterServices(services);
+            ServiceManager.RegisterServices(services);
         }
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)

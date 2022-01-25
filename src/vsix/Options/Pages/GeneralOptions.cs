@@ -5,7 +5,7 @@
 
     using Community.VisualStudio.Toolkit;
 
-    using static StartPagePlus.Options.Pages.Constants;
+    using static StartPagePlus.Options.Pages.PageConstants;
 
     internal partial class OptionsProvider
     {
@@ -20,31 +20,31 @@
         [Category(H1 + PackageName)]
         [DisplayName(EnableStartPagePlusDispayName)]
         [Description(EnableStartPagePlusDescription)]
-        public bool EnableStartPagePlus { get; set; } = true;
+        public bool EnableStartPagePlus { get; set; } = EnableStartPagePlusDefault;
 
         [Category(H1 + PackageName)]
         [DisplayName(EnableOptionsMenuItemDispayName)]
         [Description(EnableOptionsMenuItemDescription)]
-        public bool EnableStartPagePlusOptions { get; set; } = true;
+        public bool EnableStartPagePlusOptions { get; set; } = EnableStartPagePlusOptionsDefault;
 
         [Category(H1 + PackageName)]
-        [DisplayName(Constants.PackageVersion)]
+        [DisplayName(PageConstants.PackageVersion)]
         [Description("Installed '" + PackageName + "' version")]
         public string PackageVersion { get; } = Vsix.Version;
 
-        [Category(H2 + Constants.Settings)]
+        [Category(H2 + PageConstants.Settings)]
         [DisplayName(MaxWidthDisplayName)]
         [Description(MaxWidthDescription)]
-        public int MaxWidth { get; set; } = 1280;
+        public int MaxWidth { get; set; } = MaxWidthDefault;
 
-        [Category(H2 + Constants.Settings)]
+        [Category(H2 + PageConstants.Settings)]
         [DisplayName(ShowStartTabTitleDisplayName)]
         [Description(ShowStartTabTitleDescription)]
-        public bool ShowStartTabTitle { get; set; } = true;
+        public bool ShowStartTabTitle { get; set; } = ShowStartTabTitleDefault;
 
-        [Category(H2 + Constants.Settings)]
+        [Category(H2 + PageConstants.Settings)]
         [DisplayName(StartTabTitleTextDisplayName)]
         [Description(StartTabTitleTextDescription)]
-        public string StartTabTitleText { get; set; } = "What would you like to do today?";
+        public string StartTabTitleText { get; set; } = StartTabTitleDefault;
     }
 }

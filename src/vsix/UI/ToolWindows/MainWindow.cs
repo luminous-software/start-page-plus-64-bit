@@ -17,7 +17,7 @@
     public class MainWindow : BaseToolWindow<MainWindow>
     {
         public override string GetTitle(int toolWindowId)
-            => Vsix.Name.Replace(" (64 bit)", "");
+            => Vsix.Name; //.Replace(" (64 bit)", "");
 
         public override Type PaneType
             => typeof(Pane);

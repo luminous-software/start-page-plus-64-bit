@@ -1,5 +1,0 @@
-﻿namespace StartPagePlus.Options
-{
-
-
-}

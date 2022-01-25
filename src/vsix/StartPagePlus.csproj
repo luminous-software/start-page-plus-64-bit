@@ -49,11 +49,13 @@
       <Link>Properties\GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Commands\ViewWindow.cs" />
+    <Compile Include="Core\Interfaces\IDateTimeService.cs" />
     <Compile Include="Core\Strings\Constants.cs" />
     <Compile Include="Core\Dates\DateMethods.cs" />
+    <Compile Include="Options\Pages\OptionsProvider.cs" />
+    <Compile Include="Options\Pages\RecentItemsOptions.cs" />
     <Compile Include="Options\Pages\GeneralOptions.cs" />
-    <Compile Include="Options\OptionsProvider.cs" />
-    <Compile Include="Options\Pages\Constants.cs" />
+    <Compile Include="Options\Pages\PageConstants.cs" />
     <Compile Include="UI\AttachedProperties\Grids\Props.cs" />
     <Compile Include="UI\Constants\GuidConstants.cs" />
     <Compile Include="UI\Converters\BoolToPinConverter.cs" />
@@ -89,6 +91,20 @@
     </VSCTCompile>
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Extensions\RecentItemExtensions.cs" />
+    <Compile Include="UI\Interfaces\IDataService.cs" />
+    <Compile Include="UI\Interfaces\IMruDataService.cs" />
+    <Compile Include="UI\Interfaces\IMruService.cs" />
+    <Compile Include="UI\Interfaces\IRecentItemDataService.cs" />
+    <Compile Include="UI\Interfaces\IMessageSender.cs" />
+    <Compile Include="UI\Interfaces\IService.cs" />
+    <Compile Include="UI\Interfaces\IViewModel.cs" />
+    <Compile Include="UI\RecentItems\RecentItem.cs" />
+    <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
+    <Compile Include="UI\RecentItems\RecentItemValue.cs" />
+    <Compile Include="UI\Services\DateTimeService.cs" />
+    <Compile Include="UI\Services\MruPrivateSettingsService.cs" />
+    <Compile Include="UI\Services\RecentItemDataService.cs" />
+    <Compile Include="UI\Services\ServiceBase.cs" />
     <Compile Include="UI\Services\ServiceManager.cs" />
     <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItemsViewModel.cs" />

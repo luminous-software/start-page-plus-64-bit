@@ -1,35 +1,37 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
     using System;
-    using System.Windows.Input;
 
+    using Microsoft.Toolkit.Mvvm.Input;
     using Microsoft.VisualStudio.Imaging.Interop;
+
+    using StartPagePlus.UI.Enums;
 
     public class RecentItemViewModel : ViewModelBase
     {
         public RecentItemViewModel()
         {
-            //SelectItemCommand = new RelayCommand(SelectItem, true);
-            //TogglePinnedCommand = new RelayCommand(TogglePinned, true);
-            //RemoveItemCommand = new RelayCommand(RemoveItem, true);
-            //CopyItemPathCommand = new RelayCommand(CopyItemPath, true);
-            //EditItemPathCommand = new RelayCommand(EditItemPath, true);
-            //OpenInVSCommand = new RelayCommand(OpenInVS, true);
+            SelectItemCommand = new RelayCommand(SelectItem);
+            TogglePinnedCommand = new RelayCommand(TogglePinned);
+            RemoveItemCommand = new RelayCommand(RemoveItem);
+            CopyItemPathCommand = new RelayCommand(CopyItemPath);
+            EditItemPathCommand = new RelayCommand(EditItemPath);
+            OpenInVSCommand = new RelayCommand(OpenInVS);
         }
 
         //---
 
-        public ICommand SelectItemCommand { get; }
+        public RelayCommand SelectItemCommand { get; }
 
-        public ICommand TogglePinnedCommand { get; }
+        public RelayCommand TogglePinnedCommand { get; }
 
-        public ICommand RemoveItemCommand { get; }
+        public RelayCommand RemoveItemCommand { get; }
 
-        public ICommand CopyItemPathCommand { get; }
+        public RelayCommand CopyItemPathCommand { get; }
 
-        public ICommand EditItemPathCommand { get; }
+        public RelayCommand EditItemPathCommand { get; }
 
-        public ICommand OpenInVSCommand { get; }
+        public RelayCommand OpenInVSCommand { get; }
 
         //---
 
@@ -39,9 +41,9 @@
 
         public DateTime Date { get; set; }
 
-        //public PeriodType PeriodType { get; set; }
+        internal PeriodType PeriodType { get; set; }
 
-        //internal RecentItemType ItemType { get; set; }
+        internal RecentItemType ItemType { get; set; }
 
         public string Path { get; set; }
 
@@ -51,22 +53,22 @@
 
         //---
 
-        //private void SelectItem()
+        private void SelectItem() { }
         //    => SendMessage(new RecentItemSelected(this));
 
-        //private void TogglePinned()
+        private void TogglePinned() { }
         //    => SendMessage(new RecentItemTogglePinned(this));
 
-        //private void RemoveItem()
+        private void RemoveItem() { }
         //    => SendMessage(new RecentItemRemove(this));
 
-        //private void CopyItemPath()
+        private void CopyItemPath() { }
         //    => SendMessage(new RecentItemCopyPath(this));
 
-        //private void EditItemPath()
+        private void EditItemPath() { }
         //    => SendMessage(new RecentItemEditPath(this));
 
-        //private void OpenInVS()
+        private void OpenInVS() { }
         //    => SendMessage(new RecentItemOpenInVS(this));
     }
 }

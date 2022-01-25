@@ -1,0 +1,28 @@
+﻿namespace StartPagePlus.UI.Interfaces
+{
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+
+    using StartPagePlus.UI.ViewModels;
+
+    public interface IRecentItemDataService
+    {
+        Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(int itemsToDisplay, bool hideExtensions);
+
+        Task<bool> RemoveItemAsync(RecentItemViewModel viewModel);
+
+        Task<bool> PinItemAsync(RecentItemViewModel viewModel);
+
+        Task<bool> UnpinItemAsync(RecentItemViewModel viewModel);
+
+        Task<bool> UpdateItemPathAsync(RecentItemViewModel viewModel, string value);
+
+        Task<bool> CopyItemPathAsync(RecentItemViewModel viewModel);
+
+        Task<bool?> EditItemPathAsync(RecentItemViewModel viewModel);
+
+        Task<bool> OpenInVsAsync(RecentItemViewModel viewModel);
+
+        Task<bool> UpdateLastAccessedAsync(string path);
+    }
+}

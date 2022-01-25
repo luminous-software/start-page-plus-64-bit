@@ -4,13 +4,12 @@
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
 
+    using Community.VisualStudio.Toolkit;
+
     using Microsoft.VisualStudio.Shell;
 
-    //using StartPagePlus.Core.Interfaces;
-    //using StartPagePlus.Options;
-    //using StartPagePlus.Options.Models;
-    //using StartPagePlus.UI.Interfaces;
-    //using StartPagePlus.UI.Messages;
+    using StartPagePlus.Options.Pages;
+    using StartPagePlus.UI.Interfaces;
 
     public class RecentItemsViewModel : ColumnViewModel
     {
@@ -23,19 +22,19 @@
         public RecentItemsViewModel(
             //IRecentItemCommandService commandService,
             //IRecentItemActionService actionService,
-            //IRecentItemDataService dataService,
+            IRecentItemDataService dataService
             //IDialogService dialogService,
             //IVisualStudioService visualStudioService
             ) : base()
         {
-            //DataService = dataService;
+            DataService = dataService;
             //ActionService = actionService;
             //CommandService = commandService;
             //DialogService = dialogService;
             //VisualStudioService = visualStudioService;
 
             Heading = HEADING;
-            IsVisible = true;
+            IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
 
             //GetCommands();
             Refresh();
@@ -51,7 +50,7 @@
 
         //public IRecentItemActionService ActionService { get; }
 
-        //public IRecentItemDataService DataService { get; }
+        public IRecentItemDataService DataService { get; }
 
         //public IRecentItemCommandService CommandService { get; }
 
@@ -385,22 +384,23 @@
         {
             Refreshed = false;
 
-            //var options = RecentItemsOptions.Instance;
-            //var itemsToDisplay = options.ItemsToDisplay;
-            //var showExtensions = options.ShowFileExtensions;
+            var options = RecentItemsOptions.Instance;
+            var itemsToDisplay = options.ItemsToDisplay;
+            var showExtensions = options.ShowFileExtensions;
 
+            //YD: replace all of these with RunMethod calls
             ThreadHelper.JoinableTaskFactory.Run(async () =>
             {
-                //var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions);
+                var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions);
 
-                //// Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
+                // Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
 
-                //Items.Clear();
+                Items.Clear();
 
-                //foreach (var item in items)
-                //{
-                //    Items.Add(item);
-                //}
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
             });
 
             Refreshed = true;
@@ -409,7 +409,7 @@
         //private void RefreshRequested(RecentItemsRefresh message)
         //    => Refresh();
 
-        //private void OpenSettings()
-        //    => VisualStudioService.ShowOptions<OptionsProvider.RecentItems>();
+        private void OpenSettings()
+            => VS.Settings.OpenAsync<OptionsProvider.RecentItems>();
     }
 }
