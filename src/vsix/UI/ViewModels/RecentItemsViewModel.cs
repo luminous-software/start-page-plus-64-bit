@@ -388,11 +388,12 @@
             var options = RecentItemsOptions.Instance;
             var itemsToDisplay = options.ItemsToDisplay;
             var showExtensions = options.ShowFileExtensions;
+            var showPaths = options.ShowFilePaths;
 
             //YD: replace all of these with RunMethod calls
             ThreadHelper.JoinableTaskFactory.Run(async () =>
             {
-                var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions);
+                var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths);
 
                 // Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
                 // YD: what if 'items' was declared outside JTF.Run?

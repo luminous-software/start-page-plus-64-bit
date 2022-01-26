@@ -37,7 +37,7 @@
 
         //public IVisualStudioService VisualStudioService { get; }
 
-        public async Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(int itemsToDisplay, bool showExtensions)
+        public async Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(int itemsToDisplay, bool showExtensions, bool showPaths)
         {
             var items = new ObservableCollection<RecentItemViewModel>();
             var today = DateTimeService.Today.Date;
@@ -48,7 +48,7 @@
                 .Take(itemsToDisplay)
                 .ToList()
                 .ForEach((recentItem)
-                    => items.Add(recentItem.CreateViewModel(today, showExtensions)));
+                    => items.Add(recentItem.CreateViewModel(today, showExtensions, showPaths)));
 
             return items;
         }

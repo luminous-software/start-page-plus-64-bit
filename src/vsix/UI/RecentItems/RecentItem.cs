@@ -18,7 +18,7 @@
 
         public RecentItemValue Value { get; set; }
 
-        public RecentItemViewModel CreateViewModel(DateTime today, bool showExtension)
+        public RecentItemViewModel CreateViewModel(DateTime today, bool showExtension, bool showPath)
         {
             var path = Value.LocalProperties.FullPath;
             var date = Value.LastAccessed.Date;
@@ -26,7 +26,9 @@
                 ? Path.GetFileName(path)
                 : Path.GetFileNameWithoutExtension(path);
             var pinned = Value.IsFavorite;
-            var folder = Path.GetDirectoryName(path);
+            var folder = showPath
+                ? Path.GetDirectoryName(path)
+                : "";
             var period = CalculatePeriodType(pinned, today, date);
             var type = path.CalculateRecentItemType();
             var moniker = type.ToImageMoniker();
