@@ -8,6 +8,7 @@
 
     using Microsoft.Extensions.DependencyInjection;
 
+    using StartPagePlus.Core.Interfaces;
     using StartPagePlus.UI.Interfaces;
 
     public static class ServiceManager
@@ -15,7 +16,7 @@
         public static IDateTimeService DateTimeService { get; set; }
 
         public static IMruService MruService { get; set; }
-        
+
         public static IRecentItemDataService RecentItemDataService { get; set; }
 
         public static T GetService<T>()
@@ -30,8 +31,10 @@
         internal static void RegisterServices(IServiceCollection services)
         {
             services.AddSingleton<IDateTimeService, DateTimeService>();
+            services.AddSingleton<IDialogService, ToolkitDialogService>();
             services.AddSingleton<IMruService, MruPrivateSettingsService>();
             services.AddSingleton<IRecentItemDataService, RecentItemDataService>();
+            services.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
+    using System.Collections.Generic;
+
     public class ColumnViewModel : ViewModelBase
     {
         private bool isVisible = true;
-        //private ObservableContextCommandList contextCommands;
+        private List<ContextCommandViewModel> contextCommands;
 
         public string Heading { get; set; }
 
@@ -13,21 +15,12 @@
             set => SetProperty(ref isVisible, value);
         }
 
-        //public ObservableCommandList Commands { get; set; }
+        public List<CommandViewModel> Commands { get; set; }
 
-        //public ObservableContextCommandList ContextCommands
-        //{
-        //    get => contextCommands;
-        //    set
-        //    {
-        //        if (Set(ref contextCommands, value, nameof(ContextCommands)))
-        //        {
-        //            RaiseCanExecuteChanged();
-        //        };
-        //    }
-        //}
-
-        protected virtual void RaiseCanExecuteChanged()
-        { }
+        public List<ContextCommandViewModel> ContextCommands
+        {
+            get => contextCommands;
+            set => SetProperty(ref contextCommands, value);
+        }
     }
 }
