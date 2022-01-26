@@ -90,7 +90,6 @@
       <LastGenOutput>VSCommandTable.cs</LastGenOutput>
     </VSCTCompile>
     <Compile Include="UI\Dates\DateMethods.cs" />
-    <Compile Include="UI\Extensions\RecentItemExtensions.cs" />
     <Compile Include="UI\Interfaces\IDataService.cs" />
     <Compile Include="UI\Interfaces\IMruDataService.cs" />
     <Compile Include="UI\Interfaces\IMruService.cs" />

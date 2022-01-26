@@ -7,7 +7,6 @@
 
     using Luminous.Code.Interfaces;
 
-    using StartPagePlus.Extensions.RecentItems;
     using StartPagePlus.UI.Interfaces;
     using StartPagePlus.UI.ViewModels;
 
@@ -45,11 +44,11 @@
             var recentItems = await MruService.GetItemsAsync();
 
             recentItems
-                //    .OrderByDescending(x => x.Value.LastAccessed)
+                // YD: .OrderByDescending(x => x.Value.LastAccessed) not needed because of grouping/sorting?
                 .Take(itemsToDisplay)
                 .ToList()
                 .ForEach((recentItem)
-                    => items.Add(recentItem.ToViewModel(today, showExtensions)));
+                    => items.Add(recentItem.CreateViewModel(today, showExtensions)));
 
             return items;
         }
