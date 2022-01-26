@@ -41,9 +41,9 @@
 
         public DateTime Date { get; set; }
 
-        internal PeriodType PeriodType { get; set; }
+        public PeriodType PeriodType { get; set; }
 
-        internal RecentItemType ItemType { get; set; }
+        public RecentItemType ItemType { get; set; }
 
         public string Path { get; set; }
 
