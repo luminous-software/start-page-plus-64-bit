@@ -64,7 +64,7 @@
     <Compile Include="UI\Converters\DummyConverter.cs" />
     <Compile Include="UI\Converters\EnumToStringConverter.cs" />
     <Compile Include="UI\Converters\IntToPluralStringConverter.cs" />
-    <Compile Include="UI\Converters\PeriodTypeToStringConverter.cs" />
+    <Compile Include="UI\Converters\PeriodTypeToNameConverter.cs" />
     <Compile Include="UI\Converters\RecentItemTypeToMonikerConverter.cs" />
     <Compile Include="UI\Converters\TextToVisibilityConverter.cs" />
     <Compile Include="UI\Enums\PeriodType.cs" />
@@ -116,7 +116,6 @@
     <Compile Include="UI\ViewModels\MainViewModel.cs" />
     <Compile Include="UI\ViewModels\TabViewModel.cs" />
     <Compile Include="UI\ViewModels\ViewModelBase.cs" />
-    <Compile Include="UI\ViewModels\ViewModelRecipient.cs" />
     <Compile Include="UI\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

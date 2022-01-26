@@ -1,6 +1,6 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
-    public class ColumnViewModel : ViewModelRecipient
+    public class ColumnViewModel : ViewModelBase
     {
         private bool isVisible = true;
         //private ObservableContextCommandList contextCommands;
