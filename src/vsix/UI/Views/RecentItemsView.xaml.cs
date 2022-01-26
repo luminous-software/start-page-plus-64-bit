@@ -51,14 +51,14 @@
         {
             view.GroupDescriptions.Clear();
             view.IsLiveGrouping = true;
-            //view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(RecentItemViewModel.PeriodType)));
+            view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(RecentItemViewModel.PeriodType)));
         }
 
         private static void AddSorting(ListCollectionView view)
         {
             view.SortDescriptions.Clear();
             view.IsLiveSorting = true;
-            //view.SortDescriptions.Add(new SortDescription(nameof(RecentItemViewModel.PeriodType), ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription(nameof(RecentItemViewModel.PeriodType), ListSortDirection.Ascending));
             view.SortDescriptions.Add(new SortDescription(nameof(RecentItemViewModel.Date), ListSortDirection.Descending));
         }
 
