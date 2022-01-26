@@ -28,6 +28,11 @@
         public bool ShowFileExtensions { get; set; } = ShowFileExtensionsDefault;
 
         [Category(PageConstants.Settings)]
+        [DisplayName(ShowFilePathsDisplayName)]
+        [Description(ShowFilePathsDescription)]
+        public bool ShowFilePaths { get; set; } = ShowFilePathsDefault;
+
+        [Category(PageConstants.Settings)]
         [DisplayName(DisplayRecentItemsName)]
         [Description(DisplayRecentItemsDescription)]
         public bool DisplayRecentItems { get; set; } = DisplayRecentItemsDefault;

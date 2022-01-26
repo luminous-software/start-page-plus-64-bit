@@ -59,6 +59,10 @@
         public const string ShowFileExtensionsDescription = "Sets the visibility of project/solution extensions in the 'Recent Items' list";
         internal const bool ShowFileExtensionsDefault = false;
 
+        public const string ShowFilePathsDisplayName = "Show File Paths";
+        public const string ShowFilePathsDescription = "Sets the visibility of project/solution paths in the 'Recent Items' list";
+        internal const bool ShowFilePathsDefault = false;
+
         public const string DisplayRecentItemsName = "Display 'Recent Items' list";
         public const string DisplayRecentItemsDescription = "Sets the visibility of the 'Recent Items' list";
         internal const bool DisplayRecentItemsDefault = true;
