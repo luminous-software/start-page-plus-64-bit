@@ -5,8 +5,8 @@
     xmlns:c="clr-namespace:StartPagePlus.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:v="clr-namespace:StartPagePlus.UI.Views"
-    xmlns:vm="clr-namespace:StartPagePlus.UI.ViewModels"
+    xmlns:vri="clr-namespace:StartPagePlus.UI.Views.RecentItems"
+    xmlns:vmri="clr-namespace:StartPagePlus.UI.ViewModels.RecentItems"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource ContentBackgroundBrush}"
@@ -58,8 +58,8 @@
             </ItemsControl.ItemsPanel>
 
             <ItemsControl.Resources>
-                <DataTemplate DataType="{x:Type vm:RecentItemsViewModel}">
-                    <v:RecentItemsView IsTabStop="False"/>
+                <DataTemplate DataType="{x:Type vmri:RecentItemsViewModel}">
+                    <vri:RecentItemsView IsTabStop="False"/>
                 </DataTemplate>
 
                 <!--<DataTemplate DataType="{x:Type vm:RecentItemsViewModel}">

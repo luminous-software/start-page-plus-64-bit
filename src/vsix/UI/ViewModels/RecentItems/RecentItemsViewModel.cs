@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.UI.ViewModels
+﻿namespace StartPagePlus.UI.ViewModels.RecentItems
 {
     using System;
     using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@
 
     using StartPagePlus.Core.Interfaces;
     using StartPagePlus.Options.Pages;
-    using StartPagePlus.UI.Interfaces;
+    using StartPagePlus.UI.Interfaces.RecentItems;
 
     public class RecentItemsViewModel : ColumnViewModel
     {

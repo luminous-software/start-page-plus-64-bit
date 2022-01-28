@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.UI.Services
+﻿namespace StartPagePlus.UI.Services.RecentItems
 {
     using System;
     using System.Collections.ObjectModel;
@@ -7,8 +7,9 @@
 
     using Luminous.Code.Interfaces;
 
-    using StartPagePlus.UI.Interfaces;
+    using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.ViewModels;
+    using StartPagePlus.UI.ViewModels.RecentItems;
 
     public class RecentItemDataService : ServiceBase, IRecentItemDataService
     {

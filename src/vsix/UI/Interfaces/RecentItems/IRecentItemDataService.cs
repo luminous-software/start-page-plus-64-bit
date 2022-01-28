@@ -1,9 +1,9 @@
-﻿namespace StartPagePlus.UI.Interfaces
+﻿namespace StartPagePlus.UI.Interfaces.RecentItems
 {
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
-    using StartPagePlus.UI.ViewModels;
+    using StartPagePlus.UI.ViewModels.RecentItems;
 
     public interface IRecentItemDataService
     {

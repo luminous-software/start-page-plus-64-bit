@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.UI.Services
+﻿namespace StartPagePlus.UI.Services.RecentItems
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    using StartPagePlus.UI.Interfaces;
+    using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.Models;
     using StartPagePlus.UI.ViewModels;
 

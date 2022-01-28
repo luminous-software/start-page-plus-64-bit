@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.UI.ViewModels
+﻿namespace StartPagePlus.UI.ViewModels.RecentItems
 {
     using System;
 

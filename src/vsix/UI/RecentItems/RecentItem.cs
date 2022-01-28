@@ -4,7 +4,7 @@
     using System.IO;
 
     using StartPagePlus.UI.Enums;
-    using StartPagePlus.UI.ViewModels;
+    using StartPagePlus.UI.ViewModels.RecentItems;
 
     using static StartPagePlus.UI.Enums.PeriodTypes;
     using static StartPagePlus.UI.Enums.RecentItemTypes;
