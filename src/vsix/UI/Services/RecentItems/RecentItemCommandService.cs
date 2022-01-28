@@ -1,12 +1,12 @@
-﻿namespace StartPagePlus.UI.Services
+﻿namespace StartPagePlus.UI.Services.RecentItems
 {
     using System;
     using System.Collections.Generic;
 
-    using Interfaces;
-
     using Microsoft.Toolkit.Mvvm.Input;
     using Microsoft.VisualStudio.Imaging;
+
+    using StartPagePlus.UI.Interfaces.RecentItems;
 
     using ViewModels;
 

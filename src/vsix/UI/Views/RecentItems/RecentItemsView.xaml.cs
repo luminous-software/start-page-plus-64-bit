@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.UI.Views
+﻿namespace StartPagePlus.UI.Views.RecentItems
 {
     using System;
     using System.ComponentModel;
@@ -12,6 +12,7 @@
     //using StartPagePlus.UI.Messages;
     //using StartPagePlus.UI.Methods;
     using StartPagePlus.UI.ViewModels;
+    using StartPagePlus.UI.ViewModels.RecentItems;
 
     public partial class RecentItemsView : UserControl
     {

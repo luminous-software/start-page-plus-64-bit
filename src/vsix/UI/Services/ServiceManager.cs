@@ -10,6 +10,8 @@
 
     using StartPagePlus.Core.Interfaces;
     using StartPagePlus.UI.Interfaces;
+    using StartPagePlus.UI.Interfaces.RecentItems;
+    using StartPagePlus.UI.Services.RecentItems;
 
     public static class ServiceManager
     {

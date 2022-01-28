@@ -93,11 +93,11 @@
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Interfaces\ICommandService.cs" />
     <Compile Include="UI\Interfaces\IDataService.cs" />
-    <Compile Include="UI\Interfaces\IMruDataService.cs" />
-    <Compile Include="UI\Interfaces\IMruService.cs" />
-    <Compile Include="UI\Interfaces\IRecentItemCommandService.cs" />
-    <Compile Include="UI\Interfaces\IRecentItemContextMenuService.cs" />
-    <Compile Include="UI\Interfaces\IRecentItemDataService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IMruDataService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IMruService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IRecentItemCommandService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IRecentItemContextMenuService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IRecentItemDataService.cs" />
     <Compile Include="UI\Interfaces\IMessageSender.cs" />
     <Compile Include="UI\Interfaces\IService.cs" />
     <Compile Include="UI\Interfaces\IViewModel.cs" />
@@ -106,16 +106,16 @@
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
     <Compile Include="UI\Services\DateTimeService.cs" />
     <Compile Include="UI\Services\ToolkitDialogService.cs" />
-    <Compile Include="UI\Services\MruPrivateSettingsService.cs" />
-    <Compile Include="UI\Services\RecentItemCommandService.cs" />
-    <Compile Include="UI\Services\RecentItemDataService.cs" />
+    <Compile Include="UI\Services\RecentItems\MruPrivateSettingsService.cs" />
+    <Compile Include="UI\Services\RecentItems\RecentItemCommandService.cs" />
+    <Compile Include="UI\Services\RecentItems\RecentItemDataService.cs" />
     <Compile Include="UI\Services\ServiceBase.cs" />
     <Compile Include="UI\Services\ServiceManager.cs" />
     <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\CommandViewModel.cs" />
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
-    <Compile Include="UI\ViewModels\RecentItemsViewModel.cs" />
-    <Compile Include="UI\ViewModels\RecentItemViewModel.cs" />
+    <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />
+    <Compile Include="UI\ViewModels\RecentItems\RecentItemViewModel.cs" />
     <Compile Include="UI\ViewModels\StartViewModel.cs" />
     <Compile Include="UI\ViewModels\ViewModelManager.cs" />
     <Compile Include="UI\MarkupExtensions\MultValueConverterMarkupExtension.cs" />
@@ -127,7 +127,7 @@
     <Compile Include="UI\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Views\RecentItemsView.xaml.cs">
+    <Compile Include="UI\Views\RecentItems\RecentItemsView.xaml.cs">
       <DependentUpon>RecentItemsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Views\StartView.xaml.cs">
@@ -204,7 +204,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Views\RecentItemsView.xaml">
+    <Page Include="UI\Views\RecentItems\RecentItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>

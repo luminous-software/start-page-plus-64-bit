@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.UI.Interfaces
+﻿namespace StartPagePlus.UI.Interfaces.RecentItems
 {
     using System.Threading.Tasks;
 

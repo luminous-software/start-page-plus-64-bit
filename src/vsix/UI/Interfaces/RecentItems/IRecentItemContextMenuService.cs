@@ -1,6 +1,6 @@
-﻿namespace StartPagePlus.UI.Interfaces
+﻿namespace StartPagePlus.UI.Interfaces.RecentItems
 {
-    using StartPagePlus.UI.ViewModels;
+    using StartPagePlus.UI.ViewModels.RecentItems;
 
     public interface IRecentItemContextMenuService
     {

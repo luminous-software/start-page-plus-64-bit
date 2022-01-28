@@ -1,11 +1,12 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
-
     using Community.VisualStudio.Toolkit;
     using Community.VisualStudio.Toolkit.DependencyInjection.Core;
 
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Toolkit.Mvvm.ComponentModel;
+
+    using StartPagePlus.UI.ViewModels.RecentItems;
 
     public static class ViewModelManager
     {
