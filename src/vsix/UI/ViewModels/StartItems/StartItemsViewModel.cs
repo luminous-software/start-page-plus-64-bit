@@ -1,34 +1,38 @@
 ﻿namespace StartPagePlus.UI.ViewModels.StartItems
 {
+    using System.Collections.Generic;
+
+    using StartPagePlus.UI.Interfaces.StartItems;
+
     public class StartItemsViewModel : ColumnViewModel
     {
         private const string HEADING = "Get Started";
         private const string WEBSITE_URL = "https://luminous-software.solutions/start-page-plus";
         private const string CHANGELOG_URL = WEBSITE_URL + "/changelog";
-        //private List<StartItemViewModel> items = new List<StartItemViewModel>();
+        private List<StartItemViewModel> items = new List<StartItemViewModel>();
 
-        public StartItemsViewModel(/*IStartItemDataService dataService, IStartItemCommandService commandService*/) : base() //, IVisualStudioService vsService)
+        public StartItemsViewModel(IStartItemDataService dataService/*, IStartItemCommandService commandService*/) : base() //, IVisualStudioService vsService)
         {
-            //DataService = dataService;
+            DataService = dataService;
             //CommandService = commandService;
             //VisualStudioService = vsService;
             Heading = HEADING;
             IsVisible = true;
             //GetCommands();
-            //Refresh();
+            Refresh();
         }
 
-        //public IStartItemDataService DataService { get; }
+        public IStartItemDataService DataService { get; }
 
         //public IStartItemCommandService CommandService { get; }
 
         //public IVisualStudioService VisualStudioService { get; }
 
-        //public List<StartItemViewModel> Items
-        //{
-        //    get => items;
-        //    set => SetProperty(ref items, value);
-        //}
+        public List<StartItemViewModel> Items
+        {
+            get => items;
+            set => SetProperty(ref items, value);
+        }
 
         //private bool OpenLinksInVS
         //    => true; // NewsItemsOptions.Instance.OpenLinksInVS;
@@ -45,10 +49,10 @@
         //private void OpenOptions()
         //    => VisualStudioService.ShowOptions<OptionsProvider.General>();
 
-        //private void Refresh()
-        //{
-        //    Items.Clear();
-        //    Items = DataService.GetItems();
-        //}
+        private void Refresh()
+        {
+            Items.Clear();
+            Items = DataService.GetItems();
+        }
     }
 }

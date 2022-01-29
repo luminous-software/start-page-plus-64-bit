@@ -11,7 +11,9 @@
     using StartPagePlus.Core.Interfaces;
     using StartPagePlus.UI.Interfaces;
     using StartPagePlus.UI.Interfaces.RecentItems;
+    using StartPagePlus.UI.Interfaces.StartItems;
     using StartPagePlus.UI.Services.RecentItems;
+    using StartPagePlus.UI.Services.StartItems;
 
     public static class ServiceManager
     {
@@ -19,7 +21,15 @@
 
         public static IMruService MruService { get; set; }
 
+        //---
+
         public static IRecentItemDataService RecentItemDataService { get; set; }
+
+        //---
+
+        public static IStartItemDataService StartItemDataService { get; set; }
+
+        //---
 
         public static T GetService<T>()
             where T : IService
@@ -34,9 +44,16 @@
         {
             services.AddSingleton<IDateTimeService, DateTimeService>();
             services.AddSingleton<IDialogService, ToolkitDialogService>();
+
+            //---
+
             services.AddSingleton<IMruService, MruPrivateSettingsService>();
             services.AddSingleton<IRecentItemDataService, RecentItemDataService>();
             services.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
+
+            //---
+         
+            services.AddSingleton<IStartItemDataService, StartItemDataService>();
         }
     }
 }
