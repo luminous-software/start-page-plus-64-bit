@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vri="clr-namespace:StartPagePlus.UI.Views.RecentItems"
     xmlns:vmri="clr-namespace:StartPagePlus.UI.ViewModels.RecentItems"
+    xmlns:vsi="clr-namespace:StartPagePlus.UI.Views.StartItems"
+    xmlns:vmsi="clr-namespace:StartPagePlus.UI.ViewModels.StartItems"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource ContentBackgroundBrush}"
@@ -62,15 +64,11 @@
                     <vri:RecentItemsView IsTabStop="False"/>
                 </DataTemplate>
 
-                <!--<DataTemplate DataType="{x:Type vm:RecentItemsViewModel}">
-                    <v:RecentItemsView IsTabStop="False"/>
-                </DataTemplate>-->
-
-                <!--<DataTemplate DataType="{x:Type vm:StartItemsViewModel}">
-                    <v:StartItemsView IsTabStop="False"/>
+                <DataTemplate DataType="{x:Type vmsi:StartItemsViewModel}">
+                    <vsi:StartItemsView IsTabStop="False"/>
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type vm:NewsItemsViewModel}">
+                <!--<DataTemplate DataType="{x:Type vm:NewsItemsViewModel}">
                     <v:NewsItemsView IsTabStop="False"/>
                 </DataTemplate>-->
             </ItemsControl.Resources>

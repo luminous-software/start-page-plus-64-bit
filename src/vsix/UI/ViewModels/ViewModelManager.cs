@@ -7,6 +7,7 @@
     using Microsoft.Toolkit.Mvvm.ComponentModel;
 
     using StartPagePlus.UI.ViewModels.RecentItems;
+    using StartPagePlus.UI.ViewModels.StartItems;
 
     public static class ViewModelManager
     {
@@ -16,18 +17,34 @@
         public static StartViewModel StartViewModel
             => GetViewModel<StartViewModel>();
 
+        //---
+
         public static RecentItemsViewModel RecentItemsViewModel
             => GetViewModel<RecentItemsViewModel>();
 
         public static RecentItemViewModel RecentItemViewModel
             => GetViewModel<RecentItemViewModel>();
 
+        //---
+
+        public static StartItemsViewModel StartItemsViewModel
+            => GetViewModel<StartItemsViewModel>();
+
+        //---
+
         internal static void RegisterViewModels(IServiceCollection viewModels)
         {
             viewModels.AddSingleton<MainViewModel>();
             viewModels.AddSingleton<StartViewModel>();
+
+            //---
+
             viewModels.AddSingleton<RecentItemsViewModel>();
             viewModels.AddSingleton<RecentItemViewModel>();
+
+            //---
+
+            viewModels.AddSingleton<StartItemsViewModel>();
         }
 
         public static T GetViewModel<T>()
