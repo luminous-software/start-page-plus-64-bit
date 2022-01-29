@@ -23,23 +23,6 @@
 
         //---
 
-        public static IRecentItemDataService RecentItemDataService { get; set; }
-
-        //---
-
-        public static IStartItemDataService StartItemDataService { get; set; }
-
-        //---
-
-        public static T GetService<T>()
-            where T : IService
-        {
-            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
-            var service = serviceProvider.GetService<T>();
-
-            return service;
-        }
-
         internal static void RegisterServices(IServiceCollection services)
         {
             services.AddSingleton<IDateTimeService, DateTimeService>();
@@ -52,8 +35,20 @@
             services.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
 
             //---
-         
+
             services.AddSingleton<IStartItemDataService, StartItemDataService>();
+            services.AddSingleton<IStartItemCommandService, StartItemCommandService>();
+        }
+
+        //---
+
+        public static T GetService<T>()
+            where T : IService
+        {
+            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
+            var service = serviceProvider.GetService<T>();
+
+            return service;
         }
     }
 }

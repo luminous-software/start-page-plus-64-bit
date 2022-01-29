@@ -101,11 +101,13 @@
     <Compile Include="UI\Interfaces\IMessageSender.cs" />
     <Compile Include="UI\Interfaces\IService.cs" />
     <Compile Include="UI\Interfaces\IViewModel.cs" />
+    <Compile Include="UI\Interfaces\StartItems\IStartItemCommandService.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemDataService.cs" />
     <Compile Include="UI\RecentItems\RecentItem.cs" />
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
     <Compile Include="UI\Services\DateTimeService.cs" />
+    <Compile Include="UI\Services\StartItems\StartItemCommandService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemDataService.cs" />
     <Compile Include="UI\Services\ToolkitDialogService.cs" />
     <Compile Include="UI\Services\RecentItems\MruPrivateSettingsService.cs" />
