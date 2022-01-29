@@ -30,6 +30,24 @@
         public static StartItemsViewModel StartItemsViewModel
             => GetViewModel<StartItemsViewModel>();
 
+        public static CloneRepositoryViewModel CloneRepositoryViewModel
+            => GetViewModel<CloneRepositoryViewModel>();
+
+        public static CreateProjectViewModel CreateProjectViewModel
+            => GetViewModel<CreateProjectViewModel>();
+
+        public static OpenFolderViewModel OpenFolderViewModel
+            => GetViewModel<OpenFolderViewModel>();
+
+        public static OpenProjectViewModel OpenProjectViewModel
+            => GetViewModel<OpenProjectViewModel>();
+
+        public static RestartElevatedViewModel RestartElevatedViewModel
+            => GetViewModel<RestartElevatedViewModel>();
+
+        public static RestartNormalViewModel RestartNormalViewModel
+            => GetViewModel<RestartNormalViewModel>();
+
         //---
 
         internal static void RegisterViewModels(IServiceCollection viewModels)
@@ -45,6 +63,12 @@
             //---
 
             viewModels.AddSingleton<StartItemsViewModel>();
+            viewModels.AddSingleton<CloneRepositoryViewModel>();
+            viewModels.AddSingleton<CreateProjectViewModel>();
+            viewModels.AddSingleton<OpenFolderViewModel>();
+            viewModels.AddSingleton<OpenProjectViewModel>();
+            viewModels.AddSingleton<RestartElevatedViewModel>();
+            viewModels.AddSingleton<RestartNormalViewModel>();
         }
 
         public static T GetViewModel<T>()

@@ -118,6 +118,12 @@
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemViewModel.cs" />
+    <Compile Include="UI\ViewModels\StartItems\CloneRepositoryViewModel.cs" />
+    <Compile Include="UI\ViewModels\StartItems\CreateProjectViewModel.cs" />
+    <Compile Include="UI\ViewModels\StartItems\OpenFolderViewModel.cs" />
+    <Compile Include="UI\ViewModels\StartItems\OpenProjectViewModel.cs" />
+    <Compile Include="UI\ViewModels\StartItems\RestartElevatedViewModel.cs" />
+    <Compile Include="UI\ViewModels\StartItems\RestartNormalViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\StartItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\StartItemViewModel.cs" />
     <Compile Include="UI\ViewModels\StartViewModel.cs" />
