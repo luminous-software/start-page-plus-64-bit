@@ -9,8 +9,8 @@
             Moniker = KnownMonikers.User;
             Name = "Restart Visual Studio";
             Description = "Restart Visual Studio with one click";
-            ImageSize = 34;
-            Margin = "11,5,0,0";
+            ImageSize = 42;
+            Margin = "9,5,0,0";
         }
 
         protected override void OnClick()
