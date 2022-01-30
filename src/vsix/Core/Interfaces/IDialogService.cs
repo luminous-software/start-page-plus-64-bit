@@ -1,4 +1,4 @@
-﻿namespace StartPagePlus.Core.Interfaces
+﻿namespace Luminous.Code.Interfaces
 {
     using System;
 

@@ -1,17 +1,17 @@
 ﻿namespace StartPagePlus.UI.Services
 {
-
     using Community.VisualStudio.Toolkit;
-    using Community.VisualStudio.Toolkit.DependencyInjection.Core;
+    using Community.VisualStudio.Toolkit.DependencyInjection.Core; //YD: is this really needed in addtion to Microsoft.Extensions.DependencyInjection?
 
     using Luminous.Code.Interfaces;
 
     using Microsoft.Extensions.DependencyInjection;
 
-    using StartPagePlus.Core.Interfaces;
     using StartPagePlus.UI.Interfaces;
+    using StartPagePlus.UI.Interfaces.NewsItems;
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.Interfaces.StartItems;
+    using StartPagePlus.UI.Services.NewsItems;
     using StartPagePlus.UI.Services.RecentItems;
     using StartPagePlus.UI.Services.StartItems;
 
@@ -38,6 +38,10 @@
 
             services.AddSingleton<IStartItemDataService, StartItemDataService>();
             services.AddSingleton<IStartItemCommandService, StartItemCommandService>();
+
+            //---
+
+            services.AddSingleton<INewsItemDataService, NewsItemDataService>();
         }
 
         //---

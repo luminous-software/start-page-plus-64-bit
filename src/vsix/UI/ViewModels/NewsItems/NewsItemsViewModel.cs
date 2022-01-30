@@ -1,15 +1,26 @@
 ﻿namespace StartPagePlus.UI.ViewModels.NewsItems
 {
+    using System.Collections.Generic;
+
+    using Microsoft.VisualStudio.Shell;
+
+    using StartPagePlus.Options.Pages;
+    using StartPagePlus.UI.Interfaces.NewsItems;
+
+    //#region Assembly System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    //namespace System.ServiceModel.Syndication
+    //public class SyndicationFeed
+
     public class NewsItemsViewModel : ColumnViewModel
     {
         //private const string DEV_NEWS_FEED_URL = "https://vsstartpage.blob.core.windows.net/news/vs";
-        private const string HEADING = "Read Developer News";
+        private const string HEADING = "Read News";
 
-        //private ObservableCollection<NewsItemViewModel> items = new ObservableCollection<NewsItemViewModel>();
+        private List<NewsItemViewModel> items = new();
 
-        public NewsItemsViewModel(/*INewsItemDataService dataService, INewsItemActionService actionService, INewsItemCommandService commandService, IVisualStudioService visualStudioService*/)
+        public NewsItemsViewModel(INewsItemDataService dataService/*, INewsItemActionService actionService, INewsItemCommandService commandService, IVisualStudioService visualStudioService*/)
         {
-            //DataService = dataService;
+            DataService = dataService;
             //ActionService = actionService;
             //CommandService = commandService;
             //VisualStudioService = visualStudioService;
@@ -17,7 +28,7 @@
             IsVisible = true;
 
             //GetCommands();
-            //Refresh();
+            Refresh();
 
             //MessengerInstance.Register<NotificationMessage<NewsItemViewModel>>(this, (message) =>
             //{
@@ -27,34 +38,34 @@
             //});
         }
 
-        //public INewsItemDataService DataService { get; }
+        public INewsItemDataService DataService { get; }
 
         //public INewsItemActionService ActionService { get; }
         //public INewsItemCommandService CommandService { get; }
 
         //public IVisualStudioService VisualStudioService { get; }
 
-        //public ObservableCollection<NewsItemViewModel> Items
-        //{
-        //    get => items;
-        //    set => Set(ref items, value);
-        //}
+        public List<NewsItemViewModel> Items
+        {
+            get => items;
+            set => SetProperty(ref items, value);
+        }
+
+        public void Refresh()
+        {
+            if (NewsItemsOptions.Instance.ClearListBeforeRefresh)
+                Items.Clear();
+
+            var itemsToDisplay = NewsItemsOptions.Instance.NewsItemsToDisplay;
+            var url = NewsItemsOptions.Instance.NewsItemsFeedUrl;
+
+            ThreadHelper.JoinableTaskFactory.Run(
+                async () => Items = await DataService.GetItemsAsync(url, itemsToDisplay)
+                );
+        }
 
         //private void GetCommands()
         //    => Commands = CommandService.GetCommands(Refresh, OpenSettings);
-
-        //public void Refresh()
-        //{
-        //    if (NewsItemsOptions.Instance.ClearListBeforeRefresh)
-        //        Items.Clear();
-
-        //    var itemsToDisplay = NewsItemsOptions.Instance.NewsItemsToDisplay;
-        //    var url = NewsItemsOptions.Instance.NewsItemsFeedUrl;
-
-        //    ThreadHelper.JoinableTaskFactory.Run(
-        //        async () => Items = await DataService.GetItemsAsync(url, itemsToDisplay)
-        //        );
-        //}
 
         //private void OpenSettings()
         //    => VisualStudioService.ShowOptions<OptionsProvider.NewsItems>();

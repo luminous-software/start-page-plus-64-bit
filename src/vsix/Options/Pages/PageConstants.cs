@@ -66,5 +66,19 @@
         public const string DisplayRecentItemsName = "Display 'Recent Items' list";
         public const string DisplayRecentItemsDescription = "Sets the visibility of the 'Recent Items' list";
         internal const bool DisplayRecentItemsDefault = true;
+
+        // News Items
+
+        public const string ClearListBeforeRefreshDisplayName = "Clear List Before Refresh";
+        public const string ClearListBeforeRefreshDescription = "Clears the list to give a visual indication that the list has been refreshed";
+
+        public const string NewsItemsFeedUrlDisplayName = "Items Feed Url";
+        public const string NewsItemsFeedUrlDescription = "Sets the url of the 'Developer News' feed";
+
+        public const string NewsItemsToDisplayDisplayName = "Items To Display";
+        public const string NewsItemsToDisplayDescription = "Sets the number of items to display in the 'Developer News' list";
+
+        public const string OpenLinksInVsDisplayName = "Open Links in VS";
+        public const string OpenLinksInVsDescription = "Determines if news links are opened in VS or in the default browser";
     }
 }

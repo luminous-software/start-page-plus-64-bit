@@ -54,6 +54,7 @@
     <Compile Include="Core\Strings\Constants.cs" />
     <Compile Include="Core\Dates\DateMethods.cs" />
     <Compile Include="Options\Pages\OptionsProvider.cs" />
+    <Compile Include="Options\Pages\NewsItemsOptions.cs" />
     <Compile Include="Options\Pages\RecentItemsOptions.cs" />
     <Compile Include="Options\Pages\GeneralOptions.cs" />
     <Compile Include="Options\Pages\PageConstants.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Interfaces\ICommandService.cs" />
     <Compile Include="UI\Interfaces\IDataService.cs" />
+    <Compile Include="UI\Interfaces\NewsItems\INewsItemDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemCommandService.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
     <Compile Include="UI\Services\DateTimeService.cs" />
+    <Compile Include="UI\Services\NewsItems\NewsItemDataService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemCommandService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemDataService.cs" />
     <Compile Include="UI\Services\ToolkitDialogService.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="UI\ViewModels\CommandViewModel.cs" />
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemsViewModel.cs" />
+    <Compile Include="UI\ViewModels\NewsItems\NewsItemViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\CloneRepositoryViewModel.cs" />

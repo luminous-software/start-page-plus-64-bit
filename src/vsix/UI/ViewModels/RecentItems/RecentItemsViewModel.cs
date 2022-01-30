@@ -8,7 +8,7 @@
 
     using Microsoft.VisualStudio.Shell;
 
-    using StartPagePlus.Core.Interfaces;
+    using Luminous.Code.Interfaces;
     using StartPagePlus.Options.Pages;
     using StartPagePlus.UI.Interfaces.RecentItems;
 

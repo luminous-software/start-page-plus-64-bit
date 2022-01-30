@@ -8,7 +8,6 @@
     using Luminous.Code.Interfaces;
 
     using StartPagePlus.UI.Interfaces.RecentItems;
-    using StartPagePlus.UI.ViewModels;
     using StartPagePlus.UI.ViewModels.RecentItems;
 
     public class RecentItemDataService : ServiceBase, IRecentItemDataService
