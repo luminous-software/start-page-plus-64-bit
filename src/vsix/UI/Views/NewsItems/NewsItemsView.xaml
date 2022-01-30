@@ -1,0 +1,325 @@
+﻿<UserControl
+    x:Class="StartPagePlus.UI.Views.NewsItems.NewsItemsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:c="clr-namespace:StartPagePlus.UI.Converters"
+    xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
+    xmlns:grid="clr-namespace:StartPagePlus.UI.AttachedProperties.Grids"
+    xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:pui="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+    xmlns:utilities="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Utilities"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    IsTabStop="False"
+    mc:Ignorable="d"
+    >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/StartPagePlus;component/Resources/Brushes.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/StartPagePlus;component/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <utilities:BrushToColorConverter x:Key="BrushToColorConverter"/>
+
+            <!-- https://stackoverflow.com/questions/3894195/wpf-collectionviewsource-grouping -->
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border
+        pui:ImageThemingUtilities.ImageBackgroundColor="{Binding Background.Color, RelativeSource={RelativeSource Self}}"
+        Style="{StaticResource ColumnStyle}"
+        Visibility="{Binding IsVisible, Converter={c:BoolToVisibilityConverter}}"
+        >
+        <DockPanel x:Name="LayoutRoot"
+            LastChildFill="true"
+            >
+            <TextBlock x:Name="Heading"
+                DockPanel.Dock="Top"
+                Style="{StaticResource ColumnHeadingStyle}"
+                Text="{Binding Heading}"
+                />
+
+            <Grid x:Name="NewsItemFilterContainer"
+                Margin="10,0,10,6"
+                DockPanel.Dock="Top"
+                >
+                <TextBox x:Name="FilterTextBox"
+                    Grid.Column="0"
+                    Background="{DynamicResource FilterBackgroundBrush}"
+                    FocusManager.FocusedElement="{Binding ElementName=FilterTextBox}"
+                    FontFamily="{StaticResource DefaultFont}"
+                    FontSize="14"
+                    Foreground="{DynamicResource FilterForegroundBrush}"
+                    IsTabStop="true"
+                    />
+                <Button x:Name="ClearFilterTextButton"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="{Binding Background, ElementName=FilterTextBox}"
+                    BorderBrush="Transparent"
+                    Click="ClearFilterText_Click"
+                    IsTabStop="False"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    >
+                    <imaging:CrispImage x:Name="ClearFilterImage"
+                        Width="16"
+                        Height="16"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Moniker="{x:Static catalog:KnownMonikers.Close}"
+                        />
+                </Button>
+            </Grid>
+
+            <ItemsControl x:Name="NewsItemCommands"
+                Style="{StaticResource ColumnCommandsStyle}"
+                />
+
+            <ListView x:Name="NewsItemsListView"
+                IsTabStop="False"
+                ItemContainerStyle="{StaticResource ColumnListItemContainerStyle}"
+                ItemsSource="{Binding Items}"
+                SelectionChanged="OnSelectionChanged"
+                Style="{StaticResource ColumnListStyle}"
+                >
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="GroupItem">
+                                <Setter Property="IsTabStop" Value="False"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander
+                                                Collapsed="OnCollapsed"
+                                                Expanded="OnExpanded"
+                                                IsExpanded="True"
+                                                IsTabStop="False"
+                                                OverridesDefaultStyle="True"
+                                                >
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock x:Name="NewsItemGroupName"
+                                                            Margin="5,1,5,2"
+                                                            HorizontalAlignment="Left"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            FontSize="15"
+                                                            FontWeight="Medium"
+                                                            Foreground="{DynamicResource ItemGroupNameBrush}"
+                                                            Text="{Binding Path=Name, Converter={c:PeriodTypeToNameConverter}}"
+                                                            />
+                                                        <TextBlock x:Name="NewsItemGroupCount"
+                                                            Margin="2,0,0,0"
+                                                            VerticalAlignment="Center"
+                                                            FontFamily="{StaticResource DefaultFont}"
+                                                            FontSize="14"
+                                                            FontStyle="Normal"
+                                                            FontWeight="Medium"
+                                                            Foreground="{DynamicResource ItemGroupCountBrush}"
+                                                            Text="{Binding ItemCount, Converter={c:IntToPluralStringConverter}}"
+                                                            />
+                                                    </StackPanel>
+                                                </Expander.Header>
+
+                                                <ItemsPresenter/>
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button x:Name="NewsItemButton"
+                            Command="{Binding SelectItemCommand}"
+                            IsTabStop="False"
+                            Style="{StaticResource ColumnListItemStyle}"
+                            >
+                            <DockPanel x:Name="NewsItemContainer"
+                                LastChildFill="True"
+                                >
+                                <imaging:CrispImage x:Name="NewsItemImage"
+                                    Width="24"
+                                    Height="24"
+                                    Margin="0,5,5,5"
+                                    VerticalAlignment="Top"
+                                    DockPanel.Dock="Left"
+                                    Moniker="{Binding Moniker}"
+                                    />
+                                <StackPanel x:Name="NewsItemDetailsContainer"
+                                    DockPanel.Dock="Right"
+                                    Orientation="Vertical"
+                                    >
+                                    <DockPanel x:Name="NewsItemLine1"
+                                        LastChildFill="True"
+                                        >
+                                        <Button x:Name="TogglePinnedButton"
+                                            Width="16"
+                                            Height="16"
+                                            Margin="0,5,0,2"
+                                            Padding="0"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Command="{Binding TogglePinnedCommand}"
+                                            DockPanel.Dock="Right"
+                                            >
+                                            <imaging:CrispImage x:Name="TogglePinnedImage"
+                                                Height="16"
+                                                Margin="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Top"
+                                                Moniker="{Binding Pinned, Converter={c:BoolToPinMonikerConverter}}"
+                                                />
+                                        </Button>
+
+                                        <TextBlock x:Name="NewsItemDate"
+                                            Margin="3,8,3,2"
+                                            DockPanel.Dock="Right"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontSize="11"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource ItemDescriptionBrush}"
+                                            Text="{Binding Date, Converter={c:DateToStringConverter Format=d}}"
+                                            />
+
+                                        <TextBlock x:Name="NewsItemName"
+                                            Margin="3,4,3,3"
+                                            HorizontalAlignment="Stretch"
+                                            DockPanel.Dock="Left"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontSize="15"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource ItemNameBrush}"
+                                            Text="{Binding Name}"
+                                            TextWrapping="Wrap"
+                                            />
+                                    </DockPanel>
+
+                                    <DockPanel x:Name="NewsItemLine2"
+                                        LastChildFill="True"
+                                        >
+                                        <Button x:Name="RemoveItemButton"
+                                            Width="16"
+                                            Height="16"
+                                            Margin="0,-1,0,2"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Command="{Binding RemoveItemCommand}"
+                                            DockPanel.Dock="Right"
+                                            >
+                                            <Button.Style>
+                                                <!-- https://stackoverflow.com/a/206537/281489 -->
+
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+
+                                                    <Style.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                            Value="True"
+                                                            >
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+
+                                            <imaging:CrispImage x:Name="RemoveItemImage"
+                                                Height="11"
+                                                Margin="1,-2,0,0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Top"
+                                                Moniker="{x:Static catalog:KnownMonikers.Cancel}"
+                                                />
+                                        </Button>
+
+                                        <TextBlock x:Name="NewsItemDescription"
+                                            Margin="3,0,3,3"
+                                            Padding="0"
+                                            HorizontalAlignment="Stretch"
+                                            FontFamily="{StaticResource DefaultFont}"
+                                            FontSize="12"
+                                            FontWeight="Normal"
+                                            Foreground="{DynamicResource ItemDescriptionBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap"
+                                            />
+                                    </DockPanel>
+                                </StackPanel>
+                            </DockPanel>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.ContextMenu>
+                    <ContextMenu x:Name="NewsItemsContextMenu"
+                        ItemsSource="{Binding ContextCommands}"
+                        >
+                        <ContextMenu.ItemContainerStyle>
+                            <Style TargetType="MenuItem">
+                                <Setter Property="Command" Value="{Binding Command}"/>
+                                <Setter Property="Visibility" Value="{Binding IsVisible, Converter={c:BoolToVisibilityConverter}}"/>
+                            </Style>
+                        </ContextMenu.ItemContainerStyle>
+
+                        <ContextMenu.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel x:Name="NewsItemContextCommand"
+                                    Orientation="Horizontal"
+                                    >
+                                    <imaging:CrispImage x:Name="NewsItemContextCommandImage"
+                                        Width="16"
+                                        Height="16"
+                                        Margin="-42,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Moniker="{Binding Moniker}"
+                                        Stretch="Fill"
+                                        />
+                                    <TextBlock x:Name="NewsItemContextCommandName"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        Text="{Binding Name}"
+                                        />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ContextMenu.ItemTemplate>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+
+                <!-- WPF bug: one element has to be given a name or the DLL doesn't load in time -->
+
+                <b:Interaction.Triggers>
+                    <b:EventTrigger x:Name="ContextMenuOpeningEventTrigger"
+                        EventName="ContextMenuOpening"
+                        >
+                        <b:CallMethodAction
+                            MethodName="OnContextMenuOpening"
+                            TargetObject="{Binding}"
+                            />
+                    </b:EventTrigger>
+
+                    <b:EventTrigger x:Name="ContextMenuClosingEventTrigger"
+                        EventName="ContextMenuClosing"
+                        >
+                        <b:CallMethodAction
+                            MethodName="OnContextMenuClosing"
+                            TargetObject="{Binding}"
+                            />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </ListView>
+        </DockPanel>
+    </Border>
+</UserControl>

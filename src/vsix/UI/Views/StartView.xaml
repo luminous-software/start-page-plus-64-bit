@@ -9,6 +9,8 @@
     xmlns:vmri="clr-namespace:StartPagePlus.UI.ViewModels.RecentItems"
     xmlns:vsi="clr-namespace:StartPagePlus.UI.Views.StartItems"
     xmlns:vmsi="clr-namespace:StartPagePlus.UI.ViewModels.StartItems"
+    xmlns:vni="clr-namespace:StartPagePlus.UI.Views.NewsItems"
+    xmlns:vmni="clr-namespace:StartPagePlus.UI.ViewModels.NewsItems"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource ContentBackgroundBrush}"
@@ -68,9 +70,9 @@
                     <vsi:StartItemsView IsTabStop="False"/>
                 </DataTemplate>
 
-                <!--<DataTemplate DataType="{x:Type vm:NewsItemsViewModel}">
-                    <v:NewsItemsView IsTabStop="False"/>
-                </DataTemplate>-->
+                <DataTemplate DataType="{x:Type vmni:NewsItemsViewModel}">
+                    <vni:NewsItemsView IsTabStop="False"/>
+                </DataTemplate>
             </ItemsControl.Resources>
         </ItemsControl>
     </DockPanel>

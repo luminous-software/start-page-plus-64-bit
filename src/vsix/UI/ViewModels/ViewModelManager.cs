@@ -6,6 +6,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Toolkit.Mvvm.ComponentModel;
 
+    using StartPagePlus.UI.ViewModels.NewsItems;
     using StartPagePlus.UI.ViewModels.RecentItems;
     using StartPagePlus.UI.ViewModels.StartItems;
 

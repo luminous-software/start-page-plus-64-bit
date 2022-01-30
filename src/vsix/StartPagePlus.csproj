@@ -140,6 +140,9 @@
     <Compile Include="UI\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Views\NewsItems\NewsItemsView.xaml.cs">
+      <DependentUpon>NewsItemsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Views\RecentItems\RecentItemsView.xaml.cs">
       <DependentUpon>RecentItemsView.xaml</DependentUpon>
     </Compile>
@@ -219,6 +222,10 @@
     <Page Include="UI\Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\NewsItems\NewsItemsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Views\RecentItems\RecentItemsView.xaml">
       <SubType>Designer</SubType>
