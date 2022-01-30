@@ -118,6 +118,7 @@
     <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\CommandViewModel.cs" />
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
+    <Compile Include="UI\ViewModels\NewsItems\NewsItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\CloneRepositoryViewModel.cs" />

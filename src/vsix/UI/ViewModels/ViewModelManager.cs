@@ -50,6 +50,11 @@
 
         //---
 
+        public static NewsItemsViewModel NewsItemsViewModel
+            => GetViewModel<NewsItemsViewModel>();
+
+        //---
+
         internal static void RegisterViewModels(IServiceCollection viewModels)
         {
             viewModels.AddSingleton<MainViewModel>();
@@ -69,6 +74,10 @@
             viewModels.AddSingleton<OpenProjectViewModel>();
             viewModels.AddSingleton<RestartElevatedViewModel>();
             viewModels.AddSingleton<RestartNormalViewModel>();
+
+            //---
+
+            viewModels.AddSingleton<NewsItemsViewModel>();
         }
 
         public static T GetViewModel<T>()

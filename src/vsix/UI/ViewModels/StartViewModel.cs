@@ -15,8 +15,8 @@
             Columns = new ObservableCollection<ColumnViewModel>
             {
                 ViewModelManager.RecentItemsViewModel,
-                ViewModelManager.StartItemsViewModel
-                //    ViewModelManager.NewsItemsViewModel,
+                ViewModelManager.StartItemsViewModel,
+                    ViewModelManager.NewsItemsViewModel,
             };
         }
 
