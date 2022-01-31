@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    using Community.VisualStudio.Toolkit;
+
     using Microsoft.VisualStudio.Shell;
 
     using StartPagePlus.Options.Pages;
@@ -18,16 +20,16 @@
 
         private List<NewsItemViewModel> items = new();
 
-        public NewsItemsViewModel(INewsItemDataService dataService/*, INewsItemActionService actionService, INewsItemCommandService commandService, IVisualStudioService visualStudioService*/)
+        public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService/*, INewsItemActionService actionService, IVisualStudioService visualStudioService*/)
         {
             DataService = dataService;
+            CommandService = commandService;
             //ActionService = actionService;
-            //CommandService = commandService;
             //VisualStudioService = visualStudioService;
             Heading = HEADING;
             IsVisible = true;
 
-            //GetCommands();
+            GetCommands();
             Refresh();
 
             //MessengerInstance.Register<NotificationMessage<NewsItemViewModel>>(this, (message) =>
@@ -40,8 +42,9 @@
 
         public INewsItemDataService DataService { get; }
 
+        public INewsItemCommandService CommandService { get; }
+
         //public INewsItemActionService ActionService { get; }
-        //public INewsItemCommandService CommandService { get; }
 
         //public IVisualStudioService VisualStudioService { get; }
 
@@ -64,10 +67,10 @@
                 );
         }
 
-        //private void GetCommands()
-        //    => Commands = CommandService.GetCommands(Refresh, OpenSettings);
+        private void GetCommands()
+            => Commands = CommandService.GetCommands(Refresh, OpenSettings);
 
-        //private void OpenSettings()
-        //    => VisualStudioService.ShowOptions<OptionsProvider.NewsItems>();
+        private void OpenSettings()
+            => VS.Settings.OpenAsync<OptionsProvider.NewsItems>();
     }
 }

@@ -33,6 +33,9 @@
 
     [ProvideOptionPage(typeof(OptionsProvider.RecentItems), Name, RecentItemsOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.RecentItems), Name, RecentItemsOptions.Category, 0, 0, true)]
+
+    [ProvideOptionPage(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
+    [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
         protected override void InitializeServices(IServiceCollection services)

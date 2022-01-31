@@ -8,9 +8,11 @@
     using Microsoft.Extensions.DependencyInjection;
 
     using StartPagePlus.UI.Interfaces;
+
     using StartPagePlus.UI.Interfaces.NewsItems;
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.Interfaces.StartItems;
+
     using StartPagePlus.UI.Services.NewsItems;
     using StartPagePlus.UI.Services.RecentItems;
     using StartPagePlus.UI.Services.StartItems;
@@ -42,6 +44,7 @@
             //---
 
             services.AddSingleton<INewsItemDataService, NewsItemDataService>();
+            services.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
         }
 
         //---
