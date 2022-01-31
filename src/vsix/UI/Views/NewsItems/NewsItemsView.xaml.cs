@@ -6,10 +6,10 @@
     using System.Windows.Data;
 
     using Luminous.Code.Extensions.Exceptions;
+    using Luminous.Code.Extensions.Strings;
 
-    //using StartPagePlus.UI.Messages;
-    //using StartPagePlus.UI.Methods;
     using StartPagePlus.UI.ViewModels;
+    using StartPagePlus.UI.ViewModels.NewsItems;
 
     public partial class NewsItemsView : UserControl
     {
@@ -25,17 +25,17 @@
 
                 DataContext = viewModel;
 
-                //var view = (ListCollectionView)CollectionViewSource.GetDefaultView(viewModel.Items);
+                var view = (ListCollectionView)CollectionViewSource.GetDefaultView(viewModel.Items);
 
-                //using (view.DeferRefresh())
-                //{
-                //    AddGrouping(view);
-                //    AddSorting(view);
-                //    AddFilter(view);
-                //}
+                using (view.DeferRefresh())
+                {
+                    //    AddGrouping(view);
+                    //    AddSorting(view);
+                    AddFilter(view);
+                }
 
-                //RefreshViewWhenFilterChanges(view);
-                //SetSelectedItemToNull();
+                RefreshViewWhenFilterChanges(view);
+                SetSelectedItemToNull();
 
                 //RootMethods.ListenFor<NewsItemsRefresh>(this, FocusFilterTextBox);
             }
@@ -60,23 +60,20 @@
             //view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.Date), ListSortDirection.Descending));
         }
 
-        // https://joshsmithonwpf.wordpress.com/2007/06/12/searching-for-items-in-a-listbox/
-
         private void AddFilter(ListCollectionView view)
         {
             view.Filter = (object obj) =>
             {
-                return true;
-                //if (string.IsNullOrEmpty(FilterTextBox.Text))
-                //    return true;
+                if (string.IsNullOrEmpty(FilterTextBox.Text))
+                    return true;
 
-                //if (!(obj is NewsItemViewModel item))
-                //    return false;
+                if (!(obj is NewsItemViewModel item))
+                    return false;
 
-                //var name = item.Name;
+                var name = item.Title;
 
-                //return name.IsNotNullOrEmpty()
-                //    && name.MatchesFilter(FilterTextBox.Text);
+                return name.IsNotNullOrEmpty()
+                    && name.MatchesFilter(FilterTextBox.Text);
             };
         }
 
