@@ -90,7 +90,7 @@
                 SelectionChanged="OnSelectionChanged"
                 Style="{StaticResource ColumnListStyle}"
                 >
-                <ListView.GroupStyle>
+                <!--<ListView.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
                             <Style TargetType="GroupItem">
@@ -138,7 +138,7 @@
                             </Style>
                         </GroupStyle.ContainerStyle>
                     </GroupStyle>
-                </ListView.GroupStyle>
+                </ListView.GroupStyle>-->
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -148,122 +148,58 @@
                             Style="{StaticResource ColumnListItemStyle}"
                             >
                             <DockPanel x:Name="NewsItemContainer"
-                                LastChildFill="True"
+                                Margin="0,0,0,5"
                                 >
-                                <imaging:CrispImage x:Name="NewsItemImage"
-                                    Width="24"
-                                    Height="24"
-                                    Margin="0,5,5,5"
-                                    VerticalAlignment="Top"
-                                    DockPanel.Dock="Left"
-                                    Moniker="{Binding Moniker}"
+                                <TextBlock x:Name="RecentItemName"
+                                    Margin="0,0,0,2"
+                                    DockPanel.Dock="Top"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    FontSize="15"
+                                    FontWeight="SemiBold"
+                                    Foreground="{DynamicResource ItemNameBrush}"
+                                    Text="{Binding Title}"
+                                    TextTrimming="WordEllipsis"
+                                    TextWrapping="NoWrap"
                                     />
-                                <StackPanel x:Name="NewsItemDetailsContainer"
-                                    DockPanel.Dock="Right"
-                                    Orientation="Vertical"
+
+                                <TextBlock x:Name="RecentItemDescription"
+                                    MaxHeight="45"
+                                    DockPanel.Dock="Top"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    FontSize="13"
+                                    Foreground="{DynamicResource ItemDescriptionBrush}"
+                                    Text="{Binding Description}"
+                                    TextTrimming="WordEllipsis"
+                                    TextWrapping="Wrap"
+                                    />
+
+                                <StackPanel x:Name="DatePanelStyle"
+                                    Margin="0,4,0,0"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal"
                                     >
-                                    <DockPanel x:Name="NewsItemLine1"
-                                        LastChildFill="True"
-                                        >
-                                        <Button x:Name="TogglePinnedButton"
-                                            Width="16"
-                                            Height="16"
-                                            Margin="0,5,0,2"
-                                            Padding="0"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Command="{Binding TogglePinnedCommand}"
-                                            DockPanel.Dock="Right"
-                                            >
-                                            <imaging:CrispImage x:Name="TogglePinnedImage"
-                                                Height="16"
-                                                Margin="0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Top"
-                                                Moniker="{Binding Pinned, Converter={c:BoolToPinMonikerConverter}}"
-                                                />
-                                        </Button>
+                                    <TextBlock x:Name="New"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontSize="10"
+                                        Foreground="Orange"
+                                        Text="{Binding New}"
+                                        Visibility="Collapsed"
+                                        />
 
-                                        <TextBlock x:Name="NewsItemDate"
-                                            Margin="3,8,3,2"
-                                            DockPanel.Dock="Right"
-                                            FontFamily="{StaticResource DefaultFont}"
-                                            FontSize="11"
-                                            FontWeight="SemiBold"
-                                            Foreground="{DynamicResource ItemDescriptionBrush}"
-                                            Text="{Binding Date, Converter={c:DateToStringConverter Format=d}}"
-                                            />
-
-                                        <TextBlock x:Name="NewsItemName"
-                                            Margin="3,4,3,3"
-                                            HorizontalAlignment="Stretch"
-                                            DockPanel.Dock="Left"
-                                            FontFamily="{StaticResource DefaultFont}"
-                                            FontSize="15"
-                                            FontWeight="SemiBold"
-                                            Foreground="{DynamicResource ItemNameBrush}"
-                                            Text="{Binding Name}"
-                                            TextWrapping="Wrap"
-                                            />
-                                    </DockPanel>
-
-                                    <DockPanel x:Name="NewsItemLine2"
-                                        LastChildFill="True"
-                                        >
-                                        <Button x:Name="RemoveItemButton"
-                                            Width="16"
-                                            Height="16"
-                                            Margin="0,-1,0,2"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Command="{Binding RemoveItemCommand}"
-                                            DockPanel.Dock="Right"
-                                            >
-                                            <Button.Style>
-                                                <!-- https://stackoverflow.com/a/206537/281489 -->
-
-                                                <Style TargetType="{x:Type Button}">
-                                                    <Setter Property="Visibility" Value="Hidden"/>
-
-                                                    <Style.Triggers>
-                                                        <DataTrigger
-                                                            Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
-                                                            Value="True"
-                                                            >
-                                                            <Setter Property="Visibility" Value="Visible"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-
-                                            <imaging:CrispImage x:Name="RemoveItemImage"
-                                                Height="11"
-                                                Margin="1,-2,0,0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Top"
-                                                Moniker="{x:Static catalog:KnownMonikers.Cancel}"
-                                                />
-                                        </Button>
-
-                                        <TextBlock x:Name="NewsItemDescription"
-                                            Margin="3,0,3,3"
-                                            Padding="0"
-                                            HorizontalAlignment="Stretch"
-                                            FontFamily="{StaticResource DefaultFont}"
-                                            FontSize="12"
-                                            FontWeight="Normal"
-                                            Foreground="{DynamicResource ItemDescriptionBrush}"
-                                            Text="{Binding Description}"
-                                            TextWrapping="Wrap"
-                                            />
-                                    </DockPanel>
+                                    <TextBlock x:Name="Date"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        FontSize="11"
+                                        FontWeight="Medium"
+                                        Foreground="{DynamicResource ItemDateBrush}"
+                                        Text="{Binding Date, StringFormat='dddd, d MMMM yyyy'}"
+                                        />
                                 </StackPanel>
                             </DockPanel>
                         </Button>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 
-                <ListView.ContextMenu>
+                <!--<ListView.ContextMenu>
                     <ContextMenu x:Name="NewsItemsContextMenu"
                         ItemsSource="{Binding ContextCommands}"
                         >
@@ -296,11 +232,11 @@
                             </DataTemplate>
                         </ContextMenu.ItemTemplate>
                     </ContextMenu>
-                </ListView.ContextMenu>
+                </ListView.ContextMenu>-->
 
                 <!-- WPF bug: one element has to be given a name or the DLL doesn't load in time -->
 
-                <b:Interaction.Triggers>
+                <!--<b:Interaction.Triggers>
                     <b:EventTrigger x:Name="ContextMenuOpeningEventTrigger"
                         EventName="ContextMenuOpening"
                         >
@@ -318,7 +254,7 @@
                             TargetObject="{Binding}"
                             />
                     </b:EventTrigger>
-                </b:Interaction.Triggers>
+                </b:Interaction.Triggers>-->
             </ListView>
         </DockPanel>
     </Border>
