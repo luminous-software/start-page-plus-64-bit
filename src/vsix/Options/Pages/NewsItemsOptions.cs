@@ -15,26 +15,31 @@
 
     public class NewsItemsOptions : BaseOptionModel<NewsItemsOptions>
     {
-        public const string Category = @"Developer News";
+        public const string Category = @"News Items";
 
         [Category(PageConstants.Settings)]
         [DisplayName(ClearListBeforeRefreshDisplayName)]
         [Description(ClearListBeforeRefreshDescription)]
-        public bool ClearListBeforeRefresh { get; set; } = true;
+        public bool ClearListBeforeRefresh { get; set; } = ClearListBeforeRefreshDefault;
 
         [Category(PageConstants.Settings)]
         [DisplayName(NewsItemsFeedUrlDisplayName)]
         [Description(NewsItemsFeedUrlDescription)]
-        public string NewsItemsFeedUrl { get; set; } = "https://vsstartpage.blob.core.windows.net/news/vs";
+        public string NewsItemsFeedUrl { get; set; } = NewsItemsFeedUrlDefault;
 
         [Category(PageConstants.Settings)]
         [DisplayName(NewsItemsToDisplayDisplayName)]
         [Description(NewsItemsToDisplayDescription)]
-        public int NewsItemsToDisplay { get; set; } = 10;
+        public int NewsItemsToDisplay { get; set; } = NewsItemsToDisplayDefault;
 
         [Category(PageConstants.Settings)]
         [DisplayName(OpenLinksInVsDisplayName)]
         [Description(OpenLinksInVsDescription)]
-        public bool OpenLinksInVS { get; set; } = true;
+        public bool OpenLinksInVS { get; set; } = OpenLinksInVsDefault;
+
+        [Category(PageConstants.Settings)]
+        [DisplayName(DisplayNewsItemsName)]
+        [Description(DisplayNewsItemsDescription)]
+        public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
     }
 }

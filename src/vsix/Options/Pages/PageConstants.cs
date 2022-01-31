@@ -71,14 +71,22 @@
 
         public const string ClearListBeforeRefreshDisplayName = "Clear List Before Refresh";
         public const string ClearListBeforeRefreshDescription = "Clears the list to give a visual indication that the list has been refreshed";
+        internal const bool ClearListBeforeRefreshDefault = true;
 
         public const string NewsItemsFeedUrlDisplayName = "Items Feed Url";
         public const string NewsItemsFeedUrlDescription = "Sets the url of the 'Developer News' feed";
+        public const string NewsItemsFeedUrlDefault = "https://vsstartpage.blob.core.windows.net/news/vs";
 
         public const string NewsItemsToDisplayDisplayName = "Items To Display";
-        public const string NewsItemsToDisplayDescription = "Sets the number of items to display in the 'Developer News' list";
+        public const string NewsItemsToDisplayDescription = "Sets the number of items to display in the 'News Items' list";
+        internal const int NewsItemsToDisplayDefault = 8;
 
         public const string OpenLinksInVsDisplayName = "Open Links in VS";
         public const string OpenLinksInVsDescription = "Determines if news links are opened in VS or in the default browser";
+        internal const bool OpenLinksInVsDefault = true;
+
+        public const string DisplayNewsItemsName = "Display 'News Items' list";
+        public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
+        internal const bool DisplayNewsItemsDefault = true;
     }
 }

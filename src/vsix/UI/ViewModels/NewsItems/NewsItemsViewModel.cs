@@ -16,7 +16,7 @@
     public class NewsItemsViewModel : ColumnViewModel
     {
         //private const string DEV_NEWS_FEED_URL = "https://vsstartpage.blob.core.windows.net/news/vs";
-        private const string HEADING = "Read News";
+        private const string HEADING = "Read News Item";
 
         private List<NewsItemViewModel> items = new();
 

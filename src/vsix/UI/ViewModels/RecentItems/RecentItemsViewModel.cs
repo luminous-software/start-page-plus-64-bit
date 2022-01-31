@@ -6,15 +6,16 @@
 
     using Community.VisualStudio.Toolkit;
 
+    using Luminous.Code.Interfaces;
+
     using Microsoft.VisualStudio.Shell;
 
-    using Luminous.Code.Interfaces;
     using StartPagePlus.Options.Pages;
     using StartPagePlus.UI.Interfaces.RecentItems;
 
     public class RecentItemsViewModel : ColumnViewModel
     {
-        private const string HEADING = "Open a Recent Item";
+        private const string HEADING = "Open Recent Item";
 
         private ObservableCollection<RecentItemViewModel> items = new();
         private RecentItemViewModel selectedItem;
