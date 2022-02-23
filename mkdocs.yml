@@ -3,14 +3,14 @@ site_name: 'Start Page+ (64 - bit)'
 site_description: 'Documentation for Start Page+ (Visual Studio extension)'
 site_author: 'Yann Duran'
 copyright: 'Copyright &copy 2019 Luminous Software Solutions'
-site_url: 'https://luminous-software.solutions/start-page-plus'
+site_url: 'https://luminous-software.solutions/start-page-plus-64-bit'
 site_dir: 'docs'
 docs_dir: 'docs-source'
 dev_addr: '127.0.0.1:8006'
 
 # repository
-#repo_name: 'start-page-plus'
-#repo_url: 'https://github.com/luminous-software/start-page-plus'
+#repo_name: 'start-page-plus-64-bit'
+#repo_url: 'https://github.com/luminous-software/start-page-plus-64-bit'
 remote_branch: 'master'
 remote_name: 'origin'
 

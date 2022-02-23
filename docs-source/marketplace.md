@@ -1,13 +1,13 @@
 ﻿![Version][version-badge-url]
-[![License][license-badge]](https://github.com/luminous-software/start-page-plus/blob/master/LICENSE)
+[![License][license-badge]](https://github.com/luminous-software/start-page-plus-64-bit/blob/master/LICENSE)
 [![Donate][paypal-badge]](https://www.paypal.me/yannduran/5)
 
-[version-badge-url]: http://vsmarketplacebadge.apphb.com/version-short/YannDuran.StartPagePlus.svg?label=version&colorB=7E57C2&style=flat-square
+[version-badge-url]: http://vsmarketplacebadge.apphb.com/version-short/YannDuran.StartPagePlus_64_bit.svg?label=version&colorB=7E57C2&style=flat-square
 [license-badge]: https://img.shields.io/badge/license-MIT-7E57C2.svg?style=flat-square
-[license-url]: https://github.com/luminous-software/start-page-plus/blob/master/LICENSE
+[license-url]: https://github.com/luminous-software/start-page-plus-64-bit/blob/master/LICENSE
 [paypal-badge]: https://img.shields.io/badge/donate-paypal-green.svg?style=flat-square
 [paypal-url]: https://www.paypal.me/yannduran/10
-[marketplace-64-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus-64-bit
+[marketplace-64-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus_64_bit
 [marketplace-32-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
 
 - For VS 2022 download the [**64-bit** extension][marketplace-64-bit-url]
@@ -26,7 +26,7 @@ If *Start Page+* has saved you time and hassle, please come back and show your s
   - or [***review *Start Page+****][rate-or-review-url] (help others benefit from your experience)
   - or [***shout me a coke***](https://www.paypal.me/yannduran/5) (I don't drink coffee or beer lol)
 
-[rate-or-review-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus#review-details
+[rate-or-review-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus_64_bit#review-details
 
 ## Please Note
 
@@ -36,8 +36,8 @@ for new features, enhancements, bugs etc
 **before** you add an issue
 - for any known issues, please consult the _Start Page+_ website's [Known Issues][known-issues-url] page
 
-[github-issues-url]: https://github.com/luminous-software/start-page-plus/issues
-[known-issues-url]: https://luminous-software.solutions/start-page-plus
+[github-issues-url]: https://github.com/luminous-software/start-page-plus-64-bit/issues
+[known-issues-url]: https://luminous-software.solutions/start-page-plus-64-bit
 
 ---
 
@@ -47,7 +47,7 @@ When Visual Studio 2019 was released, many developers were dismayed to find that
 had been completely replaced by a new _Start **Window**_ (a big **modal** dialog window,
 with no _Developer News_).
 
-![Start Window](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/start-window-light.png)
+![Start Window](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/start-window-light.png)
 
 ## Introducing Start Page+
 
@@ -59,7 +59,7 @@ _Start Page_, and unfortunately those pleas fell on deaf ears.
 Well, you asked for it, and now _Start Page+_ delivers it. All that was taken away,
 **plus** more! (get it?)
 
-![Start Window](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/start-page-plus.png)
+![Start Window](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/start-page-plus.png)
 
 [Start Page+][start-page-plus-url] is a start page replacement
 that is a **dockable tool window**, not a **modal window**.
@@ -69,14 +69,14 @@ So it can't be taken  away by Microsoft. And it's open source!
 For a complete list of *Start Page+*'s features, including images, [click here][features-url] to go to
 the *Features* page on the *Start Page+* website.
 
-[features-url]: https://luminous-software/start-page-plus/features.md
+[features-url]: https://luminous-software/start-page-plus-64-bit/features.md
 
 ### To Open The Start Page+ Window
 
 - make sure Visual Studio's *Start Window* is disabled
     - in **Tools** | **Options** | **Environment** | **Startup** select _Empty Environment_
 
-    ![Startup Options](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/startup-options.png)
+    ![Startup Options](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/startup-options.png)
 
 - click on **View** | **Start Page+**
 
@@ -89,7 +89,7 @@ until Microsoft moved it to the **File** menu in later versions of VS 2017,
 and then permanently in VS 2019, which never really made **any** sense to me.
 
 [start-page-plus-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
-[roadmap-url]: https://luminous-software.solutions/start-page-plus/roadmap
+[roadmap-url]: https://luminous-software.solutions/start-page-plus-64-bit/roadmap
 [give-back-start-page-url]: https://developercommunity.visualstudio.com/idea/434456/start-page-please-give-it-back.html
 
 ---
@@ -100,15 +100,15 @@ and then permanently in VS 2019, which never really made **any** sense to me.
 
 #### Blue Theme
 
-![Blue 2019](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/builtin/blue.png)
+![Blue 2019](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/builtin/blue.png)
 
 #### Dark Theme
 
-![Dark](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/builtin/dark.png)
+![Dark](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/builtin/dark.png)
 
 #### Light Theme
 
-![Light](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/builtin/light.png)
+![Light](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/builtin/light.png)
 
 ### Custom Themes
 
@@ -118,7 +118,7 @@ and then permanently in VS 2019, which never really made **any** sense to me.
 
 This is my custom *Dark Purple* theme, based on the built-in *Dark* theme.
 
-![Dark Purple](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/custom/dark-purple.png)
+![Dark Purple](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/custom/dark-purple.png)
 
 #### Original Blue Theme (from VS 2017)
 
@@ -127,7 +127,7 @@ to bring back the original theme from VS 2017.
 
 [original-blue-theme-extension]: https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BlueColorTheme
 
-![Blue 2017](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/custom/blue-2017.png)
+![Blue 2017](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/custom/blue-2017.png)
 
 ### Color Theme Editor Themes
 
@@ -142,16 +142,16 @@ However I've found it extremely frustrating, and had no success creating a decen
 
 #### Green Theme
 
-![Green](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/extra/green.png)
+![Green](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/extra/green.png)
 
 #### Purple Theme
 
-![Purple](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/extra/purple.png)
+![Purple](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/extra/purple.png)
 
 #### Red Theme
 
-![Red](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/extra/red.png)
+![Red](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/extra/red.png)
 
 #### Tan Theme
 
-![Tan](https://github.com/luminous-software/start-page-plus/raw/master/docs/assets/images/themes/extra/tan.png)
+![Tan](https://github.com/luminous-software/start-page-plus-64-bit/raw/master/docs/assets/images/themes/extra/tan.png)

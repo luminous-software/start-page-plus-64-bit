@@ -1,9 +1,21 @@
 {
   "$schema": "http://json.schemastore.org/vsix-publish",
-  "categories": [ "visual studio extensions", "other" ],
+  "categories": [ "visual studio extensions", "start pages" ],
   "identity": {
     "internalName": "StartPagePlus_64_bit",
-    "tags": [ "Start Page+", "start-page-plus", "StartPagePlus", "start page", "start-page", "startpage", "luminous", "yannduran", "yd" ]
+    "tags": [
+      "Start Page+",
+      "start-page-plus",
+      "StartPagePlus",
+      "64 bit",
+      "64bit",
+      "64-bit",
+      "start page",
+      "startpage",
+      "luminous",
+      "yannduran",
+      "yd"
+    ]
   },
   "priceCategory": "free",
   "overview": "README.md",
@@ -13,68 +25,144 @@
   "qna": false,
   "assetFiles": [
     {
-      "pathOnDisk": "art/start-window-light.png",
-      "targetPath": "art/start-window-light.png"
+      "pathOnDisk": "assets/images/startup-options.png",
+      "targetPath": "assets/images/startup-options.png"
     },
     {
-      "pathOnDisk": "start-page-plus.png",
-      "targetPath": "start-page-plus.png"
+      "pathOnDisk": "assets/images/themes/builtin/blue.png",
+      "targetPath": "assets/images/themes/builtin/blue.png"
     },
     {
-      "pathOnDisk": "startup-options.png",
-      "targetPath": "startup-options.png"
+      "pathOnDisk": "assets/images/themes/builtin/dark.png",
+      "targetPath": "assets/images/themes/builtin/dark.png"
     },
     {
-      "pathOnDisk": "themes/builtin/blue.png",
-      "targetPath": "themes/builtin/blue.png"
+      "pathOnDisk": "assets/images/themes/builtin/light.png",
+      "targetPath": "assets/images/themes/builtin/light.png"
     },
     {
-      "pathOnDisk": "themes/builtin/dark.png",
-      "targetPath": "themes/builtin/dark.png"
+      "pathOnDisk": "assets/images/custom/dark-purple.png",
+      "targetPath": "assets/images/custom/dark-purple.png"
     },
     {
-      "pathOnDisk": "themes/builtin/light.png",
-      "targetPath": "themes/builtin/light.png"
+      "pathOnDisk": "assets/images/custom/blue-2017.png",
+      "targetPath": "assets/images/custom/blue-2017.png"
     },
     {
-      "pathOnDisk": "custom/dark-purple.png",
-      "targetPath": "custom/dark-purple.png"
+      "pathOnDisk": "assets/images/extras/green.png",
+      "targetPath": "assets/images/extras/green.png"
     },
     {
-      "pathOnDisk": "custom/blue-2017.png",
-      "targetPath": "custom/blue-2017.png"
+      "pathOnDisk": "assets/images/extras/purple.png",
+      "targetPath": "assets/images/extras/purple.png"
     },
     {
-      "pathOnDisk": "extras/green.png",
-      "targetPath": "extras/green.png"
+      "pathOnDisk": "assets/images/extras/red.png",
+      "targetPath": "assets/images/extras/red.png"
     },
     {
-      "pathOnDisk": "extras/purple.png",
-      "targetPath": "extras/purple.png"
+      "pathOnDisk": "assets/images/extras/tan.png",
+      "targetPath": "assets/images/extras/tan.png"
     },
     {
-      "pathOnDisk": "extras/red.png",
-      "targetPath": "extras/red.png"
+      "pathOnDisk": "assets/images/developer-news.png",
+      "targetPath": "assets/images/developer-news.png"
     },
     {
-      "pathOnDisk": "extras/tan.png",
-      "targetPath": "extras/tan.png"
+      "pathOnDisk": "assets/images/developer-news-links.png",
+      "targetPath": "assets/images/developer-news-links.png"
     },
     {
-      "pathOnDisk": ".png",
-      "targetPath": ".png"
+      "pathOnDisk": "assets/images/installer.png",
+      "targetPath": "assets/images/installer.png"
     },
     {
-      "pathOnDisk": ".png",
-      "targetPath": ".png"
+      "pathOnDisk": "assets/images/options-developer-news.png",
+      "targetPath": "assets/images/options-developer-news.png"
     },
     {
-      "pathOnDisk": ".png",
-      "targetPath": ".png"
+      "pathOnDisk": "assets/images/options-features.png",
+      "targetPath": "assets/images/options-features.png"
     },
     {
-      "pathOnDisk": ".png",
-      "targetPath": ".png"
+      "pathOnDisk": "assets/images/options-general.png",
+      "targetPath": "assets/images/options-general.png"
+    },
+    {
+      "pathOnDisk": "assets/images/options-recent-items.png",
+      "targetPath": "assets/images/options-recent-items.png"
+    },
+    {
+      "pathOnDisk": "assets/images/options-settings.png",
+      "targetPath": "assets/images/options-settings.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-context-menu.png",
+      "targetPath": "assets/images/recent-item-context-menu.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-context-menu-copy-item-path.png",
+      "targetPath": "assets/images/recent-item-context-menu-copy-item-path.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-context-menu-open-in-vs.png",
+      "targetPath": "assets/images/recent-item-context-menu-open-in-vs.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-context-menu-remove.png",
+      "targetPath": "assets/images/recent-item-context-menu-remove.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-context-menu-unpin.png",
+      "targetPath": "assets/images/recent-item-context-menu-unpin.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-pin.png",
+      "targetPath": "assets/images/recent-item-pin.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-remove.png",
+      "targetPath": "assets/images/recent-item-remove.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-items.png",
+      "targetPath": "assets/images/recent-items.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-items-collapsed.png",
+      "targetPath": "assets/images/recent-items-collapsed.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-items-links.png",
+      "targetPath": "assets/images/recent-items-links.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-items-live-filtering.png",
+      "targetPath": "assets/images/recent-items-live-filtering.png"
+    },
+    {
+      "pathOnDisk": "assets/images/recent-item-unpin.png",
+      "targetPath": "assets/images/recent-item-unpin.png"
+    },
+    {
+      "pathOnDisk": "assets/images/start-items.png",
+      "targetPath": "assets/images/start-items.png"
+    },
+    {
+      "pathOnDisk": "assets/images/start-items-links.png",
+      "targetPath": "assets/images/start-items-links.png"
+    },
+    {
+      "pathOnDisk": "assets/images/start-page-plus.png",
+      "targetPath": "assets/images/start-page-plus.png"
+    },
+    {
+      "pathOnDisk": "assets/images/startup-options.png",
+      "targetPath": "assets/images/startup-options.png"
+    },
+    {
+      "pathOnDisk": "assets/images/start-window-light.png",
+      "targetPath": "assets/images/start-window-light.png"
     }
   ]
 }

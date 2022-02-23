@@ -22,7 +22,7 @@ There are three ways you can install *Start Page+*:
 2. Click the *Download* button, and select where to save it
 3. Install the downloaded VSIX file, from wherever you saved it
 
-[marketplace-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
+[marketplace-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus_64bit
 
 ## Option 3 - From Source Code
 
@@ -31,7 +31,7 @@ There are three ways you can install *Start Page+*:
 3. Compile the solution
 4. Install the compiled VSIX file
 
-[source-code-url]: https://github.com/luminous-software/start-page-plus
+[source-code-url]: https://github.com/luminous-software/start-page-plus-64-bit
 
 ## View StartPage+
 

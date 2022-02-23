@@ -15,9 +15,9 @@ so your work can be incorporated into _Start Page+_ and made available for every
 
 Don't forget to check out the [Contribution Guidelines][contribution-guidelines].
 
-[github-issues]: https://github.com/luminous-software/start-page-plus/issues
-[new-github-issue]: https://github.com/luminous-software/start-page-plus/issues/new?title=&body=&label=enhancement
-[contribution-guidelines]: https://github.com/luminous-software/start-page-plus/blob/master/.github/CONTRIBUTING.md
+[github-issues]: https://github.com/luminous-software/start-page-plus-64-bit/issues
+[new-github-issue]: https://github.com/luminous-software/start-page-plus-64-bit/issues/new?title=&body=&label=enhancement
+[contribution-guidelines]: https://github.com/luminous-software/start-page-plus-64-bit/blob/master/.github/CONTRIBUTING.md
 
 ## Bug Fixes
 

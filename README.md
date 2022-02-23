@@ -1,17 +1,17 @@
 ﻿![Version][version-badge-url]
 ![Installs][installs-badge-url]
 ![Rating][rating-badge-url]
-[![License][license-badge]](https://github.com/luminous-software/start-page-plus/blob/master/LICENSE)
+[![License][license-badge]](https://github.com/luminous-software/start-page-plus-64-bit/blob/master/LICENSE)
 [![Donate][paypal-badge]](https://www.paypal.me/yannduran/5)
 
-[version-badge-url]: http://vsmarketplacebadge.apphb.com/version-short/YannDuran.StartPagePlus.svg?label=version&colorB=7E57C2&style=flat-square
-[installs-badge-url]: http://vsmarketplacebadge.apphb.com/installs-short/YannDuran.StartPagePlus.svg?colorB=7E57C2&style=flat-square
-[rating-badge-url]: http://vsmarketplacebadge.apphb.com/rating-short/YannDuran.StartPagePlus.svg?colorB=7E57C2&style=flat-square
+[version-badge-url]: http://vsmarketplacebadge.apphb.com/version-short/YannDuran.StartPagePlus_64_bit.svg?label=version&colorB=7E57C2&style=flat-square
+[installs-badge-url]: http://vsmarketplacebadge.apphb.com/installs-short/YannDuran.StartPagePlus_64_bit.svg?colorB=7E57C2&style=flat-square
+[rating-badge-url]: http://vsmarketplacebadge.apphb.com/rating-short/YannDuran.StartPagePlus_64_bit.svg?colorB=7E57C2&style=flat-square
 [license-badge]: https://img.shields.io/badge/license-MIT-7E57C2.svg?style=flat-square
-[license-url]: https://github.com/luminous-software/start-page-plus/blob/master/LICENSE
+[license-url]: https://github.com/luminous-software/start-page-plus-64-bit/blob/master/LICENSE
 [paypal-badge]: https://img.shields.io/badge/donate-paypal-green.svg?style=flat-square
 [paypal-url]: https://www.paypal.me/yannduran/10
-[marketplace-64-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus-64-bit
+[marketplace-64-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus_64_bit
 [marketplace-32-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
 
 - For VS 2022 download the [**64-bit** extension][marketplace-64-bit-url]
@@ -30,7 +30,7 @@ If *Start Page+* has saved you time and hassle, please come back and show your s
   - or [***review *Start Page+****][rate-or-review-url] (help others benefit from your experience)
   - or [***shout me a coke***](https://www.paypal.me/yannduran/5) (I don't drink coffee or beer lol)
 
-[rate-or-review-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus#review-details
+[rate-or-review-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus_64_bit#review-details
 
 ## Please Note
 
@@ -40,8 +40,8 @@ for new features, enhancements, bugs etc
 **before** you add an issue
 - for any known issues, please consult the _Start Page+_ website's [Known Issues][known-issues-url] page
 
-[github-issues-url]: https://github.com/luminous-software/start-page-plus/issues
-[known-issues-url]: https://luminous-software.solutions/start-page-plus
+[github-issues-url]: https://github.com/luminous-software/start-page-plus-64-bit/issues
+[known-issues-url]: https://luminous-software.solutions/start-page-plus-64-bit
 
 ---
 
@@ -73,7 +73,7 @@ So it can't be taken  away by Microsoft. And it's open source!
 For a complete list of *Start Page+*'s features, including images, [click here][features-url] to go to
 the *Features* page on the *Start Page+* website.
 
-[features-url]: https://luminous-software/start-page-plus/features.md
+[features-url]: https://luminous-software/start-page-plus-64-bit/features.md
 
 ### To Open The Start Page+ Window
 
@@ -93,7 +93,7 @@ until Microsoft moved it to the **File** menu in later versions of VS 2017,
 and then permanently in VS 2019, which never really made **any** sense to me.
 
 [start-page-plus-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
-[roadmap-url]: https://luminous-software.solutions/start-page-plus/roadmap
+[roadmap-url]: https://luminous-software.solutions/start-page-plus-64-bit/roadmap
 [give-back-start-page-url]: https://developercommunity.visualstudio.com/idea/434456/start-page-please-give-it-back.html
 
 ---

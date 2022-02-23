@@ -10,7 +10,7 @@
     public class StartItemsViewModel : ColumnViewModel
     {
         private const string HEADING = "Get Started";
-        private const string WEBSITE_URL = "https://luminous-software.solutions/start-page-plus";
+        private const string WEBSITE_URL = "https://luminous-software.solutions/start-page-plus-64-bit";
         private const string CHANGELOG_URL = WEBSITE_URL + "/changelog";
         private List<StartItemViewModel> items = new List<StartItemViewModel>();
 
