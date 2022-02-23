@@ -1,0 +1,140 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "Build and Publish VSIX"
+
+on:
+  push:
+    branches: [master, develop]
+  #pull_request:
+  #  branches: [master]
+  workflow_dispatch:
+    branches: [ master ]
+
+env:
+  RepoName: ${{ github.event.repository.name }}
+  Debugging: true
+  #WorkflowDispatched: ${{ github.event_name == 'workflow_dispatch' }}
+  # IsRelease: ${{ contains(github.event.head_commit.message, '[release]') }}
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+    env:
+      RepoName: ${{ github.event.repository.name }} # $github.repository ? # https://bloggie.io/@_junrong/using-environment-variables-secrets-in-github-actions
+      OutputDir: \_built
+      VsixDir: $OutputDir\$RepoName
+    defaults:
+      run:
+        shell: powershell
+        #working-directory: scripts
+    outputs:
+      VsixVersion: ${{ steps.increment_vsix_version.outputs.version-number }}
+      VsixFullName: ${{ env.RepoName }}-v${{ steps.increment_vsix_version.outputs.version-number }}.vsix  
+
+    steps:
+    - name: Dump Github context
+      if: env.Debugging
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Setup .NET build dependencies
+      uses: timheuer/bootstrap-dotnet@v1
+      with:
+        nuget: 'false'
+        sdk: 'true'
+        msbuild: 'true'
+        vstest: 'false'
+
+    - name: Increment VSIX version
+      id: increment_vsix_version
+      uses: timheuer/vsix-version-stamp@v1
+      with:
+        version-type: revision
+        manifest-file: src\source.extension.vsixmanifest
+        vsix-token-source-file: src\source.extension.cs
+
+    - name: Print new VSIX version
+      if: env.Debugging
+      run: echo "New version is '${{ steps.increment_vsix_version.outputs.version-number }}'"
+
+    - name: Build Solution
+      run: msbuild /v:m -restore /p:OutDir=${{ env.OutputDir }} -detailedsummary -p:Configuration=Release /p:DeployExtension=false
+
+    - name: Rename VSIX with version
+      run: rename-item -Path ${{ env.OutputDir }}\${{ env.RepoName }}.vsix -NewName ${{ env.RepoName }}-v${{ steps.increment_vsix_version.outputs.version-number }}.vsix
+      continue-on-error: false
+
+    - name: List output directory contents
+      if: env.Debugging
+      run: ls ${{ env.OutputDir }}
+
+    - name: Upload VSIX artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: vsix-artifact
+        path: |
+          ${{ env.OutputDir }}\${{ env.RepoName }}-v${{ steps.increment_vsix_version.outputs.version-number }}.vsix
+        if-no-files-found: error # 'warn' or 'ignore' are also available  (defaults to `warn`)
+
+  vsix-gallery:
+    name: VSIX Gallery
+    if:  github.ref != 'refs/heads/master' # ${{ IsMasterBranch }} == false
+    needs: [build]
+    runs-on: windows-latest
+    #env:
+      #RepoName: ${{ github.event.repository.name }}
+      #IsMasterBranch: ${{ github.ref == 'refs/heads/master' }}
+
+    steps:
+    - name: Download VSIX artifact
+      uses: actions/download-artifact@v2 
+      with:
+        name: vsix-artifact
+    
+    - name: Upload to VSIX Gallery
+      uses: timheuer/openvsixpublish@v1
+      with:
+        vsix-file: ${{ needs.build.outputs.VsixFullName }}
+
+  vs-marketplace:
+    name: VS Marketplace
+    if: github.ref == 'refs/heads/master'
+    needs: [build]
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download VSIX artifact
+      uses: actions/download-artifact@v2 
+      with:
+        name: vsix-artifact
+    
+    - name: List contents of current directory
+      if: env.Debugging
+      run: ls D:\a
+
+    - name: Publish extension to Marketplace
+      uses: cezarypiatek/VsixPublisherAction@0.1
+      with:
+        extension-file: ${{ needs.build.outputs.VsixFullName }}
+        publish-manifest-file: publish-manifest.json
+        personal-access-code: ${{ secrets.VS_MARKETPLACE_PAT }}
+    
+  github-release:
+    name: Tag and Release
+    if: github.ref == 'refs/heads/master'
+    needs: [build, vs-marketplace]
+    runs-on: windows-latest
+    env:
+      VsixVersion: ${{ needs.build.outputs.VsixVersion }}
+
+    steps:
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v0.1.13
+      with:
+        tag_name: v${{ env.VsixVersion }}
+        body: Release ${{ env.VsixVersion }}
+        files: ${{ needs.build.outputs.VsixFullName }}

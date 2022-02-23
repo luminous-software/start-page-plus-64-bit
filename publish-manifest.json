@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json.schemastore.org/vsix-publish",
+  "categories": [ "visual studio extensions", "other" ],
+  "identity": {
+    "internalName": "StartPagePlus_64_bit",
+    "tags": [ "Start Page+", "start-page-plus", "StartPagePlus", "start page", "start-page", "startpage", "luminous", "yannduran", "yd" ]
+  },
+  "priceCategory": "free",
+  "overview": "README.md",
+  "publisher": "YannDuran",
+  "repo": "https://github.com/yannduran/start-page-plus-64-bit",
+  "private": false,
+  "qna": false,
+  "assetFiles": [
+    {
+      "pathOnDisk": "art/start-window-light.png",
+      "targetPath": "art/start-window-light.png"
+    },
+    {
+      "pathOnDisk": "start-page-plus.png",
+      "targetPath": "start-page-plus.png"
+    },
+    {
+      "pathOnDisk": "startup-options.png",
+      "targetPath": "startup-options.png"
+    },
+    {
+      "pathOnDisk": "themes/builtin/blue.png",
+      "targetPath": "themes/builtin/blue.png"
+    },
+    {
+      "pathOnDisk": "themes/builtin/dark.png",
+      "targetPath": "themes/builtin/dark.png"
+    },
+    {
+      "pathOnDisk": "themes/builtin/light.png",
+      "targetPath": "themes/builtin/light.png"
+    },
+    {
+      "pathOnDisk": "custom/dark-purple.png",
+      "targetPath": "custom/dark-purple.png"
+    },
+    {
+      "pathOnDisk": "custom/blue-2017.png",
+      "targetPath": "custom/blue-2017.png"
+    },
+    {
+      "pathOnDisk": "extras/green.png",
+      "targetPath": "extras/green.png"
+    },
+    {
+      "pathOnDisk": "extras/purple.png",
+      "targetPath": "extras/purple.png"
+    },
+    {
+      "pathOnDisk": "extras/red.png",
+      "targetPath": "extras/red.png"
+    },
+    {
+      "pathOnDisk": "extras/tan.png",
+      "targetPath": "extras/tan.png"
+    },
+    {
+      "pathOnDisk": ".png",
+      "targetPath": ".png"
+    },
+    {
+      "pathOnDisk": ".png",
+      "targetPath": ".png"
+    },
+    {
+      "pathOnDisk": ".png",
+      "targetPath": ".png"
+    },
+    {
+      "pathOnDisk": ".png",
+      "targetPath": ".png"
+    }
+  ]
+}

@@ -9,8 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\.editorconfig = ..\..\..\.editorconfig
 		.gitignore = .gitignore
+		.github\workflows\build.yaml = .github\workflows\build.yaml
 		src\GlobalSuppressions.cs = src\GlobalSuppressions.cs
 		gulpfile.js = gulpfile.js
+		publish-manifest.json = publish-manifest.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "art", "art", "{33A9B36C-3358-4B7D-BFB1-16AD478EA0DE}"
@@ -113,6 +115,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{33A9B36C-3358-4B7D-BFB1-16AD478EA0DE} = {D9E3CC92-2D61-4E3F-973C-189AC210386C}
 		{5F5701DC-F83A-42F8-9DC9-DA953B1CA980} = {D9E3CC92-2D61-4E3F-973C-189AC210386C}
 		{DAAB5A80-A3D4-4AF9-894F-7C7A02A64B2A} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
 		{52B06F78-0B83-419D-B651-8C13DC72396A} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
