@@ -2,13 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using System.Xml.Linq;
 
-    using Microsoft;
     using Microsoft.VisualStudio.Shell;
 
     using Newtonsoft.Json;
@@ -20,11 +17,11 @@
 
     public class MruPrivateSettingsService : IMruService
     {
-        //const string SettingsPath = @"C:\Users\Yann\AppData\Local\Microsoft\VisualStudio\16.0_ac302c69\ApplicationPrivateSettings.xml";
-        const string OfflinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
+        private const string OfflinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
+        private const string PrivateSettingsXml = @"\ApplicationPrivateSettings.xml";
 
         private string SettingsPath
-            => MainViewModel.Package?.UserDataPath.Replace("Roaming", "Local") + @"\ApplicationPrivateSettings.xml";
+            => MainViewModel.Package?.UserDataPath.Replace("Roaming", "Local") + PrivateSettingsXml;
 
         public async Task<List<RecentItem>> GetItemsAsync()
         {
@@ -81,9 +78,12 @@
             try
             {
                 var items = await LoadAsync();
-                var item = items.FirstOrDefault(x => x.Key == key);
+                if (items is null)
+                    return false;
 
-                Assumes.Present(item);
+                var item = items.FirstOrDefault(x => x.Key == key);
+                if (item is null)
+                    return false;
 
                 items.Remove(item);
 
@@ -104,19 +104,17 @@
             try
             {
                 var items = await LoadAsync();
+                if (items is null)
+                    return false;
+
                 var item = items.FirstOrDefault(x => x.Key == key);
+                if (item != null)
+                    return false;
 
-                if (item is null)
-                {
-                    result = false;
-                }
-                else
-                {
-                    item.Key = newValue;
-                    item.Value.LocalProperties.FullPath = newValue;
+                item.Key = newValue;
+                item.Value.LocalProperties.FullPath = newValue;
 
-                    result = await SaveAsync(items);
-                }
+                result = await SaveAsync(items);
             }
             catch (Exception)
             {
@@ -133,9 +131,12 @@
             try
             {
                 var items = await LoadAsync();
-                var item = items.FirstOrDefault(x => x.Key == path);
+                if (items is null)
+                    return false;
 
-                Assumes.Present(item);
+                var item = items.FirstOrDefault(x => x.Key == path);
+                if (item is null)
+                    return false;
 
                 item.Value.LastAccessed = date;
 
@@ -151,25 +152,47 @@
 
         //---
 
+        private async Task<bool> SetPinnedAsync(string key, bool value)
+        {
+            bool result;
+
+            try
+            {
+                var items = await LoadAsync();
+                if (items is null)
+                    return false;
+
+                var item = items?.FirstOrDefault(x => x.Key == key);
+                if (item is null)
+                    return false;
+
+                item.Value.IsFavorite = value;
+
+                result = await SaveAsync(items);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return result;
+        }
+
         private async Task<List<RecentItem>> LoadAsync()
         {
             var items = new List<RecentItem>();
 
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             try
             {
-                using (var stream = File.OpenText(SettingsPath))
-                {
-                    var xml = XDocument.Parse(await stream.ReadToEndAsync());
+                var xmlDocument = new XmlDocument();
 
-                    var codeContainers =
-                    (
-                        from el in xml
-                            .Descendants("content")
-                            .Descendants("indexed")
-                            .Descendants("collection")
-                        where el.Attribute("name").Value == "CodeContainers.Offline"
-                        select el.Elements().FirstOrDefault().Value
-                    ).FirstOrDefault();
+                xmlDocument.Load(SettingsPath);
+
+                using (var offline = xmlDocument.DocumentElement.SelectNodes(OfflinePath))
+                {
+                    var codeContainers = offline.Item(0).FirstChild.InnerText;
 
                     items = JArray.Parse(codeContainers).ToObject<List<RecentItem>>();
                 }
@@ -187,10 +210,10 @@
         {
             bool result;
 
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             try
             {
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
                 var xmlDocument = new XmlDocument();
 
                 xmlDocument.Load(SettingsPath);
@@ -206,29 +229,6 @@
                 xmlDocument.Save(SettingsPath);
 
                 result = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        private async Task<bool> SetPinnedAsync(string key, bool value)
-        {
-            bool result;
-
-            try
-            {
-                var items = await LoadAsync();
-                var item = items.FirstOrDefault(x => x.Key == key);
-
-                Assumes.Present(item);
-
-                item.Value.IsFavorite = value;
-
-                result = await SaveAsync(items);
             }
             catch (Exception)
             {
