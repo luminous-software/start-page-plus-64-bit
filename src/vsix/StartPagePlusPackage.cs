@@ -38,6 +38,8 @@
     [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
+        //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
+
         protected override void InitializeServices(IServiceCollection services)
         {
             ViewModelManager.RegisterViewModels(services);
