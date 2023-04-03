@@ -6,9 +6,7 @@
     using System.Threading;
 
     using Community.VisualStudio.Toolkit;
-    using Community.VisualStudio.Toolkit.DependencyInjection.Microsoft;
 
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.Shell;
 
     using StartPagePlus.Options.Pages;
@@ -36,21 +34,24 @@
 
     [ProvideOptionPage(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
-    public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
+    public sealed class StartPagePlusPackage : ToolkitPackage //MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
         //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
 
-        protected override void InitializeServices(IServiceCollection services)
-        {
-            ViewModelManager.RegisterViewModels(services);
-            ServiceManager.RegisterServices(services);
-        }
+        //protected override void InitializeServices(IServiceCollection services)
+        //{
+        //    ViewModelManager.RegisterViewModels(services);
+        //    ServiceManager.RegisterServices(services);
+        //}
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await base.InitializeAsync(cancellationToken, progress);
             await this.RegisterCommandsAsync();
             //await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            ViewModelManager.RegisterViewModels(services);
+            ServiceManager.RegisterServices(services);
 
             this.RegisterToolWindows();
         }
