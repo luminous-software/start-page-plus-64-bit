@@ -1,10 +1,9 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
-    using Community.VisualStudio.Toolkit;
-    using Community.VisualStudio.Toolkit.DependencyInjection.Core;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.DependencyInjection;
 
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Toolkit.Mvvm.ComponentModel;
 
     using StartPagePlus.UI.ViewModels.NewsItems;
     using StartPagePlus.UI.ViewModels.RecentItems;
@@ -84,8 +83,7 @@
         public static T GetViewModel<T>()
             where T : ObservableObject
         {
-            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
-            var viewModel = serviceProvider.GetRequiredService<T>();
+            var viewModel = Ioc.Default.GetService<T>();
 
             return viewModel;
         }

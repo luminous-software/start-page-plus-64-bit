@@ -1,6 +1,6 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
-    using Microsoft.Toolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.ComponentModel;
 
     public class ViewModelBase : ObservableRecipient
     {

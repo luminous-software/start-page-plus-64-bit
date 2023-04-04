@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Microsoft.Toolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Input;
     using Microsoft.VisualStudio.Imaging.Interop;
 
     using StartPagePlus.UI.Enums;

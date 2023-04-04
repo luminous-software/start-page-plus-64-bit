@@ -3,7 +3,7 @@
     using System;
     using System.Windows.Input;
 
-    using Microsoft.Toolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Input;
 
     public class NewsItemViewModel : ViewModelBase
     {

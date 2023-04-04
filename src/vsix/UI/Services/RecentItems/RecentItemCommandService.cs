@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    using Microsoft.Toolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Input;
     using Microsoft.VisualStudio.Imaging;
 
     using StartPagePlus.UI.Interfaces.RecentItems;
