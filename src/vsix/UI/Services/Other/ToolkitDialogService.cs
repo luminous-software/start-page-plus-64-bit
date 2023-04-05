@@ -1,11 +1,12 @@
-﻿namespace StartPagePlus.UI.Services
+﻿using System;
+
+using Community.VisualStudio.Toolkit;
+
+using Luminous.Code.Extensions.Exceptions;
+
+namespace StartPagePlus.UI.Services.Other
 {
-    using System;
-
-    using Community.VisualStudio.Toolkit;
-
-    using Luminous.Code.Extensions.Exceptions;
-    using Luminous.Code.Interfaces;
+    using Core.Interfaces;
 
     public class ToolkitDialogService : IDialogService
     {

@@ -1,15 +1,15 @@
-﻿namespace StartPagePlus.UI.Views.NewsItems
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+
+using Luminous.Code.Extensions.Exceptions;
+using Luminous.Code.Extensions.Strings;
+
+namespace StartPagePlus.UI.Views.NewsItems
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-
-    using Luminous.Code.Extensions.Exceptions;
-    using Luminous.Code.Extensions.Strings;
-
-    using StartPagePlus.UI.ViewModels;
-    using StartPagePlus.UI.ViewModels.NewsItems;
+    using ViewModels;
+    using ViewModels.NewsItems;
 
     public partial class NewsItemsView : UserControl
     {
@@ -21,7 +21,7 @@
             {
                 var viewModel = ViewModelManager.NewsItemsViewModel;
 
-                // NOTE: Refresh is call in viewmodel's constructor
+                // NOTE: Refresh is called in viewmodel's constructor
 
                 DataContext = viewModel;
 

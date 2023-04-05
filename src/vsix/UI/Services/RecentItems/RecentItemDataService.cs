@@ -1,11 +1,11 @@
-﻿namespace StartPagePlus.UI.Services.RecentItems
-{
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
-    using Luminous.Code.Interfaces;
+namespace StartPagePlus.UI.Services.RecentItems
+{
+    using Core.Interfaces;
 
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.ViewModels.RecentItems;

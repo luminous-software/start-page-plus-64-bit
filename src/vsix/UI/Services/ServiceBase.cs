@@ -1,26 +1,28 @@
-﻿namespace StartPagePlus.UI.Services
-{
-    using System;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
-    using StartPagePlus.UI.Interfaces;
+namespace StartPagePlus.UI.Services
+{
+    using Core.Interfaces;
+
+    using UI.Interfaces;
 
     public abstract class ServiceBase : IService
     {
         public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
         => true;
-        //=> RootMethods.RunMethod(asyncMethod);
+        // ==> RootMethods.RunMethod(asyncMethod);
 
         public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
         => true;
-        //=> RootMethods.RunMethod(asyncMethod);
+        // ==> RootMethods.RunMethod(asyncMethod);
 
         //---
 
         public virtual void LìstenFor<T>(object recipient, Action<T> action)
             where T : IViewModel
         { }
-        //=> RootMethods.ListenFor(recipient, action);
+        // ==> RootMethods.ListenFor(recipient, action);
 
         //public virtual void SendMessage(MessageBase message)
         //    => RootMethods.SendMessage(message);

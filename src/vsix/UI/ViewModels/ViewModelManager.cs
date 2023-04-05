@@ -1,14 +1,16 @@
-﻿namespace StartPagePlus.UI.ViewModels
+﻿using System;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace StartPagePlus.UI.ViewModels
 {
-    using System;
-
-    using CommunityToolkit.Mvvm.ComponentModel;
-
     using DI;
 
-    using ViewModels.NewsItems;
-    using ViewModels.RecentItems;
-    using ViewModels.StartItems;
+    using NewsItems;
+
+    using RecentItems;
+
+    using StartItems;
 
     public static class ViewModelManager
     {

@@ -1,8 +1,10 @@
-﻿namespace Luminous.Code.Interfaces
-{
-    using System;
+﻿using System;
 
-    public interface IDialogService
+namespace StartPagePlus.Core.Interfaces
+{
+    using StartPagePlus.UI.Interfaces;
+
+    public interface IDialogService : IService
     {
         void ShowNotImplemented(string method);
 

@@ -1,8 +1,8 @@
-﻿namespace Luminous.Code.Interfaces
-{
-    using System;
+﻿using System;
 
-    public interface IDateTimeService
+namespace StartPagePlus.Core.Interfaces
+{
+    public interface IDateTimeService : IService
     {
         DateTime Today { get; }
 

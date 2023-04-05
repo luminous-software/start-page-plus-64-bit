@@ -1,10 +1,8 @@
-﻿namespace StartPagePlus.UI.Interfaces
+﻿using System;
+using System.Threading.Tasks;
+
+namespace StartPagePlus.UI.Interfaces
 {
-    using System;
-    using System.Threading.Tasks;
-
-    //using GalaSoft.MvvmLight.Messaging;
-
     public interface IMessageSender
     {
         /// <summary>A method to safely run asynchronous code syncronously</summary>

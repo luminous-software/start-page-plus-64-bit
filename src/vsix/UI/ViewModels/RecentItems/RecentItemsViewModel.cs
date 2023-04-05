@@ -1,17 +1,18 @@
-﻿namespace StartPagePlus.UI.ViewModels.RecentItems
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+
+using Community.VisualStudio.Toolkit;
+
+using Microsoft.VisualStudio.Shell;
+
+namespace StartPagePlus.UI.ViewModels.RecentItems
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Windows.Controls;
+    using Core.Interfaces;
 
-    using Community.VisualStudio.Toolkit;
+    using Interfaces.RecentItems;
 
-    using Luminous.Code.Interfaces;
-
-    using Microsoft.VisualStudio.Shell;
-
-    using StartPagePlus.Options.Pages;
-    using StartPagePlus.UI.Interfaces.RecentItems;
+    using Options.Pages;
 
     public class RecentItemsViewModel : ColumnViewModel
     {

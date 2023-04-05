@@ -1,7 +1,9 @@
-﻿namespace StartPagePlus.UI.Interfaces
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+
+namespace StartPagePlus.UI.Interfaces
 {
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
+    using Core.Interfaces;
 
     public interface IDataService<T> : IService
         where T : IViewModel
