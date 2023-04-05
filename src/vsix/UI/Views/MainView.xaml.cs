@@ -1,10 +1,10 @@
-﻿namespace StartPagePlus.UI.Views
+﻿using System;
+using System.Windows.Controls;
+
+using Community.VisualStudio.Toolkit;
+
+namespace StartPagePlus.UI.Views
 {
-    using System;
-    using System.Windows.Controls;
-
-    using Community.VisualStudio.Toolkit;
-
     using StartPagePlus.UI.ViewModels;
 
     public partial class MainView : UserControl

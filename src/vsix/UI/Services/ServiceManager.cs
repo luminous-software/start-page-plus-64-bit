@@ -1,61 +1,41 @@
-﻿namespace StartPagePlus.UI.Services
+﻿using Luminous.Code.Interfaces;
+
+namespace StartPagePlus.UI.Services
 {
-    using Community.VisualStudio.Toolkit;
-    using Community.VisualStudio.Toolkit.DependencyInjection.Core; //YD: is this really needed in addtion to Microsoft.Extensions.DependencyInjection?
+    using Interfaces.NewsItems;
+    using Interfaces.RecentItems;
+    using Interfaces.StartItems;
 
-    using Luminous.Code.Interfaces;
+    using NewsItems;
 
-    using Microsoft.Extensions.DependencyInjection;
+    using RecentItems;
 
-    using StartPagePlus.UI.Interfaces;
+    using StartItems;
 
-    using StartPagePlus.UI.Interfaces.NewsItems;
-    using StartPagePlus.UI.Interfaces.RecentItems;
-    using StartPagePlus.UI.Interfaces.StartItems;
+    using StartPagePlus.DI;
 
-    using StartPagePlus.UI.Services.NewsItems;
-    using StartPagePlus.UI.Services.RecentItems;
-    using StartPagePlus.UI.Services.StartItems;
-
-    public static class ServiceManager
+    internal static class ServiceManager
     {
-        public static IDateTimeService DateTimeService { get; set; }
-
-        public static IMruService MruService { get; set; }
-
-        //---
-
-        internal static void RegisterServices(IServiceCollection services)
+        public static void RegisterServices(StartPagePlusContainer container)
         {
-            services.AddSingleton<IDateTimeService, DateTimeService>();
-            services.AddSingleton<IDialogService, ToolkitDialogService>();
+            container.AddSingleton<IDateTimeService, DateTimeService>();
+            container.AddSingleton<IDialogService, ToolkitDialogService>();
 
             //---
 
-            services.AddSingleton<IMruService, MruPrivateSettingsService>();
-            services.AddSingleton<IRecentItemDataService, RecentItemDataService>();
-            services.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
+            container.AddSingleton<IMruService, MruPrivateSettingsService>();
+            container.AddSingleton<IRecentItemDataService, RecentItemDataService>();
+            container.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
 
             //---
 
-            services.AddSingleton<IStartItemDataService, StartItemDataService>();
-            services.AddSingleton<IStartItemCommandService, StartItemCommandService>();
+            container.AddSingleton<IStartItemDataService, StartItemDataService>();
+            container.AddSingleton<IStartItemCommandService, StartItemCommandService>();
 
             //---
 
-            services.AddSingleton<INewsItemDataService, NewsItemDataService>();
-            services.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
-        }
-
-        //---
-
-        public static T GetService<T>()
-            where T : IService
-        {
-            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
-            var service = serviceProvider.GetService<T>();
-
-            return service;
+            container.AddSingleton<INewsItemDataService, NewsItemDataService>();
+            container.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
         }
     }
 }

@@ -1,18 +1,21 @@
-﻿namespace
-    StartPagePlus
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+using Community.VisualStudio.Toolkit;
+
+using Microsoft.VisualStudio.Shell;
+
+namespace StartPagePlus
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Threading;
+    using DI;
 
-    using Community.VisualStudio.Toolkit;
+    using Options.Pages;
 
-    using Microsoft.VisualStudio.Shell;
-
-    using StartPagePlus.Options.Pages;
     using StartPagePlus.UI.Services;
-    using StartPagePlus.UI.ToolWindows;
     using StartPagePlus.UI.ViewModels;
+
+    using UI.ToolWindows;
 
     using static Vsix;
 
@@ -36,24 +39,35 @@
     [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : ToolkitPackage //MicrosoftDIToolkitPackage<StartPagePlusPackage>
     {
-        //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
+        private readonly StartPagePlusContainer _container;
 
-        //protected override void InitializeServices(IServiceCollection services)
-        //{
-        //    ViewModelManager.RegisterViewModels(services);
-        //    ServiceManager.RegisterServices(services);
-        //}
+        public StartPagePlusPackage() : base()
+            => _container = new StartPagePlusContainer();
+
+        //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await base.InitializeAsync(cancellationToken, progress);
             await this.RegisterCommandsAsync();
-            //await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            ViewModelManager.RegisterViewModels(services);
-            ServiceManager.RegisterServices(services);
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            ServiceManager.RegisterServices(_container);
+            ViewModelManager.RegisterViewModels(_container);
 
             this.RegisterToolWindows();
         }
+
+        protected override object GetService(Type serviceType)
+        {
+            return (_container?.IsRegistered(serviceType) ?? false)
+                ? _container.GetInstance(serviceType)
+                : base.GetService(serviceType);
+        }
     }
+
+    //private static void LogService<T>(T service, string message)
+    //    where T : IReportServiceLifetime =>
+    //        Console.WriteLine($"    {typeof(T).Name}: {service.Id} ({message})");
 }

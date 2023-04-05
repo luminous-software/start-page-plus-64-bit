@@ -1,16 +1,19 @@
 ﻿namespace StartPagePlus.UI.ViewModels
 {
+    using System;
+
     using CommunityToolkit.Mvvm.ComponentModel;
-    using CommunityToolkit.Mvvm.DependencyInjection;
 
-    using Microsoft.Extensions.DependencyInjection;
+    using DI;
 
-    using StartPagePlus.UI.ViewModels.NewsItems;
-    using StartPagePlus.UI.ViewModels.RecentItems;
-    using StartPagePlus.UI.ViewModels.StartItems;
+    using ViewModels.NewsItems;
+    using ViewModels.RecentItems;
+    using ViewModels.StartItems;
 
     public static class ViewModelManager
     {
+        private static StartPagePlusContainer _container;
+
         public static MainViewModel MainViewModel
             => GetViewModel<MainViewModel>();
 
@@ -55,35 +58,37 @@
 
         //---
 
-        internal static void RegisterViewModels(IServiceCollection viewModels)
+        internal static void RegisterViewModels(StartPagePlusContainer container)
         {
-            viewModels.AddSingleton<MainViewModel>();
-            viewModels.AddSingleton<StartViewModel>();
+            _container = container ?? throw new ArgumentNullException(nameof(container));
+
+            container.AddSingleton<MainViewModel>();
+            container.AddSingleton<StartViewModel>();
 
             //---
 
-            viewModels.AddSingleton<RecentItemsViewModel>();
-            viewModels.AddSingleton<RecentItemViewModel>();
+            container.AddSingleton<RecentItemsViewModel>();
+            container.AddSingleton<RecentItemViewModel>();
 
             //---
 
-            viewModels.AddSingleton<StartItemsViewModel>();
-            viewModels.AddSingleton<CloneRepositoryViewModel>();
-            viewModels.AddSingleton<CreateProjectViewModel>();
-            viewModels.AddSingleton<OpenFolderViewModel>();
-            viewModels.AddSingleton<OpenProjectViewModel>();
-            viewModels.AddSingleton<RestartElevatedViewModel>();
-            viewModels.AddSingleton<RestartNormalViewModel>();
+            container.AddSingleton<StartItemsViewModel>();
+            container.AddSingleton<CloneRepositoryViewModel>();
+            container.AddSingleton<CreateProjectViewModel>();
+            container.AddSingleton<OpenFolderViewModel>();
+            container.AddSingleton<OpenProjectViewModel>();
+            container.AddSingleton<RestartElevatedViewModel>();
+            container.AddSingleton<RestartNormalViewModel>();
 
             //---
 
-            viewModels.AddSingleton<NewsItemsViewModel>();
+            container.AddSingleton<NewsItemsViewModel>();
         }
 
         public static T GetViewModel<T>()
             where T : ObservableObject
         {
-            var viewModel = Ioc.Default.GetService<T>();
+            var viewModel = _container.GetInstance<T>();
 
             return viewModel;
         }
