@@ -1,27 +1,45 @@
-﻿namespace StartPagePlus.UI.Views.StartItems
-{
-    using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 
+using Luminous.Code.Extensions.Exceptions;
+
+namespace StartPagePlus.UI.Views.StartItems
+{
     public partial class StartItemsView : UserControl
     {
         public StartItemsView() // constructor injection doesn't seem to work for views
         {
-            //var viewModel = ViewModelManager.StartItemsViewModel;
-
             InitializeComponent();
 
+            try
+            {
                 // NOTE: Refresh is called in viewmodel's constructor
                 //       DataContext is being set by the DataTemplate in StartView;
 
                 //var viewModel = ViewModelManager.StartItemsViewModel;
-            //DataContext = viewModel;
+                //DataContext = viewModel;
 
-            //StartItemsListView.SelectionChanged += (sender, e) =>
-            //{
-            //    var listView = (ListView)sender;
+                //YD: do the same as SetSelectedItemToNull (change names to OnListViewSelectionChanged & OnListViewLoaded
+                //    OnListViewLoaded may not be needed - test
 
-            //    listView.SelectedItem = null;
-            //};
+                //StartItemsListView.SelectionChanged += (sender, e) =>
+                //{
+                //    var listView = (ListView)sender;
+
+                //    listView.SelectedItem = null;
+                //};
+
+                OnLoadedSetSelectedItemToNull();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ExtendedMessage());
+            }
         }
+
+        private void OnLoadedSetSelectedItemToNull()
+            => StartItemsListView.Loaded += (sender, e)
+                => StartItemsListView.SelectedItem = null;
     }
 }

@@ -28,15 +28,15 @@ namespace StartPagePlus.UI.Views.NewsItems
 
                 var view = (ListCollectionView)CollectionViewSource.GetDefaultView(viewModel.Items);
 
-                using (view.DeferRefresh())
+                using (view?.DeferRefresh())
                 {
                     //    AddGrouping(view);
                     //    AddSorting(view);
                     AddFilter(view);
                 }
 
-                RefreshViewWhenFilterChanges(view);
-                SetSelectedItemToNull();
+                OnFilterTextChangedRefreshView(view);
+                OnListViewLoadedSetSelectedItemToNull();
 
                 //RootMethods.ListenFor<NewsItemsRefresh>(this, FocusFilterTextBox);
             }
@@ -48,6 +48,8 @@ namespace StartPagePlus.UI.Views.NewsItems
 
         private static void AddGrouping(ListCollectionView view)
         {
+            if (view is null) return;
+
             view.GroupDescriptions.Clear();
             view.IsLiveGrouping = true;
             //view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(NewsItemViewModel.PeriodType)));
@@ -55,6 +57,8 @@ namespace StartPagePlus.UI.Views.NewsItems
 
         private static void AddSorting(ListCollectionView view)
         {
+            if (view is null) return;
+
             view.SortDescriptions.Clear();
             view.IsLiveSorting = true;
             //view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.PeriodType), ListSortDirection.Ascending));
@@ -63,6 +67,8 @@ namespace StartPagePlus.UI.Views.NewsItems
 
         private void AddFilter(ListCollectionView view)
         {
+            if (view is null) return;
+
             view.Filter = (object obj) =>
             {
                 if (string.IsNullOrEmpty(FilterTextBox.Text))
@@ -78,11 +84,11 @@ namespace StartPagePlus.UI.Views.NewsItems
             };
         }
 
-        private void RefreshViewWhenFilterChanges(ListCollectionView view)
+        private void OnFilterTextChangedRefreshView(ListCollectionView view)
             => FilterTextBox.TextChanged += (object sender, TextChangedEventArgs e)
-                => view.Refresh();
+                => view?.Refresh();
 
-        private void SetSelectedItemToNull()
+        private void OnListViewLoadedSetSelectedItemToNull()
             => NewsItemsListView.Loaded += (sender, e)
                 => NewsItemsListView.SelectedItem = null;
 

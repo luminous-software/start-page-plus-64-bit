@@ -24,7 +24,6 @@ namespace StartPagePlus.UI.Views.RecentItems
 
                 // NOTE: Refresh is called in viewmodel's constructor
 
-                DataContext = viewModel;
 
                 var view = (ListCollectionView)CollectionViewSource.GetDefaultView(viewModel.Items);
 
@@ -35,8 +34,8 @@ namespace StartPagePlus.UI.Views.RecentItems
                     AddFilter(view);
                 }
 
-                RefreshViewWhenFilterChanges(view);
-                SetSelectedItemToNull();
+                OnFilterTextChangedRefreshView(view);
+                OnloadedSetSelectedItemToNull();
 
                 //RootMethods.ListenFor<RecentItemsRefresh>(this, FocusFilterTextBox);
             }
@@ -80,11 +79,11 @@ namespace StartPagePlus.UI.Views.RecentItems
             };
         }
 
-        private void RefreshViewWhenFilterChanges(ListCollectionView view)
+        private void OnFilterTextChangedRefreshView(ListCollectionView view)
             => FilterTextBox.TextChanged += (object sender, TextChangedEventArgs e)
                 => view.Refresh();
 
-        private void SetSelectedItemToNull()
+        private void OnloadedSetSelectedItemToNull()
             => RecentItemsListView.Loaded += (sender, e)
                 => RecentItemsListView.SelectedItem = null;
 
