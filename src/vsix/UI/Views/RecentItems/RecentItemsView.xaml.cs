@@ -14,7 +14,7 @@ namespace StartPagePlus.UI.Views.RecentItems
 
     public partial class RecentItemsView : UserControl
     {
-        public RecentItemsView()
+        public RecentItemsView() // constructor injection doesn't seem to work for views
         {
             InitializeComponent();
 

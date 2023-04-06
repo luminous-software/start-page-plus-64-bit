@@ -14,13 +14,13 @@ namespace StartPagePlus.UI.Views.NewsItems
 
     public partial class NewsItemsView : UserControl
     {
-        public NewsItemsView() //NewsItemsViewModel newsItemsViewModel) // constructor injection doesn't seem to work for views
+        public NewsItemsView() // constructor injection doesn't seem to work for views
         {
             InitializeComponent();
 
             try
             {
-                var viewModel = ViewModelManager.NewsItemsViewModel;
+                var viewModel = ViewModelManager.NewsItemsViewModel; // var viewModel = (NewsItemsViewModel)DataContext; viewModel was null when using this code
 
                 // NOTE: Refresh is called in viewmodel's constructor
 
