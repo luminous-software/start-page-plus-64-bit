@@ -32,26 +32,26 @@ namespace StartPagePlus.UI.ViewModels
 
         //---
 
-        public static StartItemsViewModel StartItemsViewModel
-            => GetViewModel<StartItemsViewModel>();
+        //public static StartItemsViewModel StartItemsViewModel
+        //    => GetViewModel<StartItemsViewModel>();
 
-        public static CloneRepositoryViewModel CloneRepositoryViewModel
-            => GetViewModel<CloneRepositoryViewModel>();
+        //public static CloneRepositoryViewModel CloneRepositoryViewModel
+        //    => GetViewModel<CloneRepositoryViewModel>();
 
-        public static CreateProjectViewModel CreateProjectViewModel
-            => GetViewModel<CreateProjectViewModel>();
+        //public static CreateProjectViewModel CreateProjectViewModel
+        //    => GetViewModel<CreateProjectViewModel>();
 
-        public static OpenFolderViewModel OpenFolderViewModel
-            => GetViewModel<OpenFolderViewModel>();
+        //public static OpenFolderViewModel OpenFolderViewModel
+        //    => GetViewModel<OpenFolderViewModel>();
 
-        public static OpenProjectViewModel OpenProjectViewModel
-            => GetViewModel<OpenProjectViewModel>();
+        //public static OpenProjectViewModel OpenProjectViewModel
+        //    => GetViewModel<OpenProjectViewModel>();
 
-        public static RestartElevatedViewModel RestartElevatedViewModel
-            => GetViewModel<RestartElevatedViewModel>();
+        //public static RestartElevatedViewModel RestartElevatedViewModel
+        //    => GetViewModel<RestartElevatedViewModel>();
 
-        public static RestartNormalViewModel RestartNormalViewModel
-            => GetViewModel<RestartNormalViewModel>();
+        //public static RestartNormalViewModel RestartNormalViewModel
+        //    => GetViewModel<RestartNormalViewModel>();
 
         //---
 
