@@ -8,12 +8,13 @@ using Luminous.Code.Extensions.Strings;
 
 namespace StartPagePlus.UI.Views.NewsItems
 {
-    using ViewModels;
+    using UI.ViewModels;
+
     using ViewModels.NewsItems;
 
     public partial class NewsItemsView : UserControl
     {
-        public NewsItemsView()
+        public NewsItemsView() //NewsItemsViewModel newsItemsViewModel) // constructor injection doesn't seem to work for views
         {
             InitializeComponent();
 

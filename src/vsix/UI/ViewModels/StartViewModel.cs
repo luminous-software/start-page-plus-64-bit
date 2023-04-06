@@ -1,22 +1,25 @@
-﻿namespace StartPagePlus.UI.ViewModels
-{
-    using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
-    using StartPagePlus.Options.Pages;
+namespace StartPagePlus.UI.ViewModels
+{
+    using Options.Pages;
+
+    using StartPagePlus.UI.ViewModels.NewsItems;
+    using StartPagePlus.UI.ViewModels.RecentItems;
+    using StartPagePlus.UI.ViewModels.StartItems;
 
     public class StartViewModel : TabViewModel
     {
-        public StartViewModel() : base()
+        public StartViewModel(RecentItemsViewModel recentItemsViewModel, StartItemsViewModel startItemsViewModel, NewsItemsViewModel newsItemsViewModel) : base()
         {
-
             Name = "Start";
             Title = GeneralOptions.Instance.StartTabTitleText;
             TabVisible = false;
             Columns = new ObservableCollection<ColumnViewModel>
             {
-                ViewModelManager.RecentItemsViewModel,
-                ViewModelManager.StartItemsViewModel,
-                    ViewModelManager.NewsItemsViewModel,
+                recentItemsViewModel,
+                startItemsViewModel,
+                newsItemsViewModel
             };
         }
 

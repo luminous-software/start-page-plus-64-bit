@@ -55,7 +55,6 @@
                     </Style>
                 </ListView.ItemContainerStyle>
 
-
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Button

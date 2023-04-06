@@ -87,7 +87,7 @@ namespace StartPagePlus.UI.ViewModels
             container.AddSingleton<NewsItemsViewModel>();
         }
 
-        public static T GetViewModel<T>()
+        private static T GetViewModel<T>()
             where T : ObservableObject
         {
             var viewModel = _container.GetInstance<T>();
