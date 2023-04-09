@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
+
 using Luminous.Code.Extensions.Exceptions;
 using Luminous.Code.Extensions.Strings;
 
@@ -30,8 +31,8 @@ namespace StartPagePlus.UI.Views.NewsItems
 
                 using (view?.DeferRefresh())
                 {
-                    //    AddGrouping(view);
-                    //    AddSorting(view);
+                    //AddGrouping(view);
+                    //AddSorting(view);
                     AddFilter(view);
                 }
 
@@ -46,24 +47,24 @@ namespace StartPagePlus.UI.Views.NewsItems
             }
         }
 
-        private static void AddGrouping(ListCollectionView view)
-        {
-            if (view is null) return;
+        //private static void AddGrouping(ListCollectionView view)
+        //{
+        //    if (view is null) return;
 
-            view.GroupDescriptions.Clear();
-            view.IsLiveGrouping = true;
-            //view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(NewsItemViewModel.PeriodType)));
-        }
+        //    view.GroupDescriptions.Clear();
+        //    view.IsLiveGrouping = true;
+        //    view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(NewsItemViewModel.PeriodType)));
+        //}
 
-        private static void AddSorting(ListCollectionView view)
-        {
-            if (view is null) return;
+        //private static void AddSorting(ListCollectionView view)
+        //{
+        //    if (view is null) return;
 
-            view.SortDescriptions.Clear();
-            view.IsLiveSorting = true;
-            //view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.PeriodType), ListSortDirection.Ascending));
-            //view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.Date), ListSortDirection.Descending));
-        }
+        //    view.SortDescriptions.Clear();
+        //    view.IsLiveSorting = true;
+        //    view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.PeriodType), ListSortDirection.Ascending));
+        //    view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.Date), ListSortDirection.Descending));
+        //}
 
         private void AddFilter(ListCollectionView view)
         {
@@ -74,7 +75,7 @@ namespace StartPagePlus.UI.Views.NewsItems
                 if (string.IsNullOrEmpty(FilterTextBox.Text))
                     return true;
 
-                if (!(obj is NewsItemViewModel item))
+                if (obj is not NewsItemViewModel item)
                     return false;
 
                 var name = item.Title;
