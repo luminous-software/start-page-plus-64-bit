@@ -5,6 +5,10 @@
 
     using CommunityToolkit.Mvvm.Input;
 
+namespace StartPagePlus.UI.ViewModels.NewsItems
+{
+    using Messages;
+
     public class NewsItemViewModel : ViewModelBase
     {
         public NewsItemViewModel()
@@ -27,7 +31,8 @@
         //---
 
         private void OnSelect()
-        { }
-        //=> MessengerInstance.Send(new NotificationMessage<NewsItemViewModel>(this, Link));
+        {
+            Messenger.Send(new NewsItemClickedMessage(this), Link);
+        }
     }
 }

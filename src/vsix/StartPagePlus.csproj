@@ -96,6 +96,8 @@
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Interfaces\ICommandService.cs" />
     <Compile Include="UI\Interfaces\IDataService.cs" />
+    <Compile Include="UI\Interfaces\IVisualStudioService.cs" />
+    <Compile Include="UI\Interfaces\NewsItems\INewsItemActionService.cs" />
     <Compile Include="UI\Interfaces\NewsItems\INewsItemCommandService.cs" />
     <Compile Include="UI\Interfaces\NewsItems\INewsItemDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruDataService.cs" />
@@ -108,12 +110,15 @@
     <Compile Include="UI\Interfaces\IViewModel.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemCommandService.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemDataService.cs" />
+    <Compile Include="UI\Messages\NewsItemClickedMessage.cs" />
     <Compile Include="UI\RecentItems\RecentItem.cs" />
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
     <Compile Include="Core\Services\DateTimeService.cs" />
+    <Compile Include="UI\Services\NewsItems\NewsItemActionService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemCommandService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemDataService.cs" />
+    <Compile Include="UI\Services\Other\VisualStudioService.cs" />
     <Compile Include="UI\Services\ServiceManager.cs" />
     <Compile Include="UI\Services\StartItems\StartItemCommandService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemDataService.cs" />
