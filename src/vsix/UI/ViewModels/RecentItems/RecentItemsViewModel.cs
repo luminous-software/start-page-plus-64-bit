@@ -12,6 +12,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
 
     using Interfaces.RecentItems;
 
+    using Messages;
+
     using Options.Pages;
 
     public class RecentItemsViewModel : ColumnViewModel

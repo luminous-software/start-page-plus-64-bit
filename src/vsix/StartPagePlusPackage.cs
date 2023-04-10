@@ -12,7 +12,7 @@ namespace StartPagePlus
 
     using Options.Pages;
 
-    using StartPagePlus.UI.Services;
+    using UI.Messages;
     using StartPagePlus.UI.ViewModels;
 
     using UI.ToolWindows;
@@ -37,7 +37,7 @@ namespace StartPagePlus
 
     [ProvideOptionPage(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
-    public sealed class StartPagePlusPackage : ToolkitPackage //MicrosoftDIToolkitPackage<StartPagePlusPackage>
+    public sealed class StartPagePlusPackage : ToolkitPackage
     {
         private readonly StartPagePlusContainer _container;
 
@@ -55,6 +55,7 @@ namespace StartPagePlus
 
             ServiceManager.RegisterServices(_container);
             ViewModelManager.RegisterViewModels(_container);
+            MessageManager.RegisterMessages(_container);
 
             this.RegisterToolWindows();
         }
