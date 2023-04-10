@@ -32,7 +32,7 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
 
         private void OnSelect()
         {
-            Messenger.Send(new NewsItemClickedMessage(this), Link);
+            => Messenger.Send(new NewsItemSelected(this));
         }
     }
 }

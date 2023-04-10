@@ -37,10 +37,10 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             GetCommands();
             Refresh();
 
-            Messenger.Register<NewsItemClickedMessage>(this, OnItemClicked);
+            Messenger.Register<NewsItemSelected>(this, OnItemSelected);
         }
 
-        private void OnItemClicked(object r, NewsItemClickedMessage m)
+        private void OnItemSelected(object recipient, NewsItemSelected message)
         {
             var openInVS = NewsItemsOptions.Instance.OpenLinksInVS;
 

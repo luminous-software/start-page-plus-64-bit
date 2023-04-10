@@ -42,13 +42,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             GetCommands();
             Refresh();
 
-            //LìstenFor<RecentItemsRefresh>(this, RefreshRequested);
-            //LìstenFor<RecentItemSelected>(this, SelectItem);
-            //LìstenFor<RecentItemTogglePinned>(this, TogglePinned);
-            //LìstenFor<RecentItemRemove>(this, RemoveItem);
-            //LìstenFor<RecentItemCopyPath>(this, CopyItemPath);
-            //LìstenFor<RecentItemEditPath>(this, EditItemPath);
-            //LìstenFor<RecentItemOpenInVS>(this, OpenInVS);
+            Messenger.Register<RecentItemsRefresh>(this, RefreshRequested);
+            Messenger.Register<RecentItemSelected>(this, SelectItem);
+            Messenger.Register<RecentItemTogglePinned>(this, TogglePinned);
+            Messenger.Register<RecentItemRemove>(this, RemoveItem);
+            Messenger.Register<RecentItemCopyPath>(this, CopyItemPath);
+            Messenger.Register<RecentItemEditPath>(this, EditItemPath);
+            Messenger.Register<RecentItemOpenInVS>(this, OpenInVS);
         }
 
         //public IRecentItemActionService ActionService { get; }
@@ -80,7 +80,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             {
                 if (SetProperty(ref refreshed, value) && (value == true))
                 {
-                    //SendMessage(new RecentItemsRefresh());
+                    Messenger.Send(new RecentItemsRefreshed());
                 }
             }
         }
@@ -139,17 +139,17 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                 CanOpenInVS, OpenInVS
                 );
 
-        //private void SelectItem(RecentItemSelected message)
-        //    => ActionService.ExecuteAction(message.Content);
+        private void SelectItem(object recipient, RecentItemSelected message)
+            => ActionService.ExecuteAction(message.Value);
 
         private void DeselectItem()
             => SelectedItem = null;
 
         ////---
 
-        //private void TogglePinned(RecentItemTogglePinned message)
-        //{
-        //    var item = message.Content;
+        private void TogglePinned(object recipient, RecentItemTogglePinned message)
+        {
+            var item = message.Value;
 
         //    switch (item.Pinned)
         //    {
@@ -296,9 +296,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
         }
 
-        //private void CopyItemPath(RecentItemCopyPath message)
-        //    => CopyItemPath(message.Content);
-
+        private void CopyItemPath(object recipient, RecentItemCopyPath message)
+            => CopyItemPath(message.Value);
 
         //---
 
@@ -341,8 +340,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
         }
 
-        //private void EditItemPath(RecentItemEditPath message)
-        //    => EditItemPath(message.Content);
+        private void EditItemPath(object Recipient, RecentItemEditPath message)
+            => EditItemPath(message.Value);
 
         //---
 
@@ -378,8 +377,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
         }
 
-        //private void OpenInVS(RecentItemOpenInVS message)
-        //    => OpenInVS(message.Content);
+        private void OpenInVS(object recipient, RecentItemOpenInVS message)
+            => OpenInVS(message.Value);
 
         //---
 
@@ -411,8 +410,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             Refreshed = true;
         }
 
-        //private void RefreshRequested(RecentItemsRefresh message)
-        //    => Refresh();
+        private void RefreshRequested(object Recipient, RecentItemsRefresh message)
+            => Refresh();
 
         private void OpenSettings()
             => VS.Settings.OpenAsync<OptionsProvider.RecentItems>();

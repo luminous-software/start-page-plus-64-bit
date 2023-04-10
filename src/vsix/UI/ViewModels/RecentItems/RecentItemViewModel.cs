@@ -5,7 +5,8 @@
     using CommunityToolkit.Mvvm.Input;
     using Microsoft.VisualStudio.Imaging.Interop;
 
-    using StartPagePlus.UI.Enums;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
     public class RecentItemViewModel : ViewModelBase
     {
@@ -55,20 +56,26 @@
 
         private void SelectItem() { }
         //    => SendMessage(new RecentItemSelected(this));
+            => Messenger.Send(new RecentItemSelected(this));
 
         private void TogglePinned() { }
         //    => SendMessage(new RecentItemTogglePinned(this));
+            => Messenger.Send(new RecentItemTogglePinned(this));
 
         private void RemoveItem() { }
         //    => SendMessage(new RecentItemRemove(this));
+            => Messenger.Send(new RecentItemRemove(this));
 
         private void CopyItemPath() { }
         //    => SendMessage(new RecentItemCopyPath(this));
+            => Messenger.Send(new RecentItemCopyPath(this));
 
         private void EditItemPath() { }
         //    => SendMessage(new RecentItemEditPath(this));
+            => Messenger.Send(new RecentItemEditPath(this));
 
         private void OpenInVS() { }
         //    => SendMessage(new RecentItemOpenInVS(this));
+            => Messenger.Send(new RecentItemOpenInVS(this));
     }
 }
