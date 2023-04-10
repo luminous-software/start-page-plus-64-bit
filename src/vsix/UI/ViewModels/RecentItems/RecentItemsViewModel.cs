@@ -190,7 +190,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
             catch (Exception ex)
             {
-                //DialogService.ShowException(ex);
+                DialogService.ShowException(ex);
             }
         }
 
@@ -214,14 +214,14 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                     }
                     else
                     {
-                        //DialogService.ShowError($"Unable to unpin '{viewModel.Name}'");
+                        DialogService.ShowError($"Unable to unpin '{viewModel.Name}'");
                     }
                 });
 
             }
             catch (Exception ex)
             {
-                //DialogService.ShowException(ex);
+                DialogService.ShowException(ex);
             }
         }
 
@@ -282,13 +282,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                     }
                     else
                     {
-                        //DialogService.ShowError($"Unable to copy '{viewModel.Path}' to clipboard");
+                        DialogService.ShowError($"Unable to copy '{viewModel.Path}' to clipboard");
                     }
                 });
             }
             catch (Exception ex)
             {
-                //DialogService.ShowException(ex);
+                DialogService.ShowException(ex);
             }
             finally
             {
@@ -332,7 +332,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
             catch (Exception ex)
             {
-                //DialogService.ShowException(ex);
+                DialogService.ShowException(ex);
             }
             finally
             {
@@ -363,13 +363,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                     }
                     else
                     {
-                        //DialogService.ShowError($"Unable to open '{viewModel.Name}' in a new instance of Visual Studio");
+                        DialogService.ShowError($"Unable to open '{viewModel.Name}' in a new instance of Visual Studio");
                     }
                 });
             }
             catch (Exception ex)
             {
-                //DialogService.ShowException(ex);
+                DialogService.ShowException(ex);
             }
             finally
             {
@@ -408,6 +408,11 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             });
 
             Refreshed = true;
+        }
+            catch (Exception ex)
+            {
+                DialogService.ShowException(ex);
+            }
         }
 
         private void RefreshRequested(object Recipient, RecentItemsRefresh message)
