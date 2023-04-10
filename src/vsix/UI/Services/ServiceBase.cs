@@ -7,19 +7,19 @@ namespace StartPagePlus.UI.Services
 
     using UI.Interfaces;
 
-    public abstract class ServiceBase : IService
+    internal abstract class ServiceBase : IService
     {
-        public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
+        internal virtual bool RunMethod(Func<Task<bool>> asyncMethod)
         => true;
         // ==> RootMethods.RunMethod(asyncMethod);
 
-        public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
+        internal virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
         => true;
         // ==> RootMethods.RunMethod(asyncMethod);
 
         //---
 
-        public virtual void LìstenFor<T>(object recipient, Action<T> action)
+        internal virtual void LìstenFor<T>(object recipient, Action<T> action)
             where T : IViewModel
         { }
         // ==> RootMethods.ListenFor(recipient, action);

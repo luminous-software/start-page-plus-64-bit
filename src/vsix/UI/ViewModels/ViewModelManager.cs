@@ -14,7 +14,7 @@ namespace StartPagePlus.UI.ViewModels
 
     public static class ViewModelManager
     {
-        private static StartPagePlusContainer _container;
+        internal static StartPagePlusContainer Container { get; set; }
 
         public static MainViewModel MainViewModel
             => GetViewModel<MainViewModel>();

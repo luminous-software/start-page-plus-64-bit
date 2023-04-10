@@ -2,6 +2,6 @@
 {
     using Core.Interfaces;
 
-    public interface ICommandService<T> : IService
+    internal interface ICommandService<T> : IService
     { }
 }

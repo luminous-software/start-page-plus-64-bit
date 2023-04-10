@@ -15,7 +15,7 @@
     using StartPagePlus.UI.Models;
     using StartPagePlus.UI.ViewModels;
 
-    public class MruPrivateSettingsService : IMruService
+    internal class MruPrivateSettingsService : IMruService
     {
         private const string OfflinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
         private const string PrivateSettingsXml = @"\ApplicationPrivateSettings.xml";

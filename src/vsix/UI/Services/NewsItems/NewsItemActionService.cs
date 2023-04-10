@@ -6,7 +6,7 @@ namespace StartPagePlus.UI.Services
 
     using UI.Interfaces;
 
-    public class NewsItemActionService : INewsItemActionService
+    internal class NewsItemActionService : INewsItemActionService
     {
         public NewsItemActionService(IVisualStudioService vsService)
             => VisualStudioService = vsService;

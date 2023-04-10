@@ -4,13 +4,14 @@
     using System.Collections.Generic;
 
     using CommunityToolkit.Mvvm.Input;
+
     using Microsoft.VisualStudio.Imaging;
 
     using StartPagePlus.UI.Interfaces.RecentItems;
 
     using ViewModels;
 
-    public class RecentItemCommandService : IRecentItemCommandService
+    internal class RecentItemCommandService : IRecentItemCommandService
     {
         public List<CommandViewModel> GetCommands(Action refresh, Action showSettings)
             => new List<CommandViewModel>

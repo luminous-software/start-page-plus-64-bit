@@ -3,7 +3,7 @@ using System;
 
 namespace StartPagePlus.UI.Interfaces
 {
-    internal interface IRunMethods
+    public interface IRunMethods
     {
         /// <summary>A method to safely run asynchronous code syncronously</summary>
         /// <remarks>Only use when the called code has an exception handler</remarks>

@@ -25,9 +25,9 @@
             Refresh();
         }
 
-        public IStartItemDataService DataService { get; }
+        internal IStartItemDataService DataService { get; }
 
-        public IStartItemCommandService CommandService { get; }
+        internal IStartItemCommandService CommandService { get; }
 
         //public IVisualStudioService VisualStudioService { get; }
 

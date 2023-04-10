@@ -23,7 +23,7 @@ namespace StartPagePlus.UI.Services
 
     internal static class ServiceManager
     {
-        private static StartPagePlusContainer _container;
+        internal static StartPagePlusContainer Container { get; set; }
 
         // only needed if exposing properties, like in ViewModelManager
         //public static IDialogService DialogService

@@ -11,7 +11,7 @@
     using StartPagePlus.UI.Interfaces.NewsItems;
     using StartPagePlus.UI.ViewModels.NewsItems;
 
-    public class NewsItemDataService : INewsItemDataService
+    internal class NewsItemDataService : INewsItemDataService
     {
         private const string ITEM_ELEMENT_NAME = "item";
         private const string NO_ANGLE_BRACKETS_AND_NO_EXTENSION = "<.*?>|&.*?;";
@@ -43,6 +43,7 @@
                         Description = ExtractDescription(item),
                         Link = ExtractLink(item),
                         Date = ExtractPublishDate(item)
+                        //PeriodType = CalculatePeriodType(pinned, today, date);
                     }
                 ).ToList();
 

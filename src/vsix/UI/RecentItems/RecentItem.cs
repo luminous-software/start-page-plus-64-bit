@@ -9,7 +9,7 @@
     using static StartPagePlus.UI.Enums.PeriodTypes;
     using static StartPagePlus.UI.Enums.RecentItemTypes;
 
-    public class RecentItem
+    internal class RecentItem
     {
         public RecentItem()
         { }

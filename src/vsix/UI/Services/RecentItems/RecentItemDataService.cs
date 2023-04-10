@@ -10,7 +10,7 @@ namespace StartPagePlus.UI.Services.RecentItems
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.ViewModels.RecentItems;
 
-    public class RecentItemDataService : ServiceBase, IRecentItemDataService
+    internal class RecentItemDataService : ServiceBase, IRecentItemDataService
     {
         public RecentItemDataService(
             IMruService mruService,
