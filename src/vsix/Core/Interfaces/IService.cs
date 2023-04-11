@@ -1,5 +1,7 @@
 ﻿namespace StartPagePlus.Core.Interfaces
 {
-    public interface IService
+    using UI.Interfaces;
+
+    public interface IService : IRunMethods, IMessageMethods
     { }
 }

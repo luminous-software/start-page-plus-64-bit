@@ -106,12 +106,12 @@
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemCommandService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemContextMenuService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemDataService.cs" />
-    <Compile Include="UI\Interfaces\IMessageSender.cs" />
+    <Compile Include="UI\Interfaces\IMessageMethods.cs" />
     <Compile Include="Core\Interfaces\IService.cs" />
     <Compile Include="UI\Interfaces\IViewModel.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemCommandService.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemDataService.cs" />
-    <Compile Include="UI\Messages\NewsItemClickedMessage.cs" />
+    <Compile Include="UI\Messages\MessageManager.cs" />
     <Compile Include="UI\Messages\MessengerExtensions.cs" />
     <Compile Include="UI\Messages\RecentItemCopyPath.cs" />
     <Compile Include="UI\Messages\RecentItemEditPath.cs" />
@@ -122,6 +122,8 @@
     <Compile Include="UI\Messages\RecentItemsRefresh.cs" />
     <Compile Include="UI\Messages\RecentItemSelected.cs" />
     <Compile Include="UI\Messages\NewsItemSelected.cs" />
+    <Compile Include="UI\Methods\MessageMethods.cs" />
+    <Compile Include="UI\Methods\RunMethods.cs" />
     <Compile Include="UI\RecentItems\RecentItem.cs" />
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\CommandViewModel.cs" />
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
+    <Compile Include="UI\Interfaces\IRunMethods.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />

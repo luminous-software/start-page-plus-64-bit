@@ -1,5 +1,5 @@
 ﻿namespace StartPagePlus.UI.Interfaces
 {
-    public interface IViewModel : IMessages, IRunMethods
+    public interface IViewModel : IMessageMethods, IRunMethods
     { }
 }

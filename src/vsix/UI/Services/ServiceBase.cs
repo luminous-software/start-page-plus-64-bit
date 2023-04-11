@@ -1,30 +1,36 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace StartPagePlus.UI.Services
 {
     using Core.Interfaces;
 
-    using UI.Interfaces;
+    using Methods;
 
     internal abstract class ServiceBase : IService
     {
-        internal virtual bool RunMethod(Func<Task<bool>> asyncMethod)
-        => true;
-        // ==> RootMethods.RunMethod(asyncMethod);
+        //--- IRunMethods
 
-        internal virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
-        => true;
-        // ==> RootMethods.RunMethod(asyncMethod);
+        public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
+            => RunMethods.RunMethod(asyncMethod);
 
-        //---
+        public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
+            => RunMethods.RunMethod(asyncMethod);
 
-        internal virtual void LìstenFor<T>(object recipient, Action<T> action)
-            where T : IViewModel
-        { }
-        // ==> RootMethods.ListenFor(recipient, action);
+        //--- IMessageMethods
 
-        //public virtual void SendMessage(MessageBase message)
-        //    => RootMethods.SendMessage(message);
+        public virtual void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
+            where TMessage : class, new()
+            => MessageMethods.ListenFor(recipient, action);
+
+        public virtual void SendMessage<T>()
+            where T : class, new()
+            => MessageMethods.SendMessage<T>();
+
+        public virtual void SendMessage<TMessage>(TMessage message)
+            where TMessage : class, new()
+            => MessageMethods.SendMessage(message);
     }
 }

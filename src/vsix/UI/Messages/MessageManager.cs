@@ -17,10 +17,9 @@ namespace StartPagePlus.UI.Messages
             container.AddSingleton<IMessenger, WeakReferenceMessenger>();
         }
 
-        //
-        //public static IMessenger GetMessenger()
-        //{
-        //    return Container.GetInstance<IMessenger>();
-        //}
+        public static IMessenger GetMessenger
+        {
+            get => Container.GetInstance<IMessenger>();
+        }
     }
 }
