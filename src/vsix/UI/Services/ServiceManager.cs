@@ -25,43 +25,41 @@ namespace StartPagePlus.UI.Services
     {
         internal static StartPagePlusContainer Container { get; set; }
 
-        // only needed if exposing properties, like in ViewModelManager
-        //public static IDialogService DialogService
-        //    => GetService<IDialogService>();
-
         public static void RegisterServices(StartPagePlusContainer container)
         {
-            _container = container ?? throw new ArgumentNullException(nameof(container));
+            Container = container ?? throw new ArgumentNullException(nameof(container));
 
-            container.AddSingleton<IDateTimeService, DateTimeService>();
-            container.AddSingleton<IDialogService, ToolkitDialogService>();
-
-            //---
-
-            container.AddSingleton<IMruService, MruPrivateSettingsService>();
-            container.AddSingleton<IRecentItemDataService, RecentItemDataService>();
-            container.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
+            Container.AddSingleton<IDateTimeService, DateTimeService>();
+            Container.AddSingleton<IDialogService, ToolkitDialogService>();
 
             //---
 
-            container.AddSingleton<IStartItemDataService, StartItemDataService>();
-            container.AddSingleton<IStartItemCommandService, StartItemCommandService>();
+            Container.AddSingleton<IMruService, MruPrivateSettingsService>();
+            Container.AddSingleton<IRecentItemActionService, RecentItemActionService>();
+            Container.AddSingleton<IRecentItemDataService, RecentItemDataService>();
+            Container.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
 
             //---
 
-            container.AddSingleton<INewsItemDataService, NewsItemDataService>();
-            container.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
-            container.AddSingleton<INewsItemActionService, NewsItemActionService>();
+            Container.AddSingleton<IStartItemDataService, StartItemDataService>();
+            Container.AddSingleton<IStartItemCommandService, StartItemCommandService>();
 
-            container.AddSingleton<IVisualStudioService, VisualStudioService>();
+            //---
+
+            Container.AddSingleton<INewsItemDataService, NewsItemDataService>();
+            Container.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
+            Container.AddSingleton<INewsItemActionService, NewsItemActionService>();
+
+            Container.AddSingleton<IVisualStudioService, VisualStudioService>();
         }
 
-        //private static T GetService<T>()
-        //    where T : IService
-        //{
-        //    var viewModel = _container.GetInstance<T>();
+        // only needed if exposing properties, like in ViewModelManager
+        private static T GetService<T>()
+            where T : IService
+        {
+            var viewModel = Container.GetInstance<T>();
 
-        //    return viewModel;
-        //}
+            return viewModel;
+        }
     }
 }

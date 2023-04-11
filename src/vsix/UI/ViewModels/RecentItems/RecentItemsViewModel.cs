@@ -2,14 +2,17 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
+using Microsoft.VisualStudio.Shell;
+
 using Community.VisualStudio.Toolkit;
 
-using Microsoft.VisualStudio.Shell;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace StartPagePlus.UI.ViewModels.RecentItems
 {
     using Core.Interfaces;
 
+    using Interfaces;
     using Interfaces.RecentItems;
 
     using Messages;
@@ -26,17 +29,17 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
 
         public RecentItemsViewModel(
             IRecentItemCommandService commandService,
-            //IRecentItemActionService actionService,
+            IRecentItemActionService actionService,
             IRecentItemDataService dataService,
-            IDialogService dialogService
-            //IVisualStudioService visualStudioService
+            IDialogService dialogService,
+            IVisualStudioService visualStudioService
             ) : base()
         {
             DataService = dataService;
-            //ActionService = actionService;
+            ActionService = actionService;
             CommandService = commandService;
             DialogService = dialogService;
-            //VisualStudioService = visualStudioService;
+            VisualStudioService = visualStudioService;
 
             Heading = HEADING;
             IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
@@ -53,7 +56,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             Messenger.Register<RecentItemOpenInVS>(this, OpenInVS);
         }
 
-        //public IRecentItemActionService ActionService { get; }
+        public IRecentItemActionService ActionService { get; }
 
         public IRecentItemDataService DataService { get; }
 
@@ -61,7 +64,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
 
         public IDialogService DialogService { get; }
 
-        //public IVisualStudioService VisualStudioService { get; }
+        public IVisualStudioService VisualStudioService { get; }
 
         public ObservableCollection<RecentItemViewModel> Items
         {
@@ -153,17 +156,17 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             var item = message.Value;
 
-        //    switch (item.Pinned)
-        //    {
-        //        case true:
-        //            UnpinItem(item);
-        //            break;
+            switch (item.Pinned)
+            {
+                case true:
+                    UnpinItem(item);
+                    break;
 
-        //        case false:
-        //            PinItem(item);
-        //            break;
-        //    }
-        //}
+                case false:
+                    PinItem(item);
+                    break;
+            }
+        }
 
         ////---
 
@@ -185,7 +188,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                     }
                     else
                     {
-                        //DialogService.ShowError($"Unable to pin '{viewModel.Name}'");
+                        DialogService.ShowError($"Unable to pin '{viewModel.Name}'");
                     }
                 });
 
@@ -230,7 +233,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         //---
 
         private Func<bool> CanRemoveItem
-            => () => (SelectedItem != null);
+            => () => (SelectedItem is not null);
 
         private void RemoveItem()
             => RemoveItem(SelectedItem);
@@ -247,13 +250,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                     }
                     else
                     {
-                        //DialogService.ShowError($"Unable to remove '{viewModel.Name}'");
+                        DialogService.ShowError($"Unable to remove '{viewModel.Name}'");
                     }
                 });
             }
             catch (Exception ex)
             {
-                //DialogService.ShowException(ex);
+                DialogService.ShowException(ex);
             }
             finally
             {
@@ -261,13 +264,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
         }
 
-        //private void RemoveItem(RecentItemRemove message)
-        //    => RemoveItem(message.Content);
+        private void RemoveItem(object recipient, RecentItemRemove message)
+            => RemoveItem(message.Value);
 
         //---
 
         private Func<bool> CanCopyItemPath
-            => () => (SelectedItem != null);
+            => () => (SelectedItem is not null);
 
         private void CopyItemPath()
             => CopyItemPath(SelectedItem);
@@ -304,7 +307,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         //---
 
         private Func<bool> CanEditItemPath
-            => () => (SelectedItem != null);
+            => () => (SelectedItem is not null);
 
         private void EditItemPath()
             => EditItemPath(SelectedItem);
@@ -315,21 +318,21 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             {
                 ThreadHelper.JoinableTaskFactory.Run(async () =>
                 {
-                    //var result = await DataService.EditItemPathAsync(viewModel);
+                    var result = await DataService.EditItemPathAsync(viewModel);
 
-                    //switch (result)
-                    //{
-                    //    case null:
-                    //        return;
+                    switch (result)
+                    {
+                        case null:
+                            return;
 
-                    //    case false:
-                    //        DialogService.ShowError($"Unable to edit '{viewModel.Name}'");
-                    //        break;
+                        case false:
+                            DialogService.ShowError($"Unable to edit '{viewModel.Name}'");
+                            break;
 
-                    //    default:
-                    //        Refresh();
-                    //        break;
-                    //}
+                        default:
+                            Refresh();
+                            break;
+                    }
                 });
             }
             catch (Exception ex)
@@ -338,7 +341,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
             finally
             {
-                //DeselectItem();
+                DeselectItem();
             }
         }
 
@@ -348,7 +351,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         //---
 
         private Func<bool> CanOpenInVS
-            => () => (SelectedItem != null);
+            => () => (SelectedItem is not null);
 
         private void OpenInVS()
             => OpenInVS(SelectedItem);
@@ -388,29 +391,31 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             Refreshed = false;
 
-            var options = RecentItemsOptions.Instance;
-            var itemsToDisplay = options.ItemsToDisplay;
-            var showExtensions = options.ShowFileExtensions;
-            var showPaths = options.ShowFilePaths;
-
-            //YD: replace all of these with RunMethod calls
-            ThreadHelper.JoinableTaskFactory.Run(async () =>
+            try
             {
-                var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths);
+                var options = RecentItemsOptions.Instance;
+                var itemsToDisplay = options.ItemsToDisplay;
+                var showExtensions = options.ShowFileExtensions;
+                var showPaths = options.ShowFilePaths;
 
-                // Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
-                // YD: what if 'items' was declared outside JTF.Run?
-
-                Items.Clear();
-
-                foreach (var item in items)
+                //YD: replace all of these with RunMethod calls
+                ThreadHelper.JoinableTaskFactory.Run(async () =>
                 {
-                    Items.Add(item);
-                }
-            });
+                    var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths);
 
-            Refreshed = true;
-        }
+                    // Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
+                    // YD: what if 'items' was declared outside JTF.Run?
+
+                    Items.Clear();
+
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
+                });
+
+                Refreshed = true;
+            }
             catch (Exception ex)
             {
                 DialogService.ShowException(ex);

@@ -102,6 +102,7 @@
     <Compile Include="UI\Interfaces\NewsItems\INewsItemDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IRecentItemActionService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemCommandService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemContextMenuService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemDataService.cs" />
@@ -111,6 +112,16 @@
     <Compile Include="UI\Interfaces\StartItems\IStartItemCommandService.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemDataService.cs" />
     <Compile Include="UI\Messages\NewsItemClickedMessage.cs" />
+    <Compile Include="UI\Messages\MessengerExtensions.cs" />
+    <Compile Include="UI\Messages\RecentItemCopyPath.cs" />
+    <Compile Include="UI\Messages\RecentItemEditPath.cs" />
+    <Compile Include="UI\Messages\RecentItemOpenInVS.cs" />
+    <Compile Include="UI\Messages\RecentItemRemove.cs" />
+    <Compile Include="UI\Messages\RecentItemsRefreshed.cs" />
+    <Compile Include="UI\Messages\RecentItemTogglePinned.cs" />
+    <Compile Include="UI\Messages\RecentItemsRefresh.cs" />
+    <Compile Include="UI\Messages\RecentItemSelected.cs" />
+    <Compile Include="UI\Messages\NewsItemSelected.cs" />
     <Compile Include="UI\RecentItems\RecentItem.cs" />
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
@@ -119,6 +130,7 @@
     <Compile Include="UI\Services\NewsItems\NewsItemCommandService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemDataService.cs" />
     <Compile Include="UI\Services\Other\VisualStudioService.cs" />
+    <Compile Include="UI\Services\RecentItems\RecentItemActionService.cs" />
     <Compile Include="UI\Services\ServiceManager.cs" />
     <Compile Include="UI\Services\StartItems\StartItemCommandService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemDataService.cs" />

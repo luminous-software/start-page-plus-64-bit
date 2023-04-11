@@ -44,7 +44,7 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
         {
             var openInVS = NewsItemsOptions.Instance.OpenLinksInVS;
 
-            ActionService.DoAction(m.Value, openInVS);
+            ActionService.DoAction(message.Value, openInVS);
         }
 
         public INewsItemDataService DataService { get; }
