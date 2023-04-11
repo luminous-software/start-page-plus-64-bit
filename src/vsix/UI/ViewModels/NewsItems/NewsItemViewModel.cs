@@ -3,6 +3,7 @@
     using System;
     using System.Windows.Input;
 
+using CommunityToolkit.Mvvm.Messaging;
     using CommunityToolkit.Mvvm.Input;
 
 namespace StartPagePlus.UI.ViewModels.NewsItems

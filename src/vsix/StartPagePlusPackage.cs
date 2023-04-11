@@ -6,6 +6,8 @@ using Community.VisualStudio.Toolkit;
 
 using Microsoft.VisualStudio.Shell;
 
+using Community.VisualStudio.Toolkit;
+
 namespace StartPagePlus
 {
     using DI;
@@ -13,9 +15,11 @@ namespace StartPagePlus
     using Options.Pages;
 
     using UI.Messages;
-    using StartPagePlus.UI.ViewModels;
-
+    using UI.Services;
     using UI.ToolWindows;
+    using UI.ViewModels;
+
+    using Task = System.Threading.Tasks.Task;
 
     using static Vsix;
 
