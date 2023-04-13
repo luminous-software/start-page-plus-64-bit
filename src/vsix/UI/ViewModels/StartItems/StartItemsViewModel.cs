@@ -1,26 +1,28 @@
-﻿namespace StartPagePlus.UI.ViewModels.StartItems
+﻿using System.Collections.Generic;
+
+namespace StartPagePlus.UI.ViewModels.StartItems
 {
-    using System.Collections.Generic;
 
-    using Community.VisualStudio.Toolkit;
+    using Interfaces;
+    using Interfaces.StartItems;
 
-    using StartPagePlus.Options.Pages;
-    using StartPagePlus.UI.Interfaces.StartItems;
+    using Options.Pages;
 
     public class StartItemsViewModel : ColumnViewModel
     {
         private const string HEADING = "Get Started";
         private const string WEBSITE_URL = "https://luminous-software.solutions/start-page-plus";
         private const string CHANGELOG_URL = WEBSITE_URL + "/changelog";
-        private List<StartItemViewModel> items = new List<StartItemViewModel>();
+        private List<StartItemViewModel> items = new();
 
-        public StartItemsViewModel(IStartItemDataService dataService, IStartItemCommandService commandService) : base() //, IVisualStudioService vsService)
+        public StartItemsViewModel(IStartItemDataService dataService, IStartItemCommandService commandService, IVisualStudioService vsService) : base()
         {
             DataService = dataService;
             CommandService = commandService;
-            //VisualStudioService = vsService;
+            VisualStudioService = vsService;
             Heading = HEADING;
             IsVisible = true;
+
             GetCommands();
             Refresh();
         }
@@ -29,7 +31,7 @@
 
         internal IStartItemCommandService CommandService { get; }
 
-        //public IVisualStudioService VisualStudioService { get; }
+        public IVisualStudioService VisualStudioService { get; }
 
         public List<StartItemViewModel> Items
         {
@@ -40,19 +42,14 @@
         private void GetCommands()
             => Commands = CommandService.GetCommands(OpenChangelog, OpenWebsite, OpenOptions);
 
-        private bool OpenLinksInVS
-            => true; // NewsItemsOptions.Instance.OpenLinksInVS;
-
         private void OpenChangelog()
-        { }
-        //=> VisualStudioService.OpenWebPage(CHANGELOG_URL, OpenLinksInVS);
+            => VisualStudioService.OpenWebPage(CHANGELOG_URL, true);
 
         private void OpenWebsite()
-        { }
-        //=> VisualStudioService.OpenWebPage(WEBSITE_URL, OpenLinksInVS);
+            => VisualStudioService.OpenWebPage(WEBSITE_URL, true);
 
         private void OpenOptions()
-            => VS.Settings.OpenAsync<OptionsProvider.General>();
+            => VisualStudioService.ShowOptions<OptionsProvider.General>();
 
         private void Refresh()
         {

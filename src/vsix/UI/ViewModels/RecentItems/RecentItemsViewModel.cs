@@ -4,8 +4,6 @@ using System.Windows.Controls;
 
 using Microsoft.VisualStudio.Shell;
 
-using Community.VisualStudio.Toolkit;
-
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace StartPagePlus.UI.ViewModels.RecentItems
@@ -426,6 +424,6 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             => Refresh();
 
         private void OpenSettings()
-            => VS.Settings.OpenAsync<OptionsProvider.RecentItems>();
+            => VisualStudioService.ShowOptions<OptionsProvider.RecentItems>();
     }
 }
