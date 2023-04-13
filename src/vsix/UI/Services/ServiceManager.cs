@@ -7,6 +7,7 @@ namespace StartPagePlus.UI.Services
 
     using DI;
 
+    using Interfaces;
     using Interfaces.NewsItems;
     using Interfaces.RecentItems;
     using Interfaces.StartItems;
@@ -17,9 +18,7 @@ namespace StartPagePlus.UI.Services
 
     using StartItems;
 
-    using UI.Interfaces;
-
-    using UI.Services.Other;
+    using Other;
 
     internal static class ServiceManager
     {
@@ -29,10 +28,7 @@ namespace StartPagePlus.UI.Services
         {
             Container = container ?? throw new ArgumentNullException(nameof(container));
 
-            Container.AddSingleton<IDateTimeService, DateTimeService>();
-            Container.AddSingleton<IDialogService, ToolkitDialogService>();
-
-            //---
+            //--- recent items
 
             Container.AddSingleton<IMruService, MruPrivateSettingsService>();
             Container.AddSingleton<IRecentItemActionService, RecentItemActionService>();
@@ -64,7 +60,7 @@ namespace StartPagePlus.UI.Services
         //{
         //    var viewModel = Container.GetInstance<T>();
 
-            return viewModel;
-        }
+        //    return viewModel;
+        //}
     }
 }
