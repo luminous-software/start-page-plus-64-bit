@@ -1,20 +1,21 @@
-﻿namespace StartPagePlus.UI.ViewModels.StartItems
+﻿using Microsoft.VisualStudio.Imaging;
+
+namespace StartPagePlus.UI.ViewModels.StartItems
 {
-    using Microsoft.VisualStudio.Imaging;
+    using Interfaces;
 
     public class RestartNormalViewModel : StartItemViewModel
     {
-        public RestartNormalViewModel(/*IStartItemActionService actionService*/) : base(/*actionService*/)
+        public RestartNormalViewModel(IStartItemActionService actionService) : base(actionService)
         {
-            Moniker = KnownMonikers.User;
+            Moniker = KnownMonikers.Restart;
             Name = "Restart Visual Studio";
-            Description = "Restart Visual Studio with one click";
-            ImageSize = 42;
-            Margin = "9,5,0,0";
+            Description = "Restart Visual Studio with one click (VS is currently running elevated, VS will remain elevated)";
+            ImageSize = 34;
+            Margin = "11,5,0,0";
         }
 
         protected override void OnClick()
-        { }
-        //=> ClickService.RestartVisualStudio(confirm: true, elevated: true);
+            => ActionService.RestartVisualStudio(confirm: true, elevated: true);
     }
 }

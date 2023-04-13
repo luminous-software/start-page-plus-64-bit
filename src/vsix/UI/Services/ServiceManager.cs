@@ -39,25 +39,30 @@ namespace StartPagePlus.UI.Services
             Container.AddSingleton<IRecentItemDataService, RecentItemDataService>();
             Container.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
 
-            //---
+            //--- start items
 
+            Container.AddSingleton<IStartItemActionService, StartItemActionService>();
             Container.AddSingleton<IStartItemDataService, StartItemDataService>();
             Container.AddSingleton<IStartItemCommandService, StartItemCommandService>();
 
-            //---
+            //--- news items
 
             Container.AddSingleton<INewsItemDataService, NewsItemDataService>();
             Container.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
             Container.AddSingleton<INewsItemActionService, NewsItemActionService>();
 
-            Container.AddSingleton<IVisualStudioService, VisualStudioService>();
+            //--- other
+
+            Container.AddSingleton<IDateTimeService, DateTimeService>();
+            Container.AddSingleton<IDialogService, ToolkitDialogService>();
+            Container.AddSingleton<IVisualStudioService, ToolkitVisualStudioService>();
         }
 
         // only needed if exposing properties, like in ViewModelManager
-        private static T GetService<T>()
-            where T : IService
-        {
-            var viewModel = Container.GetInstance<T>();
+        //private static T GetService<T>()
+        //    where T : IService
+        //{
+        //    var viewModel = Container.GetInstance<T>();
 
             return viewModel;
         }

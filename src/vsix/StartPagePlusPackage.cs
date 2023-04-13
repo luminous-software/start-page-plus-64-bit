@@ -2,8 +2,6 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-using Community.VisualStudio.Toolkit;
-
 using Microsoft.VisualStudio.Shell;
 
 using Community.VisualStudio.Toolkit;
@@ -22,8 +20,6 @@ namespace StartPagePlus
     using Task = System.Threading.Tasks.Task;
 
     using static Vsix;
-
-    using Task = System.Threading.Tasks.Task;
 
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(Name, Description, Vsix.Version)]

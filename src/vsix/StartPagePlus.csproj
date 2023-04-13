@@ -96,6 +96,7 @@
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Interfaces\ICommandService.cs" />
     <Compile Include="UI\Interfaces\IDataService.cs" />
+    <Compile Include="UI\Interfaces\StartItems\IStartItemActionService.cs" />
     <Compile Include="UI\Interfaces\IVisualStudioService.cs" />
     <Compile Include="UI\Interfaces\NewsItems\INewsItemActionService.cs" />
     <Compile Include="UI\Interfaces\NewsItems\INewsItemCommandService.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="UI\Interfaces\StartItems\IStartItemCommandService.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemDataService.cs" />
     <Compile Include="UI\Messages\MessageManager.cs" />
-    <Compile Include="UI\Messages\MessengerExtensions.cs" />
     <Compile Include="UI\Messages\RecentItemCopyPath.cs" />
     <Compile Include="UI\Messages\RecentItemEditPath.cs" />
     <Compile Include="UI\Messages\RecentItemOpenInVS.cs" />
@@ -131,9 +131,11 @@
     <Compile Include="UI\Services\NewsItems\NewsItemActionService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemCommandService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemDataService.cs" />
+    <Compile Include="UI\Services\Other\ToolkitVisualStudioService.cs" />
     <Compile Include="UI\Services\Other\VisualStudioService.cs" />
     <Compile Include="UI\Services\RecentItems\RecentItemActionService.cs" />
     <Compile Include="UI\Services\ServiceManager.cs" />
+    <Compile Include="UI\Services\StartItems\StartItemActionService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemCommandService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemDataService.cs" />
     <Compile Include="UI\Services\Other\ToolkitDialogService.cs" />

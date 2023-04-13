@@ -1,18 +1,19 @@
-﻿namespace StartPagePlus.UI.ViewModels.StartItems
+﻿using Microsoft.VisualStudio.Imaging;
+
+namespace StartPagePlus.UI.ViewModels.StartItems
 {
-    using Microsoft.VisualStudio.Imaging;
+    using Interfaces;
 
     public class CloneRepositoryViewModel : StartItemViewModel
     {
-        public CloneRepositoryViewModel(/*IStartItemActionService actionService*/) : base(/*actionService*/)
+        public CloneRepositoryViewModel(IStartItemActionService actionService) : base(actionService)
         {
-            Moniker = KnownMonikers.DownloadNoColor; // SourceControl
+            Moniker = KnownMonikers.CloneToDesktop; // previously DownloadNoColor or SourceControl
             Name = "Clone a repository";
             Description = "Get code from an online repository like GitHub or Azure DevOps etc";
         }
 
         protected override void OnClick()
-        { }
-        //=> actionService.CloneRepository();
+            => ActionService.CloneRepository();
     }
 }

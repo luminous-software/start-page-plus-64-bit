@@ -36,12 +36,12 @@
         {
             var items = new List<StartItemViewModel>
             {
-                _cloneRepository, //ViewModelManager.CloneRepositoryViewModel,
-                _openFolder, //ViewModelManager.OpenFolderViewModel,
-                _openProject, //ViewModelManager.OpenProjectViewModel,
-                _createProject, //ViewModelManager.CreateProjectViewModel,
-                _restartNormal, //ViewModelManager.RestartNormalViewModel,
-                _restartElevated //ViewModelManager.RestartElevatedViewModel
+                _cloneRepository,
+                _openFolder,
+                _openProject,
+                _createProject,
+                _restartNormal,
+                _restartElevated // icon size has been tweaked in viewmodel
             };
 
             return items;
