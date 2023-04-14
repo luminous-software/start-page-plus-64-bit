@@ -4,27 +4,27 @@
 
     public class StartItemActionService : IStartItemActionService
     {
-        public StartItemActionService(IVisualStudioService visualStudioService)
-            => VisualStudioService = visualStudioService;
+        private readonly IVisualStudioService _visualStudioService;
 
-        private IVisualStudioService VisualStudioService { get; }
+        public StartItemActionService(IVisualStudioService visualStudioService)
+            => _visualStudioService = visualStudioService;
 
         public bool CloneRepository()
-            => VisualStudioService.CloneRepository();
+            => _visualStudioService.CloneRepository();
 
         public bool CreateNewProject()
-            => VisualStudioService.CreateNewProject();
+            => _visualStudioService.CreateNewProject();
 
         public bool OpenFolder()
-            => VisualStudioService.OpenFolder();
+            => _visualStudioService.OpenFolder();
 
         public bool OpenProject()
-            => VisualStudioService.OpenProject();
+            => _visualStudioService.OpenProject();
 
         public bool RestartVisualStudio(bool confirm, bool elevated)
-            => VisualStudioService.Restart(confirm, elevated);
+            => _visualStudioService.Restart(confirm, elevated);
 
         public bool OpenWebPage(string url, bool openInVS)
-            => VisualStudioService.OpenWebPage(url, openInVS);
+            => _visualStudioService.OpenWebPage(url, openInVS);
     }
 }
