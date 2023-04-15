@@ -3,11 +3,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-using Community.VisualStudio.Toolkit;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 using EnvDTE;
 
 using EnvDTE80;
+
+using Community.VisualStudio.Toolkit;
 
 using Luminous.Code.Extensions.Strings;
 
@@ -21,9 +24,9 @@ namespace StartPagePlus.UI.Services.Other
 {
     using Core.Interfaces;
 
-    using StartPagePlus.Options.Pages;
+    using Interfaces;
 
-    using UI.Interfaces;
+    using Options.Pages;
 
     public class ToolkitVisualStudioService : IVisualStudioService
     {
@@ -40,8 +43,10 @@ namespace StartPagePlus.UI.Services.Other
         private const string VS_RUNNING_AS_ADMIN = "VS is currently running elevated. To return to running normally VS will need to close. Do you want to continue?";
         private const string RESTART_VS_AS_ADMIN = "You're about to restart VS as Administrator (elevated)";
 
+        private readonly IDialogService _dialogService;
+
         public ToolkitVisualStudioService(IDialogService dialogService)
-            => DialogService = dialogService;
+            => _dialogService = dialogService;
 
         private IDialogService DialogService { get; }
 
@@ -69,7 +74,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 result = false;
             }
 
@@ -101,12 +106,12 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (FileNotFoundException)
             {
-                DialogService.ShowError($"Can't open '{url}'"); // friendlier message
+                _dialogService.ShowError($"Can't open '{url}'"); // friendlier message
                 return false;
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -121,7 +126,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (ArgumentException ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -136,7 +141,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (ArgumentException ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -153,13 +158,13 @@ namespace StartPagePlus.UI.Services.Other
                 }
                 else
                 {
-                    DialogService.ShowError($"Unable to find '{path}'");
+                    _dialogService.ShowError($"Unable to find '{path}'");
                     return false;
                 }
             }
             catch (ArgumentException ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -174,7 +179,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (ArgumentException ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -191,13 +196,13 @@ namespace StartPagePlus.UI.Services.Other
                 }
                 else
                 {
-                    DialogService.ShowExclamation($"Unable to find '{path}'");
+                    _dialogService.ShowExclamation($"Unable to find '{path}'"); //YD: aall DialogService.ShowXXX should return a bool result
                     return false;
                 }
             }
             catch (ArgumentException ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -214,7 +219,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (ArgumentException ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -273,7 +278,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
@@ -294,7 +299,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
             }
         }
 
@@ -313,7 +318,7 @@ namespace StartPagePlus.UI.Services.Other
                 }
                 catch (Exception ex)
                 {
-                    DialogService.ShowException(ex);
+                    _dialogService.ShowException(ex);
                     return false;
                 }
             }
@@ -346,14 +351,14 @@ namespace StartPagePlus.UI.Services.Other
                 }
                 else
                 {
-                    DialogService.ShowError($"Unable to find '{path}'");
+                    _dialogService.ShowError($"Unable to find '{path}'");
 
                     result = false;
                 }
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
 
                 result = false;
             }
@@ -378,7 +383,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 result = false;
             }
             return Task.FromResult(result);
@@ -398,7 +403,7 @@ namespace StartPagePlus.UI.Services.Other
             }
             catch (Exception ex)
             {
-                DialogService.ShowException(ex);
+                _dialogService.ShowException(ex);
                 return false;
             }
         }
