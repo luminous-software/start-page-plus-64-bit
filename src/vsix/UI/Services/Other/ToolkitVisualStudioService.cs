@@ -43,6 +43,12 @@ namespace StartPagePlus.UI.Services.Other
         private const string VS_RUNNING_AS_ADMIN = "VS is currently running elevated. To return to running normally VS will need to close. Do you want to continue?";
         private const string RESTART_VS_AS_ADMIN = "You're about to restart VS as Administrator (elevated)";
 
+        //private const string RUNNING_ELEVATED_MESSAGE = @"VS is currently running elevated (as admin) & will remain elevated if you choose to continue.\n\nDo you want to continue?";
+        //private const string VS_MUST_CLOSE_MESSAGE = @"VS is currently running elevated. If you want to return to mom-elevated VS Must close.\\n\\nDo you want to continue?";
+
+        private const string RESTART_MESSAGE = "You're about to restart VS. Do you want to continue?";
+        //VS will remain non-elevated VS will need to close. Do you want to continue?";
+
         private readonly IDialogService _dialogService;
 
         public ToolkitVisualStudioService(IDialogService dialogService)
@@ -224,14 +230,12 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        private string RestartSuffix(bool elevated) // YD: clumsy whe combined with below
+        // YD: revisit ToolkitVisualStudioService.Restart to include going from elevated to normal
+        public bool Restart(bool confirmRestart = true, bool asAdmin = false)
         {
-            var suffix = (elevated)
-                ? " as Administrator (elevated)"
-                : "";
+            ThreadHelper.ThrowIfNotOnUIThread();
 
-            return suffix;
-        }
+            var result = false;
 
         public bool Restart(bool confirmRestart = true, bool asAdmin = false) //YD: investigate any better ways to Restart
         {
@@ -240,58 +244,65 @@ namespace StartPagePlus.UI.Services.Other
 
             try
             {
-                // currently running elevated
+                var restart = !confirmRestart || _dialogService.Confirmed(RESTART_MESSAGE);
 
-                if (IsRunningElevated)
+                if (restart is true)
                 {
-                    if (DialogService.Confirmed(VS_RUNNING_AS_ADMIN))
-                    {
-                        CloseVisualStudio();
 
-                        return true; // should never reach here
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    RestartAs(elevated: asAdmin);
+
+                    result = true; // won't end up being returned, as VS will have restarted
                 }
 
-                // YD: re-jig code here
+                result = false; // restart was cancelled
 
-                //if (confirmRestart && RestartSuffix(asAdmin))
+                //var restart = false;
+                //var closeVS = false;
+
+                //if (IsRunningElevated)
                 //{
-                //    switch (asAdmin)
-                //    {
-                //        case true:
-                //            RestartElevated();
-                //            break;
+                //    restart = !confirmRestart || _dialogService.Confirmed(RUNNING_ELEVATED_MESSAGE);
 
-                //        case false:
-                //            RestartNormal();
-                //            break;
+                //    if (restart is false)
+                //    {
+                //        return false; // restart was cancelled
                 //    }
 
-                //    return true;
+                //    closeVS = !confirmRestart || _dialogService.Confirmed(VS_MUST_CLOSE_MESSAGE);
+
+                //    if (closeVS is true)
+                //    {
+                //        CloseVisualStudio();
+
+                //        return true; // won't end up being returned, as VS will be closed
+                //    }
+
+                //    return false; // close vs was cancelled
                 //}
 
-                return false;
+                //// non-elevated
+
+                //restart = !confirmRestart || _dialogService.Confirmed(RUNNING_NORMAL_MESSAGE);
+
+                //if (restart is true)
+                //{
+                //    RestartBase(elevated: false);
+
+                //    return true; // won't end up being returned, as VS will have restarted
+                //}
+
+                //return false; // restart was cancelled
             }
             catch (Exception ex)
             {
                 _dialogService.ShowException(ex);
                 return false;
             }
+
+            return result;
         }
 
-        private void RestartNormal()
-            => Restart(false);
-
-        private void RestartElevated()
-            => Restart(true);
-
-        private void Restart(bool elevated = false)
-        {
-            try
+        private void RestartAs(bool elevated = false)
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
