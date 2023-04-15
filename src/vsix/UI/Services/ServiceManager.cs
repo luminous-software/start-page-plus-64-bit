@@ -24,6 +24,9 @@ namespace StartPagePlus.UI.Services
     {
         private static StartPagePlusContainer _container;
 
+        public static IDialogService DialogService
+            => GetService<IDialogService>();
+
         public static void RegisterServices(StartPagePlusContainer container)
         {
             _container = container ?? throw new ArgumentNullException(nameof(container));
@@ -54,13 +57,14 @@ namespace StartPagePlus.UI.Services
             _container.AddSingleton<IVisualStudioService, ToolkitVisualStudioService>();
         }
 
-        // only needed if exposing properties, like in ViewModelManager
-        //private static T GetService<T>()
-        //    where T : IService
-        //{
-        //    var viewModel = Container.GetInstance<T>();
+        // WARNING: only use these properties when constructor injection is not possible
 
-        //    return viewModel;
-        //}
+        private static T GetService<T>()
+            where T : ISimpleService
+        {
+            return (_container is null)
+                ? throw new ArgumentNullException(nameof(_container))
+                : _container.GetInstance<T>();
+        }
     }
 }
