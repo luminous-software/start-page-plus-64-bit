@@ -2,7 +2,7 @@
 
 namespace StartPagePlus.Core.Interfaces
 {
-    public interface IDialogService
+    public interface IDialogService : ISimpleService
     {
         void ShowNotImplemented(string method);
 
