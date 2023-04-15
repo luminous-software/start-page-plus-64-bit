@@ -76,6 +76,6 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             => Commands = CommandService.GetCommands(Refresh, OpenSettings);
 
         private void OpenSettings()
-            => VS.Settings.OpenAsync<OptionsProvider.NewsItems>();
+            => VS.Settings.OpenAsync<OptionsProvider.NewsItems>(); //YD: use VisualStudioService
     }
 }

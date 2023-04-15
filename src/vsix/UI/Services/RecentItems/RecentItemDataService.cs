@@ -105,7 +105,7 @@ namespace StartPagePlus.UI.Services.RecentItems
             try
             {
                 var path = viewModel.Path;
-                var result = true; //await VisualStudioService.OpenInNewInstanceAsync(path);
+                var result = true; //YD: await VisualStudioService.OpenInNewInstanceAsync(path);
 
                 return result
                     ? await UpdateLastAccessedAsync(path)
@@ -113,7 +113,7 @@ namespace StartPagePlus.UI.Services.RecentItems
             }
             catch (Exception)
             {
-                throw; //YD: what happens if the async method throws an exception?
+                throw; //YD: what happens if the async method throws an exception? //YD: DIalogService.ShowException
             }
         }
 
