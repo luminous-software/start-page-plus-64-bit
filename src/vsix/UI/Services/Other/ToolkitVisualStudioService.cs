@@ -93,6 +93,8 @@ namespace StartPagePlus.UI.Services.Other
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 var browsingService = VS.GetRequiredService<SVsWebBrowsingService, IVsWebBrowsingService>();
 
                 if (openInVS == true)
@@ -128,6 +130,8 @@ namespace StartPagePlus.UI.Services.Other
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 return ExecuteCommand(FILE_CLONE_REPOSITORY);
             }
             catch (ArgumentException ex)
@@ -139,10 +143,10 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool OpenFolder() //: YD send message to RecentItemsViewModel to refresh the list
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             try
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
-
                 return ExecuteCommand(FILE_OPEN_FOLDER); // opens Open Folder dialog
             }
             catch (ArgumentException ex)
@@ -154,10 +158,10 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool OpenFolder(string path) //: YD send message to RecentItemsViewModel to refresh the list
         {
-            try
-            {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 if (Directory.Exists(path))
                 {
                     return ExecuteCommand(FILE_OPEN_FOLDER, path.ToQuotedString());
@@ -181,6 +185,8 @@ namespace StartPagePlus.UI.Services.Other
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 return ExecuteCommand(FILE_OPEN_PROJECT); // opens Open Project/Solution dialog
             }
             catch (ArgumentException ex)
@@ -196,6 +202,8 @@ namespace StartPagePlus.UI.Services.Other
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 if (File.Exists(path))
                 {
                     return ExecuteCommand(FILE_OPEN_PROJECT, path.ToQuotedString());
@@ -219,6 +227,8 @@ namespace StartPagePlus.UI.Services.Other
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 ExecuteCommand(FILE_NEW_PROJECT);
 
                 return true;
@@ -306,6 +316,8 @@ namespace StartPagePlus.UI.Services.Other
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
+            try
+            {
                 VS.Shell.RestartAsync(elevated).FireAndForget();
             }
             catch (Exception ex)
@@ -322,6 +334,8 @@ namespace StartPagePlus.UI.Services.Other
                 {
                     ThreadHelper.ThrowIfNotOnUIThread();
 
+                try
+                {
                     VsShell3.IsRunningElevated(out bool elevated);
 
                     return elevated;
