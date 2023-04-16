@@ -14,9 +14,6 @@ using Community.VisualStudio.Toolkit;
 
 using Luminous.Code.Extensions.Strings;
 
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-
 using Process = System.Diagnostics.Process;
 using Task = System.Threading.Tasks.Task;
 
@@ -40,8 +37,6 @@ namespace StartPagePlus.UI.Services.Other
         private const string TOOLS_OPTIONS = "Tools.Options";
 
         private const uint FORCE_NEW_WINDOW = (uint)__VSWBNAVIGATEFLAGS.VSNWB_ForceNew;
-        private const string VS_RUNNING_AS_ADMIN = "VS is currently running elevated. To return to running normally VS will need to close. Do you want to continue?";
-        private const string RESTART_VS_AS_ADMIN = "You're about to restart VS as Administrator (elevated)";
 
         //private const string RUNNING_ELEVATED_MESSAGE = @"VS is currently running elevated (as admin) & will remain elevated if you choose to continue.\n\nDo you want to continue?";
         //private const string VS_MUST_CLOSE_MESSAGE = @"VS is currently running elevated. If you want to return to mom-elevated VS Must close.\\n\\nDo you want to continue?";
@@ -54,10 +49,8 @@ namespace StartPagePlus.UI.Services.Other
         public ToolkitVisualStudioService(IDialogService dialogService)
             => _dialogService = dialogService;
 
-        private IDialogService DialogService { get; }
-
-        private IVsWebBrowsingService BrowsingService
-            => VS.GetRequiredService<SVsWebBrowsingService, IVsWebBrowsingService>();
+        //private IVsWebBrowsingService BrowsingService
+        //    => VS.GetRequiredService<SVsWebBrowsingService, IVsWebBrowsingService>();
 
         private static DTE2 Dte
             => VS.GetRequiredService<_DTE, DTE2>(); //YD: investigate toolkit for DTE2 alternative, also a way to not call every service (some may never be used)
@@ -65,8 +58,8 @@ namespace StartPagePlus.UI.Services.Other
         private IVsShell3 VsShell3
             => VS.GetRequiredService<SVsShell, IVsShell3>(); //YD: investigate toolkit for IVsShell3 alternative
 
-        private IVsShell4 VsShell4
-            => VS.GetRequiredService<SVsShell, IVsShell4>(); //YD: investigate toolkit for IVsShell4 alternative
+        //private IVsShell4 VsShell4
+        //    => VS.GetRequiredService<SVsShell, IVsShell4>(); //YD: investigate toolkit for IVsShell4 alternative
 
         public bool ExecuteCommand(string action, string args = "")
         {
@@ -89,9 +82,7 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool OpenWebPage(string url, bool openInVS) //YD: OpenWebpage uses BrowsingService & Process
         {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -126,9 +117,7 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool CloneRepository()
         {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -158,7 +147,7 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool OpenFolder(string path) //: YD send message to RecentItemsViewModel to refresh the list
         {
-                ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -181,9 +170,7 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool OpenProject()
         {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -198,9 +185,7 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool OpenProject(string path) //: YD send message to RecentItemsViewModel to refresh the list
         {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -223,9 +208,7 @@ namespace StartPagePlus.UI.Services.Other
 
         public bool CreateNewProject()
         {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -247,11 +230,6 @@ namespace StartPagePlus.UI.Services.Other
 
             var result = false;
 
-        public bool Restart(bool confirmRestart = true, bool asAdmin = false) //YD: investigate any better ways to Restart
-        {
-            //YD: thing whole restart code needs to be examined carely as to the work flow
-            ThreadHelper.ThrowIfNotOnUIThread();
-
             try
             {
                 var restart = !confirmRestart || _dialogService.Confirmed(RESTART_MESSAGE);
@@ -268,6 +246,12 @@ namespace StartPagePlus.UI.Services.Other
 
                 //var restart = false;
                 //var closeVS = false;
+
+                // YD: potential solution to going from elevated to normal
+                //if (IsElevated && !asAdmin)
+                //{
+                //ask if ok to close, then close VS
+                //}
 
                 //if (IsRunningElevated)
                 //{
@@ -313,8 +297,8 @@ namespace StartPagePlus.UI.Services.Other
         }
 
         private void RestartAs(bool elevated = false)
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -330,9 +314,7 @@ namespace StartPagePlus.UI.Services.Other
         {
             get
             {
-                try
-                {
-                    ThreadHelper.ThrowIfNotOnUIThread();
+                ThreadHelper.ThrowIfNotOnUIThread();
 
                 try
                 {
