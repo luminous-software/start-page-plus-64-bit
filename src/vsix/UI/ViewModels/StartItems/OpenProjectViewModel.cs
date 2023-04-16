@@ -1,10 +1,12 @@
-﻿namespace StartPagePlus.UI.ViewModels.StartItems
+﻿using Microsoft.VisualStudio.Imaging;
+
+namespace StartPagePlus.UI.ViewModels.StartItems
 {
-    using Microsoft.VisualStudio.Imaging;
+    using Interfaces;
 
     public class OpenProjectViewModel : StartItemViewModel
     {
-        public OpenProjectViewModel(/*IStartItemActionService clickService*/) : base(/*actionService*/)
+        public OpenProjectViewModel(IStartItemActionService actionService) : base(actionService)
         {
             Moniker = KnownMonikers.OpenTopic;  // OpenDocumentGroup missing from KnownMonikers in SDK v15.9.3
             Name = "Open a project or solution";
@@ -12,7 +14,6 @@
         }
 
         protected override void OnClick()
-        { }
-        //=> ActionService.CreateNewProject();    }
+            => ActionService.OpenProject();
     }
 }

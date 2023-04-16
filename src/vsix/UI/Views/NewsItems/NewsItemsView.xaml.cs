@@ -1,41 +1,43 @@
-﻿namespace StartPagePlus.UI.Views.NewsItems
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+
+
+using Luminous.Code.Extensions.Exceptions;
+using Luminous.Code.Extensions.Strings;
+
+namespace StartPagePlus.UI.Views.NewsItems
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
+    using UI.ViewModels;
 
-    using Luminous.Code.Extensions.Exceptions;
-    using Luminous.Code.Extensions.Strings;
-
-    using StartPagePlus.UI.ViewModels;
-    using StartPagePlus.UI.ViewModels.NewsItems;
+    using ViewModels.NewsItems;
 
     public partial class NewsItemsView : UserControl
     {
-        public NewsItemsView()
+        public NewsItemsView() // constructor injection doesn't seem to work for views
         {
             InitializeComponent();
 
             try
             {
-                var viewModel = ViewModelManager.NewsItemsViewModel;
+                var viewModel = ViewModelManager.NewsItemsViewModel; // var viewModel = (NewsItemsViewModel)DataContext; viewModel was null when using this code
 
-                // NOTE: Refresh is call in viewmodel's constructor
+                // NOTE: Refresh is called in viewmodel's constructor
 
                 DataContext = viewModel;
 
                 var view = (ListCollectionView)CollectionViewSource.GetDefaultView(viewModel.Items);
 
-                using (view.DeferRefresh())
+                using (view?.DeferRefresh())
                 {
-                    //    AddGrouping(view);
-                    //    AddSorting(view);
+                    //AddGrouping(view);
+                    //AddSorting(view);
                     AddFilter(view);
                 }
 
-                RefreshViewWhenFilterChanges(view);
-                SetSelectedItemToNull();
+                OnFilterTextChangedRefreshView(view);
+                OnListViewLoadedSetSelectedItemToNull();
 
                 //RootMethods.ListenFor<NewsItemsRefresh>(this, FocusFilterTextBox);
             }
@@ -45,29 +47,35 @@
             }
         }
 
-        private static void AddGrouping(ListCollectionView view)
-        {
-            view.GroupDescriptions.Clear();
-            view.IsLiveGrouping = true;
-            //view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(NewsItemViewModel.PeriodType)));
-        }
+        //private static void AddGrouping(ListCollectionView view)
+        //{
+        //    if (view is null) return;
 
-        private static void AddSorting(ListCollectionView view)
-        {
-            view.SortDescriptions.Clear();
-            view.IsLiveSorting = true;
-            //view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.PeriodType), ListSortDirection.Ascending));
-            //view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.Date), ListSortDirection.Descending));
-        }
+        //    view.GroupDescriptions.Clear();
+        //    view.IsLiveGrouping = true;
+        //    view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(NewsItemViewModel.PeriodType)));
+        //}
+
+        //private static void AddSorting(ListCollectionView view)
+        //{
+        //    if (view is null) return;
+
+        //    view.SortDescriptions.Clear();
+        //    view.IsLiveSorting = true;
+        //    view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.PeriodType), ListSortDirection.Ascending));
+        //    view.SortDescriptions.Add(new SortDescription(nameof(NewsItemViewModel.Date), ListSortDirection.Descending));
+        //}
 
         private void AddFilter(ListCollectionView view)
         {
+            if (view is null) return;
+
             view.Filter = (object obj) =>
             {
                 if (string.IsNullOrEmpty(FilterTextBox.Text))
                     return true;
 
-                if (!(obj is NewsItemViewModel item))
+                if (obj is not NewsItemViewModel item)
                     return false;
 
                 var name = item.Title;
@@ -77,11 +85,11 @@
             };
         }
 
-        private void RefreshViewWhenFilterChanges(ListCollectionView view)
+        private void OnFilterTextChangedRefreshView(ListCollectionView view)
             => FilterTextBox.TextChanged += (object sender, TextChangedEventArgs e)
-                => view.Refresh();
+                => view?.Refresh();
 
-        private void SetSelectedItemToNull()
+        private void OnListViewLoadedSetSelectedItemToNull()
             => NewsItemsListView.Loaded += (sender, e)
                 => NewsItemsListView.SelectedItem = null;
 

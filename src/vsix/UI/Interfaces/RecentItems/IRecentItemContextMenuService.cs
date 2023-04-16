@@ -2,7 +2,7 @@
 {
     using StartPagePlus.UI.ViewModels.RecentItems;
 
-    public interface IRecentItemContextMenuService
+    internal interface IRecentItemContextMenuService
     {
         bool RemoveItem(RecentItemViewModel viewModel);
 

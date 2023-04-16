@@ -49,12 +49,11 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="MinHeight" Value="70"/>
-                        <Setter Property="Margin" Value="0,0,0,20"/>
+                        <Setter Property="Margin" Value="0,0,0,15"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="IsTabStop" Value="False"/>
                     </Style>
                 </ListView.ItemContainerStyle>
-
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

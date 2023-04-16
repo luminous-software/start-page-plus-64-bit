@@ -1,8 +1,8 @@
-﻿namespace StartPagePlus.UI.Services
-{
-    using System;
+﻿using System;
 
-    using Luminous.Code.Interfaces;
+namespace StartPagePlus.Core.Services
+{
+    using Interfaces;
 
     public class DateTimeService : IDateTimeService
     {

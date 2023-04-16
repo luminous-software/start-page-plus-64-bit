@@ -1,16 +1,16 @@
-﻿namespace StartPagePlus.UI.ViewModels.StartItems
+﻿using CommunityToolkit.Mvvm.Input;
+
+using Microsoft.VisualStudio.Imaging.Interop;
+
+namespace StartPagePlus.UI.ViewModels.StartItems
 {
-    using System.Windows.Input;
+    using StartPagePlus.UI.Interfaces;
 
-    using Microsoft.Toolkit.Mvvm.Input;
-    using Microsoft.VisualStudio.Imaging.Interop;
-
-    public abstract class StartItemViewModel : ViewModelBase
+    public abstract partial class StartItemViewModel : ViewModelBase
     {
-        public StartItemViewModel() //IStartItemActionService actionService)
+        public StartItemViewModel(IStartItemActionService actionService)
         {
-            //ActionService = clickService;
-            ClickCommand = new RelayCommand(OnClick);
+            ActionService = actionService;
             ImageSize = 40;
             Margin = "5,5,0,0";
             IsEnabled = true;
@@ -30,10 +30,9 @@
 
         public bool IsEnabled { get; set; }
 
-        public ICommand ClickCommand { get; set; }
+        public IStartItemActionService ActionService { get; }
 
-        // public IStartItemActionService ActionService { get; }
-
+        [RelayCommand]
         protected virtual void OnClick()
         { }
     }

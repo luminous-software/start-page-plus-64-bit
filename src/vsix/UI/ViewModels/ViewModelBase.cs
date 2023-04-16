@@ -1,20 +1,37 @@
-﻿namespace StartPagePlus.UI.ViewModels
+﻿using System;
+using System.Threading.Tasks;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.UI.ViewModels
 {
-    using Microsoft.Toolkit.Mvvm.ComponentModel;
+    using Interfaces;
 
-    public class ViewModelBase : ObservableRecipient
+    using Methods;
+
+    public class ViewModelBase : ObservableRecipient, IViewModel
     {
-        //public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
-        //    => RootMethods.RunMethod(asyncMethod);
+        //--- IMessageMethods
 
-        //public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
-        //    => RootMethods.RunMethod(asyncMethod);
+        public virtual void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
+            where TMessage : class, new()
+            => MessageMethods.ListenFor(recipient, action);
 
-        //public virtual void LìstenFor<T>(object recipient, Action<T> action)
-        //    where T : IMessage
-        //    => RootMethods.ListenFor(recipient, action);
+        public virtual void SendMessage<TMessage>()
+            where TMessage : class, new()
+            => MessageMethods.SendMessage<TMessage>();
 
-        //public virtual void SendMessage(MessageBase message)
-        //    => RootMethods.SendMessage(message);
+        public virtual void SendMessage<TMessage>(TMessage message)
+            where TMessage : class, new()
+            => MessageMethods.SendMessage(message);
+
+        //--- IRunMethods
+
+        public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
+            => RunMethods.RunMethod(asyncMethod);
+
+        public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
+            => RunMethods.RunMethod(asyncMethod);
     }
 }

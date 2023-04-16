@@ -1,24 +1,25 @@
-﻿namespace
-    StartPagePlus
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+using Microsoft.VisualStudio.Shell;
+
+using Community.VisualStudio.Toolkit;
+
+namespace StartPagePlus
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Threading;
+    using DI;
 
-    using Community.VisualStudio.Toolkit;
-    using Community.VisualStudio.Toolkit.DependencyInjection.Microsoft;
+    using Options.Pages;
 
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.VisualStudio.Shell;
-
-    using StartPagePlus.Options.Pages;
-    using StartPagePlus.UI.Services;
-    using StartPagePlus.UI.ToolWindows;
-    using StartPagePlus.UI.ViewModels;
-
-    using static Vsix;
+    using UI.Messages;
+    using UI.Services;
+    using UI.ToolWindows;
+    using UI.ViewModels;
 
     using Task = System.Threading.Tasks.Task;
+
+    using static Vsix;
 
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(Name, Description, Vsix.Version)]
@@ -36,21 +37,41 @@
 
     [ProvideOptionPage(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
-    public sealed class StartPagePlusPackage : MicrosoftDIToolkitPackage<StartPagePlusPackage>
+    public sealed class StartPagePlusPackage : ToolkitPackage
     {
-        protected override void InitializeServices(IServiceCollection services)
-        {
-            ViewModelManager.RegisterViewModels(services);
-            ServiceManager.RegisterServices(services);
-        }
+        private readonly StartPagePlusContainer _container;
+
+        public StartPagePlusPackage() : base()
+            => _container = new StartPagePlusContainer();
+
+        //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await base.InitializeAsync(cancellationToken, progress);
             await this.RegisterCommandsAsync();
-            //await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            ServiceManager.RegisterServices(_container);
+            ViewModelManager.RegisterViewModels(_container);
+            MessageManager.RegisterMessages(_container);
 
             this.RegisterToolWindows();
         }
+
+        protected override object GetService(Type serviceType)
+        {
+            if (_container?.IsRegistered(serviceType) ?? false) // is there a DI container & can it get an instance of the service
+            {
+                return _container.GetInstance(serviceType); // the DI container gets the service
+            }
+
+            return base.GetService(serviceType); // let VS handle getting the service
+        }
     }
+
+    //private static void LogService<T>(T service, string message)
+    //    where T : IReportServiceLifetime =>
+    //        Console.WriteLine($"    {typeof(T).Name}: {service.Id} ({message})");
 }

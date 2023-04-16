@@ -2,22 +2,46 @@
 {
     using System.Collections.Generic;
 
-    using StartPagePlus.UI.Interfaces.StartItems;
-    using StartPagePlus.UI.ViewModels;
-    using StartPagePlus.UI.ViewModels.StartItems;
+    using Interfaces.StartItems;
+
+    using ViewModels.StartItems;
 
     public class StartItemDataService : IStartItemDataService
     {
+        private readonly CloneRepositoryViewModel _cloneRepository;
+        private readonly OpenFolderViewModel _openFolder;
+        private readonly OpenProjectViewModel _openProject;
+        private readonly CreateProjectViewModel _createProject;
+        private readonly RestartNormalViewModel _restartNormal;
+        private readonly RestartElevatedViewModel _restartElevated;
+
+        public StartItemDataService(
+            CloneRepositoryViewModel cloneRepository,
+            OpenFolderViewModel openFolder,
+            OpenProjectViewModel openProjext,
+            CreateProjectViewModel createProject,
+            RestartNormalViewModel restartNormal,
+            RestartElevatedViewModel restartElevated
+            )
+        {
+            _cloneRepository = cloneRepository;
+            _openFolder = openFolder;
+            _openProject = openProjext;
+            _createProject = createProject;
+            _restartNormal = restartNormal;
+            _restartElevated = restartElevated;
+        }
+
         public List<StartItemViewModel> GetItems()
         {
             var items = new List<StartItemViewModel>
             {
-                ViewModelManager.CloneRepositoryViewModel,
-                ViewModelManager.OpenFolderViewModel,
-                ViewModelManager.OpenProjectViewModel,
-                ViewModelManager.CreateProjectViewModel,
-                ViewModelManager.RestartNormalViewModel,
-                ViewModelManager.RestartElevatedViewModel
+                _cloneRepository,
+                _openFolder,
+                _openProject,
+                _createProject,
+                _restartNormal,
+                _restartElevated // icon size has been tweaked in viewmodel
             };
 
             return items;

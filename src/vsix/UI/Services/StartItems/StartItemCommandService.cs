@@ -1,12 +1,13 @@
-﻿namespace StartPagePlus.UI.Services.StartItems
+﻿using System;
+using System.Collections.Generic;
+
+using CommunityToolkit.Mvvm.Input;
+
+namespace StartPagePlus.UI.Services.StartItems
 {
-    using System;
-    using System.Collections.Generic;
+    using Interfaces.StartItems;
 
-    using Microsoft.Toolkit.Mvvm.Input;
-
-    using StartPagePlus.Options.Pages;
-    using StartPagePlus.UI.Interfaces.StartItems;
+    using Options.Pages;
 
     using ViewModels;
 

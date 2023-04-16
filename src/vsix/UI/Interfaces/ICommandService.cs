@@ -1,5 +1,7 @@
 ﻿namespace StartPagePlus.UI.Interfaces
 {
-    public interface ICommandService<T> : IService
+    using Core.Interfaces;
+
+    internal interface ICommandService<T> : IService
     { }
 }

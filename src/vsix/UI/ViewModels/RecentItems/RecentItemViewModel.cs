@@ -1,37 +1,20 @@
-﻿namespace StartPagePlus.UI.ViewModels.RecentItems
+﻿using System;
+
+using Microsoft.VisualStudio.Imaging.Interop;
+
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.UI.ViewModels.RecentItems
 {
-    using System;
+    using Enums;
 
-    using Microsoft.Toolkit.Mvvm.Input;
-    using Microsoft.VisualStudio.Imaging.Interop;
+    using Messages;
 
-    using StartPagePlus.UI.Enums;
-
-    public class RecentItemViewModel : ViewModelBase
+    public partial class RecentItemViewModel : ViewModelBase
     {
         public RecentItemViewModel()
-        {
-            SelectItemCommand = new RelayCommand(SelectItem);
-            TogglePinnedCommand = new RelayCommand(TogglePinned);
-            RemoveItemCommand = new RelayCommand(RemoveItem);
-            CopyItemPathCommand = new RelayCommand(CopyItemPath);
-            EditItemPathCommand = new RelayCommand(EditItemPath);
-            OpenInVSCommand = new RelayCommand(OpenInVS);
-        }
-
-        //---
-
-        public RelayCommand SelectItemCommand { get; }
-
-        public RelayCommand TogglePinnedCommand { get; }
-
-        public RelayCommand RemoveItemCommand { get; }
-
-        public RelayCommand CopyItemPathCommand { get; }
-
-        public RelayCommand EditItemPathCommand { get; }
-
-        public RelayCommand OpenInVSCommand { get; }
+        { }
 
         //---
 
@@ -53,22 +36,28 @@
 
         //---
 
-        private void SelectItem() { }
-        //    => SendMessage(new RecentItemSelected(this));
+        [RelayCommand]
+        private void SelectItem()
+            => Messenger.Send(new RecentItemSelected(this));
 
-        private void TogglePinned() { }
-        //    => SendMessage(new RecentItemTogglePinned(this));
+        [RelayCommand]
+        private void TogglePinned()
+            => Messenger.Send(new RecentItemTogglePinned(this));
 
-        private void RemoveItem() { }
-        //    => SendMessage(new RecentItemRemove(this));
+        [RelayCommand]
+        private void RemoveItem()
+            => Messenger.Send(new RecentItemRemove(this));
 
-        private void CopyItemPath() { }
-        //    => SendMessage(new RecentItemCopyPath(this));
+        [RelayCommand]
+        private void CopyItemPath()
+            => Messenger.Send(new RecentItemCopyPath(this));
 
-        private void EditItemPath() { }
-        //    => SendMessage(new RecentItemEditPath(this));
+        [RelayCommand]
+        private void EditItemPath()
+            => Messenger.Send(new RecentItemEditPath(this));
 
-        private void OpenInVS() { }
-        //    => SendMessage(new RecentItemOpenInVS(this));
+        [RelayCommand]
+        private void OpenInVS()
+            => Messenger.Send(new RecentItemOpenInVS(this));
     }
 }

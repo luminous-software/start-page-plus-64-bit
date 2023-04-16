@@ -1,22 +1,20 @@
-﻿namespace StartPagePlus.UI.Views.RecentItems
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+
+using Luminous.Code.Extensions.Exceptions;
+using Luminous.Code.Extensions.Strings;
+
+namespace StartPagePlus.UI.Views.RecentItems
 {
-    using System;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-
-    using Luminous.Code.Extensions.Exceptions;
-    using Luminous.Code.Extensions.Strings;
-
-    //using StartPagePlus.UI.Messages;
-    //using StartPagePlus.UI.Methods;
-    using StartPagePlus.UI.ViewModels;
-    using StartPagePlus.UI.ViewModels.RecentItems;
+    using ViewModels;
+    using ViewModels.RecentItems;
 
     public partial class RecentItemsView : UserControl
     {
-        public RecentItemsView()
+        public RecentItemsView() // constructor injection doesn't seem to work for views
         {
             InitializeComponent();
 
@@ -24,9 +22,8 @@
             {
                 var viewModel = ViewModelManager.RecentItemsViewModel;
 
-                // NOTE: Refresh is call in viewmodel's constructor
+                // NOTE: Refresh is called in viewmodel's constructor
 
-                DataContext = viewModel;
 
                 var view = (ListCollectionView)CollectionViewSource.GetDefaultView(viewModel.Items);
 
@@ -37,14 +34,14 @@
                     AddFilter(view);
                 }
 
-                RefreshViewWhenFilterChanges(view);
-                SetSelectedItemToNull();
+                OnFilterTextChangedRefreshView(view);
+                OnloadedSetSelectedItemToNull();
 
                 //RootMethods.ListenFor<RecentItemsRefresh>(this, FocusFilterTextBox);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ExtendedMessage());
+                MessageBox.Show(ex.ExtendedMessage()); //YD: replace all MessageBox.Show calls with DialogService calls
             }
         }
 
@@ -82,11 +79,11 @@
             };
         }
 
-        private void RefreshViewWhenFilterChanges(ListCollectionView view)
+        private void OnFilterTextChangedRefreshView(ListCollectionView view)
             => FilterTextBox.TextChanged += (object sender, TextChangedEventArgs e)
                 => view.Refresh();
 
-        private void SetSelectedItemToNull()
+        private void OnloadedSetSelectedItemToNull()
             => RecentItemsListView.Loaded += (sender, e)
                 => RecentItemsListView.SelectedItem = null;
 

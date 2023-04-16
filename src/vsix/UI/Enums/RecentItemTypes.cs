@@ -6,7 +6,7 @@
     using Microsoft.VisualStudio.Imaging;
     using Microsoft.VisualStudio.Imaging.Interop;
 
-    public static class RecentItemTypes //YD: this should follow the same extension method namespace pattern
+    internal static class RecentItemTypes //YD: this should follow the same extension method namespace pattern
     {
         public static RecentItemType CalculateRecentItemType(this string instance)
         {

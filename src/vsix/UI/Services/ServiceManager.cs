@@ -1,61 +1,81 @@
-﻿namespace StartPagePlus.UI.Services
+﻿using System;
+
+using Community.VisualStudio.Toolkit;
+
+using Luminous.Code.Extensions.Exceptions;
+
+namespace StartPagePlus.UI.Services
 {
-    using Community.VisualStudio.Toolkit;
-    using Community.VisualStudio.Toolkit.DependencyInjection.Core; //YD: is this really needed in addtion to Microsoft.Extensions.DependencyInjection?
+    using Core.Interfaces;
+    using Core.Services;
 
-    using Luminous.Code.Interfaces;
+    using DI;
 
-    using Microsoft.Extensions.DependencyInjection;
+    using Interfaces;
+    using Interfaces.NewsItems;
+    using Interfaces.RecentItems;
+    using Interfaces.StartItems;
 
-    using StartPagePlus.UI.Interfaces;
+    using NewsItems;
 
-    using StartPagePlus.UI.Interfaces.NewsItems;
-    using StartPagePlus.UI.Interfaces.RecentItems;
-    using StartPagePlus.UI.Interfaces.StartItems;
+    using RecentItems;
 
-    using StartPagePlus.UI.Services.NewsItems;
-    using StartPagePlus.UI.Services.RecentItems;
-    using StartPagePlus.UI.Services.StartItems;
+    using StartItems;
 
-    public static class ServiceManager
+    using Other;
+
+    internal static class ServiceManager
     {
-        public static IDateTimeService DateTimeService { get; set; }
+        private static StartPagePlusContainer _container;
 
-        public static IMruService MruService { get; set; }
+        //public static IDialogService DialogService
+        //    => GetService<IDialogService>();
 
-        //---
-
-        internal static void RegisterServices(IServiceCollection services)
+        public static void RegisterServices(StartPagePlusContainer container)
         {
-            services.AddSingleton<IDateTimeService, DateTimeService>();
-            services.AddSingleton<IDialogService, ToolkitDialogService>();
+            try
+            {
+                _container = container ?? throw new ArgumentNullException(nameof(container));
 
-            //---
+                //--- other (kepp these first)
 
-            services.AddSingleton<IMruService, MruPrivateSettingsService>();
-            services.AddSingleton<IRecentItemDataService, RecentItemDataService>();
-            services.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
+                _container.AddSingleton<IDateTimeService, DateTimeService>();
+                _container.AddSingleton<IDialogService, ToolkitDialogService>();
+                _container.AddSingleton<IVisualStudioService, ToolkitVisualStudioService>();
 
-            //---
+                //--- recent items
 
-            services.AddSingleton<IStartItemDataService, StartItemDataService>();
-            services.AddSingleton<IStartItemCommandService, StartItemCommandService>();
+                _container.AddSingleton<IMruService, MruPrivateSettingsService>();
+                _container.AddSingleton<IRecentItemActionService, RecentItemActionService>();
+                _container.AddSingleton<IRecentItemDataService, RecentItemDataService>();
+                _container.AddSingleton<IRecentItemCommandService, RecentItemCommandService>();
 
-            //---
+                //--- start items
 
-            services.AddSingleton<INewsItemDataService, NewsItemDataService>();
-            services.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
+                _container.AddSingleton<IStartItemActionService, StartItemActionService>();
+                _container.AddSingleton<IStartItemDataService, StartItemDataService>();
+                _container.AddSingleton<IStartItemCommandService, StartItemCommandService>();
+
+                //--- news items
+
+                _container.AddSingleton<INewsItemDataService, NewsItemDataService>();
+                _container.AddSingleton<INewsItemCommandService, NewsItemCommandService>();
+                _container.AddSingleton<INewsItemActionService, NewsItemActionService>();
+            }
+            catch (Exception ex)
+            {
+                VS.MessageBox.ShowError(ex.ExtendedMessage());
+            }
         }
 
-        //---
+        // WARNING: only use these properties when constructor injection is not possible
 
-        public static T GetService<T>()
-            where T : IService
-        {
-            var serviceProvider = VS.GetRequiredService<SToolkitServiceProvider<StartPagePlusPackage>, IToolkitServiceProvider<StartPagePlusPackage>>();
-            var service = serviceProvider.GetService<T>();
-
-            return service;
-        }
+        //private static T GetService<T>()
+        //    where T : ISimpleService
+        //{
+        //    return (_container is null)
+        //        ? throw new ArgumentNullException(nameof(_container))
+        //        : _container.GetInstance<T>();
+        //}
     }
 }

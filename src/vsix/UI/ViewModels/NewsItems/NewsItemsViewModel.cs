@@ -1,52 +1,57 @@
-﻿namespace StartPagePlus.UI.ViewModels.NewsItems
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.Shell;
+
+using CommunityToolkit.Mvvm.Messaging;
+
+using Community.VisualStudio.Toolkit;
+
+namespace StartPagePlus.UI.ViewModels.NewsItems
 {
-    using System.Collections.Generic;
+    using Core.Interfaces;
 
-    using Community.VisualStudio.Toolkit;
+    using Interfaces.NewsItems;
 
-    using Microsoft.VisualStudio.Shell;
+    using Messages;
 
-    using StartPagePlus.Options.Pages;
-    using StartPagePlus.UI.Interfaces.NewsItems;
+    using Options.Pages;
 
+    //YD: for future development
     //#region Assembly System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
     //namespace System.ServiceModel.Syndication
     //public class SyndicationFeed
 
     public class NewsItemsViewModel : ColumnViewModel
     {
-        //private const string DEV_NEWS_FEED_URL = "https://vsstartpage.blob.core.windows.net/news/vs";
         private const string HEADING = "Read News Item";
 
         private List<NewsItemViewModel> items = new();
 
-        public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService/*, INewsItemActionService actionService, IVisualStudioService visualStudioService*/)
+        public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService, INewsItemActionService actionService)
         {
             DataService = dataService;
             CommandService = commandService;
-            //ActionService = actionService;
-            //VisualStudioService = visualStudioService;
+            ActionService = actionService;
             Heading = HEADING;
             IsVisible = true;
 
             GetCommands();
             Refresh();
 
-            //MessengerInstance.Register<NotificationMessage<NewsItemViewModel>>(this, (message) =>
-            //{
-            //    var openInVS = NewsItemsOptions.Instance.OpenLinksInVS;
+            Messenger.Register<NewsItemSelected>(this, OnItemSelected);
+        }
 
-            //    ActionService.DoAction(message.Content, openInVS);
-            //});
+        private void OnItemSelected(object recipient, NewsItemSelected message)
+        {
+            var openInVS = NewsItemsOptions.Instance.OpenLinksInVS;
+
+            ActionService.DoAction(message.Value, openInVS);
         }
 
         public INewsItemDataService DataService { get; }
 
         public INewsItemCommandService CommandService { get; }
 
-        //public INewsItemActionService ActionService { get; }
-
-        //public IVisualStudioService VisualStudioService { get; }
+        public INewsItemActionService ActionService { get; }
 
         public List<NewsItemViewModel> Items
         {
@@ -71,6 +76,6 @@
             => Commands = CommandService.GetCommands(Refresh, OpenSettings);
 
         private void OpenSettings()
-            => VS.Settings.OpenAsync<OptionsProvider.NewsItems>();
+            => VS.Settings.OpenAsync<OptionsProvider.NewsItems>(); //YD: use VisualStudioService
     }
 }

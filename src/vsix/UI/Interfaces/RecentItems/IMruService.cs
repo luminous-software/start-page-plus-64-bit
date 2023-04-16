@@ -6,7 +6,7 @@
 
     using StartPagePlus.UI.Models;
 
-    public interface IMruService
+    internal interface IMruService
     {
         Task<List<RecentItem>> GetItemsAsync();
 

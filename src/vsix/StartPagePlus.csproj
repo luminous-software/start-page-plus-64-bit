@@ -51,8 +51,11 @@
     <Compile Include="Commands\ViewWindow.cs" />
     <Compile Include="Core\Interfaces\IDateTimeService.cs" />
     <Compile Include="Core\Interfaces\IDialogService.cs" />
+    <Compile Include="Core\Interfaces\ISimpleService.cs" />
     <Compile Include="Core\Strings\Constants.cs" />
     <Compile Include="Core\Dates\DateMethods.cs" />
+    <Compile Include="Core\Interfaces\IDependencyInjectionContainer.cs" />
+    <Compile Include="DI\MicrosoftDependencyInjectionContainer.cs" />
     <Compile Include="Options\Pages\OptionsProvider.cs" />
     <Compile Include="Options\Pages\NewsItemsOptions.cs" />
     <Compile Include="Options\Pages\RecentItemsOptions.cs" />
@@ -94,35 +97,58 @@
     <Compile Include="UI\Dates\DateMethods.cs" />
     <Compile Include="UI\Interfaces\ICommandService.cs" />
     <Compile Include="UI\Interfaces\IDataService.cs" />
+    <Compile Include="UI\Interfaces\StartItems\IStartItemActionService.cs" />
+    <Compile Include="UI\Interfaces\IVisualStudioService.cs" />
+    <Compile Include="UI\Interfaces\NewsItems\INewsItemActionService.cs" />
     <Compile Include="UI\Interfaces\NewsItems\INewsItemCommandService.cs" />
     <Compile Include="UI\Interfaces\NewsItems\INewsItemDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruDataService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IMruService.cs" />
+    <Compile Include="UI\Interfaces\RecentItems\IRecentItemActionService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemCommandService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemContextMenuService.cs" />
     <Compile Include="UI\Interfaces\RecentItems\IRecentItemDataService.cs" />
-    <Compile Include="UI\Interfaces\IMessageSender.cs" />
-    <Compile Include="UI\Interfaces\IService.cs" />
+    <Compile Include="UI\Interfaces\IMessageMethods.cs" />
+    <Compile Include="Core\Interfaces\IService.cs" />
     <Compile Include="UI\Interfaces\IViewModel.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemCommandService.cs" />
     <Compile Include="UI\Interfaces\StartItems\IStartItemDataService.cs" />
+    <Compile Include="UI\Messages\MessageManager.cs" />
+    <Compile Include="UI\Messages\RecentItemCopyPath.cs" />
+    <Compile Include="UI\Messages\RecentItemEditPath.cs" />
+    <Compile Include="UI\Messages\RecentItemOpenInVS.cs" />
+    <Compile Include="UI\Messages\RecentItemRemove.cs" />
+    <Compile Include="UI\Messages\RecentItemsRefreshed.cs" />
+    <Compile Include="UI\Messages\RecentItemTogglePinned.cs" />
+    <Compile Include="UI\Messages\RecentItemsRefresh.cs" />
+    <Compile Include="UI\Messages\RecentItemSelected.cs" />
+    <Compile Include="UI\Messages\NewsItemSelected.cs" />
+    <Compile Include="UI\Methods\MessageMethods.cs" />
+    <Compile Include="UI\Methods\RunMethods.cs" />
     <Compile Include="UI\RecentItems\RecentItem.cs" />
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
-    <Compile Include="UI\Services\DateTimeService.cs" />
+    <Compile Include="Core\Services\DateTimeService.cs" />
+    <Compile Include="UI\Services\NewsItems\NewsItemActionService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemCommandService.cs" />
     <Compile Include="UI\Services\NewsItems\NewsItemDataService.cs" />
+    <Compile Include="UI\Services\Other\ToolkitVisualStudioService.cs" />
+    <Compile Include="UI\Services\Other\VisualStudioService.cs" />
+    <Compile Include="UI\Services\RecentItems\RecentItemActionService.cs" />
+    <Compile Include="UI\Services\ServiceManager.cs" />
+    <Compile Include="UI\Services\StartItems\StartItemActionService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemCommandService.cs" />
     <Compile Include="UI\Services\StartItems\StartItemDataService.cs" />
-    <Compile Include="UI\Services\ToolkitDialogService.cs" />
+    <Compile Include="UI\Services\Other\ToolkitDialogService.cs" />
     <Compile Include="UI\Services\RecentItems\MruPrivateSettingsService.cs" />
     <Compile Include="UI\Services\RecentItems\RecentItemCommandService.cs" />
     <Compile Include="UI\Services\RecentItems\RecentItemDataService.cs" />
     <Compile Include="UI\Services\ServiceBase.cs" />
-    <Compile Include="UI\Services\ServiceManager.cs" />
+    <Compile Include="DI\StartPagePlusContainer.cs" />
     <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\CommandViewModel.cs" />
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
+    <Compile Include="UI\Interfaces\IRunMethods.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />
@@ -191,17 +217,20 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Community.VisualStudio.Toolkit.DependencyInjection.Microsoft.17">
-      <Version>17.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" />
-    <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.394" ExcludeAssets="Runtime">
+    <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.394" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Mvvm">
-      <Version>7.1.2</Version>
+    <PackageReference Include="CommunityToolkit.Mvvm">
+      <Version>8.1.0</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0">
+    <PackageReference Include="EnvDTE80">
+      <Version>17.5.33428.366</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>7.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" ExcludeAssets="runtime">
       <Version>17.0.32112.339</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5234">

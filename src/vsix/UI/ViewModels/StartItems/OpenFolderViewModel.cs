@@ -1,10 +1,12 @@
-﻿namespace StartPagePlus.UI.ViewModels.StartItems
+﻿using Microsoft.VisualStudio.Imaging;
+
+namespace StartPagePlus.UI.ViewModels.StartItems
 {
-    using Microsoft.VisualStudio.Imaging;
+    using Interfaces;
 
     public class OpenFolderViewModel : StartItemViewModel
     {
-        public OpenFolderViewModel(/*IStartItemActionService actionService*/) : base(/*actionService*/)
+        public OpenFolderViewModel(IStartItemActionService actionService) : base(actionService)
         {
             Moniker = KnownMonikers.OpenFolder;
             Name = "Open a local folder";
@@ -12,7 +14,6 @@
         }
 
         protected override void OnClick()
-        { }
-        //=> ActionService.CreateNewProject();    }
+            => ActionService.OpenFolder();
     }
 }

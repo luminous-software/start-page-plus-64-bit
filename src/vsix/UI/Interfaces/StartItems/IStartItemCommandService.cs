@@ -1,9 +1,9 @@
-﻿namespace StartPagePlus.UI.Interfaces.StartItems
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-    using StartPagePlus.UI.ViewModels;
+namespace StartPagePlus.UI.Interfaces.StartItems
+{
+    using ViewModels;
 
     public interface IStartItemCommandService
     {

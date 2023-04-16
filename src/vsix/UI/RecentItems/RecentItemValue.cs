@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class RecentItemValue
+    internal class RecentItemValue
     {
         public RecentItemProperties LocalProperties { get; set; }
 

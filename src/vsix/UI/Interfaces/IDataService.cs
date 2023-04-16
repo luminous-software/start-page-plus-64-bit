@@ -1,9 +1,11 @@
-﻿namespace StartPagePlus.UI.Interfaces
-{
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
-    public interface IDataService<T> : IService
+namespace StartPagePlus.UI.Interfaces
+{
+    using Core.Interfaces;
+
+    internal interface IDataService<T> : IService
         where T : IViewModel
     {
         ObservableCollection<T> GetItems();

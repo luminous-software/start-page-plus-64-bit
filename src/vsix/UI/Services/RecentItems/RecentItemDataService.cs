@@ -1,16 +1,16 @@
-﻿namespace StartPagePlus.UI.Services.RecentItems
-{
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
-    using Luminous.Code.Interfaces;
+namespace StartPagePlus.UI.Services.RecentItems
+{
+    using Core.Interfaces;
 
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.ViewModels.RecentItems;
 
-    public class RecentItemDataService : ServiceBase, IRecentItemDataService
+    internal class RecentItemDataService : ServiceBase, IRecentItemDataService
     {
         public RecentItemDataService(
             IMruService mruService,
@@ -105,7 +105,7 @@
             try
             {
                 var path = viewModel.Path;
-                var result = true; //await VisualStudioService.OpenInNewInstanceAsync(path);
+                var result = true; //YD: await VisualStudioService.OpenInNewInstanceAsync(path);
 
                 return result
                     ? await UpdateLastAccessedAsync(path)
@@ -113,7 +113,7 @@
             }
             catch (Exception)
             {
-                throw; //YD: what happens if the async method throws an exception?
+                throw; //YD: what happens if the async method throws an exception? //YD: DIalogService.ShowException
             }
         }
 

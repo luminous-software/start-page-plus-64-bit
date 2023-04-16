@@ -8,7 +8,7 @@
 
     using static Dates.DateMethods;
 
-    public static class PeriodTypes
+    internal static class PeriodTypes
     {
         public static PeriodType CalculatePeriodType(bool pinned, DateTime currentDate, DateTime comparisonDate)
         {

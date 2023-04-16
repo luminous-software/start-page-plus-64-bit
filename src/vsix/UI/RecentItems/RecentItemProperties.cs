@@ -1,6 +1,6 @@
 ﻿namespace StartPagePlus.UI.Models
 {
-    public class RecentItemProperties
+    internal class RecentItemProperties
     {
         public string FullPath { get; set; }
 

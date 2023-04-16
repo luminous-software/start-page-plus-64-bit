@@ -61,15 +61,20 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
+            <!-- https://stackoverflow.com/questions/33550518/how-to-use-datatemplate-to-set-datacontext -->
+
             <ItemsControl.Resources>
+                <!-- in addition to instantiating the view, this is also setting the datacontext -->
                 <DataTemplate DataType="{x:Type vmri:RecentItemsViewModel}">
                     <vri:RecentItemsView IsTabStop="False"/>
                 </DataTemplate>
 
+                <!-- in addition to instantiating the view, this is also setting the datacontext -->
                 <DataTemplate DataType="{x:Type vmsi:StartItemsViewModel}">
                     <vsi:StartItemsView IsTabStop="False"/>
                 </DataTemplate>
 
+                <!-- in addition to instantiating the view, this is also setting the datacontext -->
                 <DataTemplate DataType="{x:Type vmni:NewsItemsViewModel}">
                     <vni:NewsItemsView IsTabStop="False"/>
                 </DataTemplate>

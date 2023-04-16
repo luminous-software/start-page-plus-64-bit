@@ -142,7 +142,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Button x:Name="RecentItemButton"
+                        <Button x:Name="SelectItemButton"
                             Command="{Binding SelectItemCommand}"
                             IsTabStop="False"
                             Style="{StaticResource ColumnListItemStyle}"
