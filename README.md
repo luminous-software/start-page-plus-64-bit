@@ -14,7 +14,7 @@
 [marketplace-64-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus_64_bit
 [marketplace-32-bit-url]: https://marketplace.visualstudio.com/items?itemName=YannDuran.StartPagePlus
 
-## WARNING: this preview release is NOT yet functional
+## WARNING: this preview release is NOT yet fully functional
 
 - For VS 2022 download the [**64-bit** extension][marketplace-64-bit-url]
 from the Visual Studio Marketplace.
