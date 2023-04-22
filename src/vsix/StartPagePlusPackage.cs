@@ -62,12 +62,12 @@ namespace StartPagePlus
 
         protected override object GetService(Type serviceType)
         {
-            if (_container?.IsRegistered(serviceType) ?? false) // is there a DI container & can it get an instance of the service
+            if (_container?.IsRegistered(serviceType) ?? false) // try in the container first
             {
-                return _container.GetInstance(serviceType); // the DI container gets the service
+                return _container?.GetInstance(serviceType); // the container gets the requested service
             }
 
-            return base.GetService(serviceType); // let VS handle getting the service
+            return base.GetService(serviceType); // otherwise let VS handle getting the requested service
         }
     }
 

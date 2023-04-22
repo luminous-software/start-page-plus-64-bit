@@ -12,14 +12,30 @@ namespace StartPagePlus.DI
         private static readonly ServiceCollection _serviceCollection = new();
         private static ServiceProvider _serviceProvider = null;
 
-        public void AddSingleton<TService, TImplementation>()
-        {
-            _serviceCollection.AddSingleton(typeof(TService), typeof(TImplementation));
-        }
-
         public void AddSingleton<TService>()
         {
-            _serviceCollection.AddSingleton(typeof(TService));
+            try
+            {
+                _serviceCollection.AddSingleton(typeof(TService));
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void AddSingleton<TService, TImplementation>()
+        {
+            try
+            {
+                _serviceCollection.AddSingleton(typeof(TService), typeof(TImplementation));
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         internal bool IsRegistered(Type serviceType)
@@ -27,28 +43,51 @@ namespace StartPagePlus.DI
 
         public T GetInstance<T>()
         {
-            if (_serviceProvider == null)
+            try
             {
-                BuildServiceProvider();
-            }
+                if (_serviceProvider == null)
+                {
+                    BuildServiceProvider();
+                }
 
-            return _serviceProvider.GetService<T>();
+                return _serviceProvider.GetService<T>();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public object GetInstance(Type serviceType)
         {
-            if (_serviceProvider == null)
+            try
             {
-                BuildServiceProvider();
-            }
+                if (_serviceProvider == null)
+                {
+                    BuildServiceProvider();
+                }
 
-            return _serviceProvider.GetService(serviceType);
+                return _serviceProvider.GetService(serviceType);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 
         private void BuildServiceProvider()
         {
-            _serviceProvider = _serviceCollection.BuildServiceProvider();
+            try
+            {
+                _serviceProvider = _serviceCollection.BuildServiceProvider();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
