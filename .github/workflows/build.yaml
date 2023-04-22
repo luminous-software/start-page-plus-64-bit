@@ -52,8 +52,8 @@ jobs:
       uses: timheuer/vsix-version-stamp@v1
       with:
         version-type: revision
-        manifest-file: src\source.extension.vsixmanifest
-        vsix-token-source-file: src\source.extension.cs
+        manifest-file: src\vsix\source.extension.vsixmanifest
+        vsix-token-source-file: src\vsix\source.extension.cs
 
     - name: Print new VSIX version
       if: env.Debugging
