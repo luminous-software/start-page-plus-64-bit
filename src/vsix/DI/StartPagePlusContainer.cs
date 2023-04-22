@@ -6,20 +6,36 @@ namespace StartPagePlus.DI
 
     internal class StartPagePlusContainer : MicrosoftDependencyInjectionContainer
     {
-        public T GetGetService<T>()
+        public T GetService<T>()
             where T : ServiceBase
         {
-            var viewModel = GetInstance<T>();
+            try
+            {
+                var service = GetInstance<T>();
 
-            return viewModel;
+                return service;
+
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         public T GetViewModel<T>()
             where T : ObservableObject
         {
-            var viewModel = GetInstance<T>();
+            try
+            {
+                var viewModel = GetInstance<T>();
 
-            return viewModel;
+                return viewModel;
+
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
     }
 }
