@@ -17,11 +17,12 @@
 
     internal class MruPrivateSettingsService : IMruService
     {
-        private const string OfflinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
-        private const string PrivateSettingsXml = @"\ApplicationPrivateSettings.xml";
+        private const string _offlinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
+        private const string _privateSettingsXml = @"\ApplicationPrivateSettings.xml";
 
-        private string SettingsPath
-            => MainViewModel.Package?.UserDataPath.Replace("Roaming", "Local") + PrivateSettingsXml;
+        private string _settingsPath
+            //YD: kind of clunky, but it works, for now
+            => MainViewModel.Package?.UserDataPath.Replace("Roaming", "Local") + _privateSettingsXml;
 
         public async Task<List<RecentItem>> GetItemsAsync()
         {
@@ -188,13 +189,18 @@
             {
                 var xmlDocument = new XmlDocument();
 
-                xmlDocument.Load(SettingsPath);
+                xmlDocument.Load(_settingsPath);
 
-                using (var offline = xmlDocument.DocumentElement.SelectNodes(OfflinePath))
+                using (var offline = xmlDocument.DocumentElement.SelectNodes(_offlinePath))
                 {
-                    var codeContainers = offline.Item(0).FirstChild.InnerText;
+                    var codeContainers = offline?.Item(0)?.FirstChild;
 
-                    items = JArray.Parse(codeContainers).ToObject<List<RecentItem>>();
+                    if (codeContainers is null)
+                        return items; // empty list
+
+                    var text = codeContainers.InnerText;
+
+                    items = JArray.Parse(text).ToObject<List<RecentItem>>();
                 }
             }
 
@@ -216,9 +222,9 @@
             {
                 var xmlDocument = new XmlDocument();
 
-                xmlDocument.Load(SettingsPath);
+                xmlDocument.Load(_settingsPath);
 
-                using (var offline = xmlDocument.DocumentElement.SelectNodes(OfflinePath))
+                using (var offline = xmlDocument.DocumentElement.SelectNodes(_offlinePath))
                 {
                     var codeContainers = offline.Item(0).FirstChild;
                     var recentItems = JsonConvert.SerializeObject(items);
@@ -226,7 +232,7 @@
                     codeContainers.InnerText = recentItems;
                 }
 
-                xmlDocument.Save(SettingsPath);
+                xmlDocument.Save(_settingsPath);
 
                 result = true;
             }
