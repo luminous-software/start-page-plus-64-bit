@@ -8,8 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9E3CC92-2D61-4E3F-973C-189AC210386C}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\.editorconfig = ..\..\..\.editorconfig
-		.gitignore = .gitignore
-		.github\workflows\build.yaml = .github\workflows\build.yaml
 		src\GlobalSuppressions.cs = src\GlobalSuppressions.cs
 		gulpfile.js = gulpfile.js
 	EndProjectSection
@@ -93,6 +91,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{011D4E
 		docs-source\assets\images\start-page-plus.png = docs-source\assets\images\start-page-plus.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{B3E3FD67-7EAD-45DD-B422-2CF75C059CC8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
+		.github\workflows\build.yaml = .github\workflows\build.yaml
+		.github\ISSUE_TEMPLATE\documentation.md = .github\ISSUE_TEMPLATE\documentation.md
+		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
+		.github\ISSUE_TEMPLATE\question.md = .github\ISSUE_TEMPLATE\question.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +128,7 @@ Global
 		{DE352D5D-4242-494B-858E-FCBCAA56BA82} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
 		{F23CF122-8FFB-4F83-ACDF-C59C3A32D127} = {5F5701DC-F83A-42F8-9DC9-DA953B1CA980}
 		{011D4E68-A073-4504-9EF9-59A43BC977EA} = {DE352D5D-4242-494B-858E-FCBCAA56BA82}
+		{B3E3FD67-7EAD-45DD-B422-2CF75C059CC8} = {D9E3CC92-2D61-4E3F-973C-189AC210386C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A12DD3B5-EAFD-4095-9002-BA19EF465E67}
