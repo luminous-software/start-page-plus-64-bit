@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help improve Start Page+
-title: "[BUG]"
+title: "[BUG] "
 labels: bug
 assignees: ''
 
