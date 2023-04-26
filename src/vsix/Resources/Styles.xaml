@@ -4,7 +4,7 @@
     xmlns:c="clr-namespace:StartPagePlus.UI.Converters"
     >
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/StartPagePlus;component/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/start-page-plus-64-bit;component/Resources/Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <FontFamily x:Key="DefaultFont">Segoe UI</FontFamily>

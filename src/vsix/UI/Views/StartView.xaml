@@ -20,8 +20,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/StartPagePlus;component/Resources/Brushes.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/StartPagePlus;component/Resources/Styles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/start-page-plus-64-bit;component/Resources/Brushes.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/start-page-plus-64-bit;component/Resources/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
