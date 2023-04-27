@@ -10,7 +10,7 @@ namespace StartPagePlus.UI.ViewModels.StartItems
         {
             Moniker = KnownMonikers.Restart;
             Name = "Restart Visual Studio";
-            Description = "Restart Visual Studio with one click (VS is currently running elevated, VS will remain elevated)";
+            Description = "Restart Visual Studio with one click (if VS is currently running elevated, VS will remain elevated)";
             ImageSize = 40;// 34;
             Margin = "7,5,0,0"; // "11,5,0,0";
         }

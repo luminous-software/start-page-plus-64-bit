@@ -14,7 +14,12 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 ## Releases
 
-### v0.20 - 2023-04-??
+### v0.21 - 2023-04-??
+
+#### Bug Fixes
+- Incorrect wording for Restart Visual Studio item
+
+### v0.20 - 2023-04-27
 
 #### Bug Fixes
 - NullReferenceException in LoadAsync()
