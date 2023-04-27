@@ -19,9 +19,11 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
 
     public class RecentItemsViewModel : ColumnViewModel
     {
-        private const string HEADING = "Open Recent Item";
+        private const string _heading = "Open Recent Item";
 
         private ObservableCollection<RecentItemViewModel> items = new();
+        private IVisualStudioService _visualStudioService;
+
         private RecentItemViewModel selectedItem;
         private bool refreshed;
 
@@ -37,9 +39,9 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             ActionService = actionService;
             CommandService = commandService;
             DialogService = dialogService;
-            VisualStudioService = visualStudioService;
+            _visualStudioService = visualStudioService;
 
-            Heading = HEADING;
+            Heading = _heading;
             IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
 
             GetCommands();
@@ -61,8 +63,6 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         public IRecentItemCommandService CommandService { get; }
 
         public IDialogService DialogService { get; }
-
-        public IVisualStudioService VisualStudioService { get; }
 
         public ObservableCollection<RecentItemViewModel> Items
         {
@@ -424,6 +424,6 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             => Refresh();
 
         private void OpenSettings()
-            => VisualStudioService.ShowOptions<OptionsProvider.RecentItems>();
+            => _visualStudioService.ShowOptions<OptionsProvider.RecentItems>();
     }
 }

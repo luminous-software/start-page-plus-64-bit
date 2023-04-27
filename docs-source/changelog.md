@@ -18,6 +18,7 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 #### Bug Fixes
 - Incorrect wording for Restart Visual Studio item
+- Recent Items 'Settings' button goes to 'General' instead of 'Recent Items'
 
 ### v0.20 - 2023-04-27
 

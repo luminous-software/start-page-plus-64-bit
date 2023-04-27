@@ -23,8 +23,6 @@ namespace StartPagePlus.UI.Services.Other
 
     using Interfaces;
 
-    using Options.Pages;
-
     public class ToolkitVisualStudioService : IVisualStudioService
     {
         private const string VERB_OPEN = "Open";
@@ -400,12 +398,13 @@ namespace StartPagePlus.UI.Services.Other
             => Dte.Quit();
 
         public bool ShowOptions<T>()
+            where T : DialogPage
         {
             try
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
-                VS.Settings.OpenAsync<OptionsProvider.General>().FireAndForget();
+                VS.Settings.OpenAsync<T>().FireAndForget();
                 return true;
             }
             catch (Exception ex)

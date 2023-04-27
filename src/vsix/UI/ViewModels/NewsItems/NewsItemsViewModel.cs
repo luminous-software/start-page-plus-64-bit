@@ -3,12 +3,11 @@ using Microsoft.VisualStudio.Shell;
 
 using CommunityToolkit.Mvvm.Messaging;
 
-using Community.VisualStudio.Toolkit;
-
 namespace StartPagePlus.UI.ViewModels.NewsItems
 {
     using Core.Interfaces;
 
+    using Interfaces;
     using Interfaces.NewsItems;
 
     using Messages;
@@ -25,12 +24,15 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
         private const string HEADING = "Read News Item";
 
         private List<NewsItemViewModel> items = new();
+        private readonly IVisualStudioService _visualStudioService;
 
-        public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService, INewsItemActionService actionService)
+        public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService, INewsItemActionService actionService, IVisualStudioService visualStudioService)
         {
             DataService = dataService;
             CommandService = commandService;
             ActionService = actionService;
+            _visualStudioService = visualStudioService;
+
             Heading = HEADING;
             IsVisible = true;
 
@@ -76,6 +78,6 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             => Commands = CommandService.GetCommands(Refresh, OpenSettings);
 
         private void OpenSettings()
-            => VS.Settings.OpenAsync<OptionsProvider.NewsItems>(); //YD: use VisualStudioService
+            => _visualStudioService.ShowOptions<OptionsProvider.NewsItems>();
     }
 }

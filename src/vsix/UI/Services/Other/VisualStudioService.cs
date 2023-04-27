@@ -377,6 +377,7 @@ namespace StartPagePlus.UI.Services.Other
         }
 
         public bool ShowOptions<T>()
+            where T : DialogPage
         {
             try
             {

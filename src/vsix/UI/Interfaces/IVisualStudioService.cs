@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 
+using Microsoft.VisualStudio.Shell;
+
 namespace StartPagePlus.UI.Interfaces
 {
     public interface IVisualStudioService
@@ -24,6 +26,6 @@ namespace StartPagePlus.UI.Interfaces
 
         Task<bool> OpenInNewInstanceAsync(string path);
 
-        bool ShowOptions<T>();
+        bool ShowOptions<T>() where T : DialogPage;
     }
 }
