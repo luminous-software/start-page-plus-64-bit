@@ -8,8 +8,11 @@ namespace StartPagePlus.UI.Services.Other
 {
     using Core.Interfaces;
 
-    public class ToolkitDialogService : IDialogService
+    internal class ToolkitDialogService : ServiceBase, IDialogService
     {
+        public ToolkitDialogService() : base()
+        { }
+
         public void ShowNotImplemented(string method)
             => VS.MessageBox.Show(Vsix.Name, $"'{method}' is not yet implemented"); //YD: add ShowNotImplemented to VS.Notifications.MessageBox
 

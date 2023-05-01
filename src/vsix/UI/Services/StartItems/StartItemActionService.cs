@@ -2,9 +2,12 @@
 {
     using Interfaces;
 
-    public class StartItemActionService : IStartItemActionService
+    internal class StartItemActionService : ServiceBase, IStartItemActionService
     {
         private readonly IVisualStudioService _visualStudioService;
+
+        public StartItemActionService() : base()
+        { }
 
         public StartItemActionService(IVisualStudioService visualStudioService)
             => _visualStudioService = visualStudioService;

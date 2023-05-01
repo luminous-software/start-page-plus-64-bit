@@ -23,7 +23,7 @@ namespace StartPagePlus.UI.Services.Other
 
     using Interfaces;
 
-    public class ToolkitVisualStudioService : IVisualStudioService
+    internal class ToolkitVisualStudioService : ServiceBase, IVisualStudioService
     {
         private const string VERB_OPEN = "Open";
 
@@ -44,7 +44,7 @@ namespace StartPagePlus.UI.Services.Other
 
         private readonly IDialogService _dialogService;
 
-        public ToolkitVisualStudioService(IDialogService dialogService)
+        public ToolkitVisualStudioService(IDialogService dialogService) : base()
             => _dialogService = dialogService;
 
         //private IVsWebBrowsingService BrowsingService

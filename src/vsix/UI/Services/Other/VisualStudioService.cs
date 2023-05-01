@@ -26,7 +26,7 @@ namespace StartPagePlus.UI.Services.Other
 
     using UI.Interfaces;
 
-    public class VisualStudioService : IVisualStudioService
+    internal class VisualStudioService : ServiceBase, IVisualStudioService
     {
         private const string VERB_OPEN = "Open";
 
@@ -39,7 +39,7 @@ namespace StartPagePlus.UI.Services.Other
 
         private const uint FORCE_NEW_WINDOW = (uint)__VSWBNAVIGATEFLAGS.VSNWB_ForceNew;
 
-        public VisualStudioService(IDialogService dialogService)
+        public VisualStudioService(IDialogService dialogService) : base()
             => DialogService = dialogService;
 
         private IDialogService DialogService { get; }

@@ -13,20 +13,18 @@ namespace StartPagePlus.UI.Services
     using StartPagePlus.UI.Messages;
     using CommunityToolkit.Mvvm.Messaging;
 
-    public class RecentItemActionService : IRecentItemActionService
+    internal class RecentItemActionService : ServiceBase, IRecentItemActionService
     {
         public RecentItemActionService(
             IRecentItemDataService dataService,
             IVisualStudioService vsService,
-            IDialogService dialogService,
-            IMessenger messenger
+            IDialogService dialogService
             /*IDateTimeService dateTimeService*/
-            )
+            ) : base()
         {
             DataService = dataService;
             VsService = vsService;
             DialogService = dialogService;
-            Messenger = messenger;
             //DateTimeService = dateTimeService;
         }
 
@@ -35,8 +33,6 @@ namespace StartPagePlus.UI.Services
         public IVisualStudioService VsService { get; }
 
         private IDialogService DialogService { get; }
-
-        private IMessenger Messenger { get; }
 
         //private IDateTimeService DateTimeService { get; }
 

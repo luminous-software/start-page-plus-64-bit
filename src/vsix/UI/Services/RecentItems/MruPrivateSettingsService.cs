@@ -15,7 +15,7 @@
     using StartPagePlus.UI.Models;
     using StartPagePlus.UI.ViewModels;
 
-    internal class MruPrivateSettingsService : IMruService
+    internal class MruPrivateSettingsService : ServiceBase, IMruService
     {
         private const string _offlinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
         private const string _privateSettingsXml = @"\ApplicationPrivateSettings.xml";
@@ -23,6 +23,13 @@
         private string _settingsPath
             //YD: kind of clunky, but it works, for now
             => MainViewModel.Package?.UserDataPath.Replace("Roaming", "Local") + _privateSettingsXml;
+
+        //---
+
+        public MruPrivateSettingsService() : base()
+        { }
+
+        //---
 
         public async Task<List<RecentItem>> GetItemsAsync()
         {

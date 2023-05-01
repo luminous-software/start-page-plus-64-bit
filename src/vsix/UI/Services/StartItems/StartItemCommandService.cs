@@ -11,8 +11,11 @@ namespace StartPagePlus.UI.Services.StartItems
 
     using ViewModels;
 
-    public class StartItemCommandService : IStartItemCommandService
+    internal class StartItemCommandService : ServiceBase, IStartItemCommandService
     {
+        public StartItemCommandService() : base()
+        { }
+
         private string VersionNumber
             => GeneralOptions.Instance.PackageVersion;
 

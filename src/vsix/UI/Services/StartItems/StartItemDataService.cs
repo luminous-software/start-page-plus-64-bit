@@ -6,7 +6,7 @@
 
     using ViewModels.StartItems;
 
-    public class StartItemDataService : IStartItemDataService
+    internal class StartItemDataService : ServiceBase, IStartItemDataService
     {
         private readonly CloneRepositoryViewModel _cloneRepository;
         private readonly OpenFolderViewModel _openFolder;
@@ -22,7 +22,7 @@
             CreateProjectViewModel createProject,
             RestartNormalViewModel restartNormal,
             RestartElevatedViewModel restartElevated
-            )
+            ) : base()
         {
             _cloneRepository = cloneRepository;
             _openFolder = openFolder;

@@ -9,8 +9,11 @@
 
     using StartPagePlus.UI.ViewModels;
 
-    internal class NewsItemCommandService : INewsItemCommandService
+    internal class NewsItemCommandService : ServiceBase, INewsItemCommandService
     {
+        public NewsItemCommandService() : base()
+        { }
+
         public List<CommandViewModel> GetCommands(Action refresh, Action openSettings)
             => new()
             {
