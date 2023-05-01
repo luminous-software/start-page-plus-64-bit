@@ -12,19 +12,9 @@ namespace StartPagePlus.UI.ViewModels
 
     public class ViewModelBase : ObservableRecipient, IViewModel
     {
-        //--- IMessageMethods
-
-        public virtual void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
-            where TMessage : class, new()
-            => MessageMethods.ListenFor(recipient, action);
-
-        public virtual void SendMessage<TMessage>()
-            where TMessage : class, new()
-            => MessageMethods.SendMessage<TMessage>();
-
-        public virtual void SendMessage<TMessage>(TMessage message)
-            where TMessage : class, new()
-            => MessageMethods.SendMessage(message);
+        protected void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
+            where TMessage : class //, new()
+            => Messenger.Register(recipient, action);
 
         //--- IRunMethods
 

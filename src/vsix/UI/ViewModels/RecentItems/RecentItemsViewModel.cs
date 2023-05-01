@@ -47,13 +47,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             GetCommands();
             Refresh();
 
-            Messenger.Register<RecentItemsRefresh>(this, RefreshRequested);
-            Messenger.Register<RecentItemSelected>(this, SelectItem);
-            Messenger.Register<RecentItemTogglePinned>(this, TogglePinned);
-            Messenger.Register<RecentItemRemove>(this, RemoveItem);
-            Messenger.Register<RecentItemCopyPath>(this, CopyItemPath);
-            Messenger.Register<RecentItemEditPath>(this, EditItemPath);
-            Messenger.Register<RecentItemOpenInVS>(this, OpenInVS);
+            ListenFor<RecentItemsRefresh>(this, RefreshRequested);
+            ListenFor<RecentItemSelected>(this, SelectItem);
+            ListenFor<RecentItemTogglePinned>(this, TogglePinned);
+            ListenFor<RecentItemRemove>(this, RemoveItem);
+            ListenFor<RecentItemCopyPath>(this, CopyItemPath);
+            ListenFor<RecentItemEditPath>(this, EditItemPath);
+            ListenFor<RecentItemOpenInVS>(this, OpenInVS);
         }
 
         public IRecentItemActionService ActionService { get; }
