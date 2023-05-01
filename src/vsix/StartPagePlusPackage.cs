@@ -55,7 +55,7 @@ namespace StartPagePlus
 
             ServiceManager.RegisterServices(_container);
             ViewModelManager.RegisterViewModels(_container);
-            MessageManager.RegisterMessages(_container);
+            //MessageManager.RegisterMessages(_container); //YD: this may not be needed
             EventManager.RegisterEvents(_container);
 
             this.RegisterToolWindows();

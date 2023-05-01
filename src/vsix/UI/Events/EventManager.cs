@@ -8,7 +8,7 @@ namespace StartPagePlus.UI.Events
 
     using Messages;
 
-    internal static class EventManager
+    internal class EventManager
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EventManager"/> class.

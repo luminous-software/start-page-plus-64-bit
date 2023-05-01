@@ -24,7 +24,7 @@ namespace StartPagePlus.UI.Services
 
     using Other;
 
-    internal static class ServiceManager
+    internal class ServiceManager
     {
         private static StartPagePlusContainer _container;
 

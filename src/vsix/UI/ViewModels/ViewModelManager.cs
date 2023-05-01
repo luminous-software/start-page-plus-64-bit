@@ -12,7 +12,7 @@ namespace StartPagePlus.UI.ViewModels
 
     using NewsItems;
 
-    public static class ViewModelManager
+    public class ViewModelManager
     {
         private static StartPagePlusContainer _container;
 
