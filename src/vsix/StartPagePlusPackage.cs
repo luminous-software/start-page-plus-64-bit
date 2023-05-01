@@ -12,7 +12,7 @@ namespace StartPagePlus
 
     using Options.Pages;
 
-    using UI.Messages;
+    using UI.Events;
     using UI.Services;
     using UI.ToolWindows;
     using UI.ViewModels;
@@ -56,6 +56,7 @@ namespace StartPagePlus
             ServiceManager.RegisterServices(_container);
             ViewModelManager.RegisterViewModels(_container);
             MessageManager.RegisterMessages(_container);
+            EventManager.RegisterEvents(_container);
 
             this.RegisterToolWindows();
         }
