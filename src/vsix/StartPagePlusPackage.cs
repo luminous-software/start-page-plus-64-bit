@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-using Microsoft.VisualStudio.Shell;
-
 using Community.VisualStudio.Toolkit;
+
+using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus
 {
@@ -13,13 +13,14 @@ namespace StartPagePlus
     using Options.Pages;
 
     using UI.Events;
+    using UI.Messages;
     using UI.Services;
     using UI.ToolWindows;
     using UI.ViewModels;
 
-    using Task = System.Threading.Tasks.Task;
-
     using static Vsix;
+
+    using Task = System.Threading.Tasks.Task;
 
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(Name, Description, Vsix.Version)]
@@ -55,7 +56,7 @@ namespace StartPagePlus
 
             ServiceManager.RegisterServices(_container);
             ViewModelManager.RegisterViewModels(_container);
-            //MessageManager.RegisterMessages(_container); //YD: this may not be needed
+            MessengerManager.RegisterMessenger(_container);
             EventManager.RegisterEvents(_container);
 
             this.RegisterToolWindows();
