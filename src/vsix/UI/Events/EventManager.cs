@@ -1,9 +1,13 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using System;
 
 using Community.VisualStudio.Toolkit;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace StartPagePlus.UI.Events
 {
+    using Core;
+
     using DI;
 
     using Messages;
@@ -16,23 +20,7 @@ namespace StartPagePlus.UI.Events
     {
         private static readonly IDialogService _dialogService;
         private static readonly IAsyncMethodService _methodService;
-        /// </summary>
-        /// <remarks>
-        /// This constructor will produce an instance that will use the <see cref="WeakReferenceMessenger.Default"/> instance
-        /// to perform requested operations. It will also be available locally through the <see cref="Messenger"/> property.
-        /// </remarks>
-        static EventManager()
-        { Messenger = WeakReferenceMessenger.Default; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventManager"/> class.
-        /// </summary>
-        /// <param name="messenger">The <see cref="IMessenger"/> instance to use to send messages.</param>
-        /// <exception cref="System.ArgumentNullException">Thrown if <paramref name="messenger"/> is <see langword="null"/>.</exception>
-        //static EventManager(IMessenger messenger)
-        //{
-        //    Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
-        //}
+        private static readonly IMessenger _messenger;
 
         //---
 
@@ -47,17 +35,42 @@ namespace StartPagePlus.UI.Events
 
         internal static void RegisterEvents(StartPagePlusContainer container)
         {
+            VS.Events.SolutionEvents.OnBeforeOpenSolution += OnBeforeOpenSolution;
             VS.Events.SolutionEvents.OnAfterCloseSolution += OnAfterCloseSolution;
         }
 
         internal static void DeregisterEvents(StartPagePlusContainer container)
         {
             VS.Events.SolutionEvents.OnAfterCloseSolution -= OnAfterCloseSolution;
+            VS.Events.SolutionEvents.OnBeforeOpenSolution -= OnBeforeOpenSolution;
         }
 
         //---
 
+        private static void OnBeforeOpenSolution(string obj)
+        {
+            _methodService.Run(async () =>
+            {
+                var result = false;
+
+                try
+                {
+                    var mainWindow = await VS.Windows.FindWindowAsync(PackageGuids.StartPagePlusWindow);
+
+                    await mainWindow.CloseFrameAsync(FrameCloseOption.NoSave);
+
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    _dialogService.ShowException(ex);
+                }
+
+                return result;
+            });
+        }
+
         private static void OnAfterCloseSolution()
-            => Messenger.Send<RecentItemsRefresh>();
+            => _messenger.Send<RecentItemsRefresh>();
     }
 }
