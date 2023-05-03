@@ -46,5 +46,15 @@
         [DisplayName(StartTabTitleTextDisplayName)]
         [Description(StartTabTitleTextDescription)]
         public string StartTabTitleText { get; set; } = StartTabTitleDefault;
+
+        [Category(H2 + PageConstants.Settings)]
+        [DisplayName(HideOnSolutionOpenDisplayName)]
+        [Description(HideOnSolutionOpenDescription)]
+        public bool HideOnSolutionOpen { get; set; } = HideOnSolutionOpenDefault;
+
+        [Category(H2 + PageConstants.Settings)]
+        [DisplayName(RestoreOnSolutionCloseDisplayName)]
+        [Description(RestoreOnSolutionCloseDescription)]
+        public bool RestoreOnSolutionClose { get; set; } = RestoreOnSolutionCloseDefault;
     }
 }

@@ -6,15 +6,17 @@ namespace StartPagePlus.UI.ViewModels
 {
     using DI;
 
+    using NewsItems;
+
     using RecentItems;
 
     using StartItems;
 
-    using NewsItems;
-
-    public class ViewModelManager
+    internal class ViewModelManager
     {
         private static StartPagePlusContainer _container;
+
+        //---
 
         public static MainViewModel MainViewModel
             => GetViewModel<MainViewModel>();
@@ -37,7 +39,7 @@ namespace StartPagePlus.UI.ViewModels
 
         //---
 
-        internal static void RegisterViewModels(StartPagePlusContainer container)
+        public static void RegisterViewModels(StartPagePlusContainer container)
         {
             _container = container ?? throw new ArgumentNullException(nameof(container));
 
@@ -63,6 +65,8 @@ namespace StartPagePlus.UI.ViewModels
 
             _container.AddSingleton<NewsItemsViewModel>();
         }
+
+        //---
 
         private static T GetViewModel<T>()
             where T : ObservableObject

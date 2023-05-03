@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-
 using Luminous.Code.Extensions.Exceptions;
 using Luminous.Code.Extensions.Strings;
 
@@ -21,7 +20,7 @@ namespace StartPagePlus.UI.Views.NewsItems
 
             try
             {
-                var viewModel = ViewModelManager.NewsItemsViewModel; // var viewModel = (NewsItemsViewModel)DataContext; viewModel was null when using this code
+                var viewModel = ViewModelManager.NewsItemsViewModel;
 
                 // NOTE: Refresh is called in viewmodel's constructor
 
@@ -68,7 +67,8 @@ namespace StartPagePlus.UI.Views.NewsItems
 
         private void AddFilter(ListCollectionView view)
         {
-            if (view is null) return;
+            if (view is null)
+                return;
 
             view.Filter = (object obj) =>
             {

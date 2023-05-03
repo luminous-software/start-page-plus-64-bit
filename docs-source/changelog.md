@@ -20,6 +20,14 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 - Incorrect wording for Restart Visual Studio item
 - Recent Items 'Settings' button goes to 'General' instead of 'Recent Items'
 
+#### New Features
+- Hide StartPage+ on solution load (including option, default=false)
+([#5](https://github.com/luminous-software/start-page-plus-64-bit/issues/5))
+- Show StartPage+ on solution close (including option, default=false)
+([#5](https://github.com/luminous-software/start-page-plus-64-bit/issues/5))
+- After closing a solution refresh the Recent items
+([#13](https://github.com/luminous-software/start-page-plus-64-bit/issues/5))
+
 ### v0.20 - 2023-04-27
 
 #### Bug Fixes

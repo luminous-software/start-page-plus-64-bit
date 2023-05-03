@@ -22,7 +22,11 @@ using Task = System.Threading.Tasks.Task;
 
 namespace StartPagePlus.UI.Services.Other
 {
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Core.Interfaces;
+
+    using StartPagePlus.Core;
 
     using UI.Interfaces;
 
@@ -39,7 +43,8 @@ namespace StartPagePlus.UI.Services.Other
 
         private const uint FORCE_NEW_WINDOW = (uint)__VSWBNAVIGATEFLAGS.VSNWB_ForceNew;
 
-        public VisualStudioService(IDialogService dialogService) : base()
+        public VisualStudioService(IDialogService dialogService, IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
             => DialogService = dialogService;
 
         private IDialogService DialogService { get; }

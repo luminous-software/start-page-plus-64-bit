@@ -7,43 +7,31 @@ namespace StartPagePlus.UI.Services
 {
     using Core.Interfaces;
 
-    using Methods;
+    using StartPagePlus.Core;
 
     internal abstract class ServiceBase : IService
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceBase"/> class.
-        /// </summary>
-        /// <remarks>
-        /// This constructor will produce an instance that will use the <see cref="WeakReferenceMessenger.Default"/> instance
-        /// to perform requested operations. It will also be available locally through the <see cref="Messenger"/> property.
-        /// </remarks>
-        protected ServiceBase()
-            : this(WeakReferenceMessenger.Default)
-        { }
+        private readonly IAsyncMethodService _methodService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceBase"/> class.
-        /// </summary>
-        /// <param name="messenger">The <see cref="IMessenger"/> instance to use to send messages.</param>
-        /// <exception cref="System.ArgumentNullException">Thrown if <paramref name="messenger"/> is <see langword="null"/>.</exception>
-        protected ServiceBase(IMessenger messenger)
+        //---
+
+        protected ServiceBase(IAsyncMethodService methodService, IMessenger messenger)
         {
-            Messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
+            _methodService = methodService ?? throw new ArgumentNullException(nameof(methodService));
+
+            Messenger = messenger ?? throw new ArgumentNullException(nameof(methodService));
         }
 
-        /// <summary>
-        /// Gets the <see cref="IMessenger"/> instance in use.
-        /// </summary>
+        //---
+
         protected IMessenger Messenger { get; }
 
+        //---
 
-        //--- IRunMethods
+        protected bool Run(Func<Task<bool>> asyncMethod)
+            => _methodService.Run(asyncMethod);
 
-        public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
-            => RunMethods.RunMethod(asyncMethod);
-
-        public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
-            => RunMethods.RunMethod(asyncMethod);
+        protected bool? Run(Func<Task<bool?>> asyncMethod)
+            => _methodService.Run(asyncMethod);
     }
 }

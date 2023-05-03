@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace StartPagePlus.UI.Services.RecentItems
 {
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Core.Interfaces;
 
+    using StartPagePlus.Core;
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.ViewModels.RecentItems;
 
@@ -14,11 +17,12 @@ namespace StartPagePlus.UI.Services.RecentItems
     {
         public RecentItemDataService(
             IMruService mruService,
-            IDateTimeService dateTimeService
+            IDateTimeService dateTimeService,
             //IClipboardService clipboardService,
             //IRecentItemDialogService recentItemDialogService,
             //IVisualStudioService visualStudioService
-            )
+            IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
         {
             MruService = mruService;
             DateTimeService = dateTimeService;
