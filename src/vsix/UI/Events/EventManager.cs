@@ -63,6 +63,7 @@ namespace StartPagePlus.UI.Events
                 }
                 catch (Exception ex)
                 {
+                    result = false;
                     _dialogService.ShowException(ex);
                 }
 
@@ -71,6 +72,29 @@ namespace StartPagePlus.UI.Events
         }
 
         private static void OnAfterCloseSolution()
-            => _messenger.Send<RecentItemsRefresh>();
+        {
+            _methodService.Run(async () =>
+            {
+                var result = false;
+
+                try
+                {
+                    var mainWindow = await VS.Windows.FindWindowAsync(PackageGuids.StartPagePlusWindow);
+
+                    await mainWindow.ShowAsync();
+
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    _dialogService.ShowException(ex);
+                }
+
+                return result;
+            });
+
+            _messenger.Send<RecentItemsRefresh>();
+        }
     }
 }
