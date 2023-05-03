@@ -7,14 +7,15 @@ using CommunityToolkit.Mvvm.Messaging;
 namespace StartPagePlus.UI.Events
 {
     using Core;
+    using Core.Interfaces;
 
     using DI;
 
     using Messages;
 
-    using Services;
+    using Options.Pages;
 
-    using StartPagePlus.Core.Interfaces;
+    using Services;
 
     internal class EventManager
     {
@@ -49,52 +50,79 @@ namespace StartPagePlus.UI.Events
 
         private static void OnBeforeOpenSolution(string obj)
         {
-            _methodService.Run(async () =>
+            if (GeneralOptions.Instance.HideOnSolutionOpen == true)
             {
-                var result = false;
+                CloseWindow();
+            }
 
-                try
-                {
-                    var mainWindow = await VS.Windows.FindWindowAsync(PackageGuids.StartPagePlusWindow);
+            //---
 
-                    await mainWindow.CloseFrameAsync(FrameCloseOption.NoSave);
+            static void CloseWindow()
+            {
+                _methodService.Run(
+                    async () =>
+                    {
+                        var result = false;
 
-                    result = true;
-                }
-                catch (Exception ex)
-                {
-                    result = false;
-                    _dialogService.ShowException(ex);
-                }
+                        try
+                        {
+                            var mainWindow = await VS.Windows.FindWindowAsync(PackageGuids.StartPagePlusWindow);
 
-                return result;
-            });
+                            await mainWindow.CloseFrameAsync(FrameCloseOption.NoSave);
+
+                            result = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            result = false;
+                            _dialogService.ShowException(ex);
+                        }
+
+                        return result;
+                    }
+                );
+            }
         }
 
         private static void OnAfterCloseSolution()
         {
-            _methodService.Run(async () =>
+            if (GeneralOptions.Instance.HideOnSolutionOpen == true)
             {
-                var result = false;
+                ShowWindow();
+            }
 
-                try
-                {
-                    var mainWindow = await VS.Windows.FindWindowAsync(PackageGuids.StartPagePlusWindow);
+            RefreshRecentItems();
 
-                    await mainWindow.ShowAsync();
+            //---
 
-                    result = true;
-                }
-                catch (Exception ex)
-                {
-                    result = false;
-                    _dialogService.ShowException(ex);
-                }
+            static void ShowWindow()
+            {
+                _methodService.Run(
+                    async () =>
+                    {
+                        var result = false;
 
-                return result;
-            });
+                        try
+                        {
+                            var mainWindow = await VS.Windows.FindWindowAsync(PackageGuids.StartPagePlusWindow);
 
-            _messenger.Send<RecentItemsRefresh>();
+                            await mainWindow.ShowAsync();
+
+                            result = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            result = false;
+                            _dialogService.ShowException(ex);
+                        }
+
+                        return result;
+                    }
+                );
+            }
+
+            static void RefreshRecentItems()
+                => _messenger.Send<RecentItemsRefresh>();
         }
     }
 }

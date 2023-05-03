@@ -49,6 +49,14 @@
         public const string StartTabTitleTextDescription = "Sets the text of the 'Start' tab title";
         internal const string StartTabTitleDefault = "What would you like to do today?";
 
+        public const string HideOnSolutionOpenDisplayName = "Hide Window on Solution Load";
+        public const string HideOnSolutionOpenDescription = "Hides the 'Start Page+' window when a solution is loaded";
+        internal const bool HideOnSolutionOpenDefault = false;
+
+        public const string RestoreOnSolutionCloseDisplayName = "Show Window on Solution Close";
+        public const string RestoreOnSolutionCloseDescription = "Shows the 'Start Page+' window when a solution is closed";
+        internal const bool RestoreOnSolutionCloseDefault = false;
+
         // Recent Items
 
         public const string RecentItemsToDisplayDisplayName = "Items To Display";
