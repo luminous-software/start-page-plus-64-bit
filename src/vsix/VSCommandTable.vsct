@@ -28,5 +28,6 @@
 		<GuidSymbol name="StartPagePlus" value="{6b4431b4-7dc5-40c7-bf16-8d7ebe2c4608}">
 			<IDSymbol name="ViewWindow" value="0x0210" />
 		</GuidSymbol>
+		<GuidSymbol name="StartPagePlusWindow" value="{e3be6dd3-f017-4d6e-ae88-2b29319a77a2}" />
 	</Symbols>
 </CommandTable>
