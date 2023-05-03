@@ -5,28 +5,38 @@ using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus.UI.Services
 {
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Core.Interfaces;
-    using UI.Enums;
+
     using Interfaces;
     using Interfaces.RecentItems;
-    using ViewModels.RecentItems;
+
+    using StartPagePlus.Core;
     using StartPagePlus.UI.Messages;
-    using CommunityToolkit.Mvvm.Messaging;
+
+    using UI.Enums;
+
+    using ViewModels.RecentItems;
 
     internal class RecentItemActionService : ServiceBase, IRecentItemActionService
     {
         public RecentItemActionService(
             IRecentItemDataService dataService,
             IVisualStudioService vsService,
-            IDialogService dialogService
+            IDialogService dialogService,
             /*IDateTimeService dateTimeService*/
-            ) : base()
+            IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
         {
+
             DataService = dataService;
             VsService = vsService;
             DialogService = dialogService;
             //DateTimeService = dateTimeService;
         }
+
+        //---
 
         public IRecentItemDataService DataService { get; }
 
@@ -35,6 +45,8 @@ namespace StartPagePlus.UI.Services
         private IDialogService DialogService { get; }
 
         //private IDateTimeService DateTimeService { get; }
+
+        //---
 
         public void ExecuteAction(RecentItemViewModel viewModel)
         {
@@ -76,6 +88,8 @@ namespace StartPagePlus.UI.Services
                 DialogService.ShowException(ex);
             }
         }
+
+        //---
 
         //private async Task SetLastAccessedAsync(string path)
         //    => await DataService.SetLastAccessedAsync(path, DateTimeService.Today.Date);

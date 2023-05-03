@@ -8,10 +8,14 @@ namespace StartPagePlus.UI.Events
 
     using Messages;
 
+    using Services;
+
+    using StartPagePlus.Core.Interfaces;
+
     internal class EventManager
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventManager"/> class.
+        private static readonly IDialogService _dialogService;
+        private static readonly IAsyncMethodService _methodService;
         /// </summary>
         /// <remarks>
         /// This constructor will produce an instance that will use the <see cref="WeakReferenceMessenger.Default"/> instance
@@ -32,10 +36,12 @@ namespace StartPagePlus.UI.Events
 
         //---
 
-        /// <summary>
-        /// Gets the <see cref="IMessenger"/> instance in use.
-        /// </summary>
-        private static IMessenger Messenger { get; }
+        static EventManager()
+        {
+            _dialogService = ServiceManager.DialogService;
+            _methodService = ServiceManager.AsyncMethodService;
+            _messenger = MessengerManager.Messenger;
+        }
 
         //---
 

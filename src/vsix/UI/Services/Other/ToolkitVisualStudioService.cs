@@ -3,25 +3,29 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
+using Community.VisualStudio.Toolkit;
 
 using EnvDTE;
 
 using EnvDTE80;
 
-using Community.VisualStudio.Toolkit;
-
 using Luminous.Code.Extensions.Strings;
+
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 using Process = System.Diagnostics.Process;
 using Task = System.Threading.Tasks.Task;
 
 namespace StartPagePlus.UI.Services.Other
 {
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Core.Interfaces;
 
     using Interfaces;
+
+    using StartPagePlus.Core;
 
     internal class ToolkitVisualStudioService : ServiceBase, IVisualStudioService
     {
@@ -44,11 +48,12 @@ namespace StartPagePlus.UI.Services.Other
 
         private readonly IDialogService _dialogService;
 
-        public ToolkitVisualStudioService(IDialogService dialogService) : base()
+        //---
+
+        public ToolkitVisualStudioService(IDialogService dialogService, IAsyncMethodService methodService, IMessenger messenger) : base(methodService, messenger)
             => _dialogService = dialogService;
 
-        //private IVsWebBrowsingService BrowsingService
-        //    => VS.GetRequiredService<SVsWebBrowsingService, IVsWebBrowsingService>();
+        //---
 
         private static DTE2 Dte
             => VS.GetRequiredService<_DTE, DTE2>(); //YD: investigate toolkit for DTE2 alternative, also a way to not call every service (some may never be used)
@@ -316,7 +321,7 @@ namespace StartPagePlus.UI.Services.Other
 
                 try
                 {
-                    VsShell3.IsRunningElevated(out bool elevated);
+                    VsShell3.IsRunningElevated(out var elevated);
 
                     return elevated;
 

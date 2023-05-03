@@ -6,11 +6,14 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Microsoft.VisualStudio.Shell;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
+    using StartPagePlus.Core;
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.Models;
     using StartPagePlus.UI.ViewModels;
@@ -26,7 +29,7 @@
 
         //---
 
-        public MruPrivateSettingsService() : base()
+        public MruPrivateSettingsService(IAsyncMethodService methodService, IMessenger messenger) : base(methodService, messenger)
         { }
 
         //---

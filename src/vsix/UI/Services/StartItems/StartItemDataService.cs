@@ -2,7 +2,11 @@
 {
     using System.Collections.Generic;
 
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Interfaces.StartItems;
+
+    using StartPagePlus.Core;
 
     using ViewModels.StartItems;
 
@@ -21,8 +25,9 @@
             OpenProjectViewModel openProjext,
             CreateProjectViewModel createProject,
             RestartNormalViewModel restartNormal,
-            RestartElevatedViewModel restartElevated
-            ) : base()
+            RestartElevatedViewModel restartElevated,
+            IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
         {
             _cloneRepository = cloneRepository;
             _openFolder = openFolder;

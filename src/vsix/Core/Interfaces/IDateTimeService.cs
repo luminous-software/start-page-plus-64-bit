@@ -2,7 +2,7 @@
 
 namespace StartPagePlus.Core.Interfaces
 {
-    public interface IDateTimeService
+    public interface IDateTimeService : ISimpleService
     {
         DateTime Today { get; }
 

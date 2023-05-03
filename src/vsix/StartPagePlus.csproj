@@ -50,6 +50,7 @@
       <Link>Properties\GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Commands\ViewWindow.cs" />
+    <Compile Include="Core\Interfaces\IAsyncMethodService.cs" />
     <Compile Include="Core\Interfaces\IDateTimeService.cs" />
     <Compile Include="Core\Interfaces\IDialogService.cs" />
     <Compile Include="Core\Interfaces\ISimpleService.cs" />
@@ -126,7 +127,8 @@
     <Compile Include="UI\Messages\RecentItemsRefresh.cs" />
     <Compile Include="UI\Messages\RecentItemSelected.cs" />
     <Compile Include="UI\Messages\NewsItemSelected.cs" />
-    <Compile Include="UI\Methods\RunMethods.cs" />
+    <Compile Include="Core\Services\AsyncMethodService.cs" />
+    <Compile Include="UI\Methods\AsyncMethodManager.cs" />
     <Compile Include="UI\RecentItems\RecentItem.cs" />
     <Compile Include="UI\RecentItems\RecentItemProperties.cs" />
     <Compile Include="UI\RecentItems\RecentItemValue.cs" />
@@ -150,7 +152,6 @@
     <Compile Include="UI\ViewModels\ColumnViewModel.cs" />
     <Compile Include="UI\ViewModels\CommandViewModel.cs" />
     <Compile Include="UI\ViewModels\ContextCommandViewModel.cs" />
-    <Compile Include="UI\Interfaces\IRunMethods.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\NewsItems\NewsItemViewModel.cs" />
     <Compile Include="UI\ViewModels\RecentItems\RecentItemsViewModel.cs" />

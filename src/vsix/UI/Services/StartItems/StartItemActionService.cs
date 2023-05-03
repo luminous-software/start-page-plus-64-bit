@@ -1,16 +1,22 @@
 ﻿namespace StartPagePlus.UI.Services
 {
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Interfaces;
+
+    using StartPagePlus.Core;
 
     internal class StartItemActionService : ServiceBase, IStartItemActionService
     {
         private readonly IVisualStudioService _visualStudioService;
 
-        public StartItemActionService() : base()
-        { }
+        //---
 
-        public StartItemActionService(IVisualStudioService visualStudioService)
+        public StartItemActionService(IVisualStudioService visualStudioService, IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
             => _visualStudioService = visualStudioService;
+
+        //---
 
         public bool CloneRepository()
             => _visualStudioService.CloneRepository();
