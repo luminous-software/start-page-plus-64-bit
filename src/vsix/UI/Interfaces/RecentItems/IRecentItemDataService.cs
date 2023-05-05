@@ -7,7 +7,7 @@
 
     public interface IRecentItemDataService
     {
-        Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(int itemsToDisplay, bool showExtensions, bool showPaths);
+        Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(int itemsToDisplay, bool showExtensions, bool showPaths, bool showCsProjFiles);
 
         Task<bool> RemoveItemAsync(RecentItemViewModel viewModel);
 

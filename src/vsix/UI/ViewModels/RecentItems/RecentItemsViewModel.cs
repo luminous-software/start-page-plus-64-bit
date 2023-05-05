@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
-using Microsoft.VisualStudio.Shell;
-
 using CommunityToolkit.Mvvm.Messaging;
+
+using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus.UI.ViewModels.RecentItems
 {
@@ -22,7 +22,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         private const string _heading = "Open Recent Item";
 
         private ObservableCollection<RecentItemViewModel> items = new();
-        private IVisualStudioService _visualStudioService;
+        private readonly IVisualStudioService _visualStudioService;
 
         private RecentItemViewModel selectedItem;
         private bool refreshed;
@@ -395,11 +395,12 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                 var itemsToDisplay = options.ItemsToDisplay;
                 var showExtensions = options.ShowFileExtensions;
                 var showPaths = options.ShowFilePaths;
+                var showCsProjFiles = options.ShowCsProjFiles;
 
                 //YD: replace all of these with RunMethod calls
                 ThreadHelper.JoinableTaskFactory.Run(async () =>
                 {
-                    var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths);
+                    var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths, showCsProjFiles);
 
                     // Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
                     // YD: what if 'items' was declared outside JTF.Run?

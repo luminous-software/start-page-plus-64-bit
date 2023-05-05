@@ -33,6 +33,11 @@
         public bool ShowFilePaths { get; set; } = ShowFilePathsDefault;
 
         [Category(PageConstants.Settings)]
+        [DisplayName(ShowCsProjFilesDisplayName)]
+        [Description(ShowCsProjFilesDescription)]
+        public bool ShowCsProjFiles { get; set; } = ShowCsProjFilesDefault;
+
+        [Category(PageConstants.Settings)]
         [DisplayName(DisplayRecentItemsName)]
         [Description(DisplayRecentItemsDescription)]
         public bool DisplayRecentItems { get; set; } = DisplayRecentItemsDefault;

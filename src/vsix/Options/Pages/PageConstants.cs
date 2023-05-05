@@ -71,6 +71,10 @@
         public const string ShowFilePathsDescription = "Sets the visibility of project/solution paths in the 'Recent Items' list";
         internal const bool ShowFilePathsDefault = true;
 
+        public const string ShowCsProjFilesDisplayName = "Show csproj files";
+        public const string ShowCsProjFilesDescription = "Sets the visibility of C# project files in the 'Recent Items' list";
+        internal const bool ShowCsProjFilesDefault = true;
+
         public const string DisplayRecentItemsName = "Display 'Recent Items' list";
         public const string DisplayRecentItemsDescription = "Sets the visibility of the 'Recent Items' list";
         internal const bool DisplayRecentItemsDefault = true;
