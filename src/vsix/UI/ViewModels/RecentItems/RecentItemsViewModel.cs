@@ -42,7 +42,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             _visualStudioService = visualStudioService;
 
             Heading = _heading;
-            IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
+            //IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
 
             GetCommands();
             Refresh();
