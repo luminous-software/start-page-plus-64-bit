@@ -147,10 +147,16 @@
                             IsTabStop="False"
                             Style="{StaticResource ColumnListItemStyle}"
                             >
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <Label Content="{Binding Link}" />
+                                </ToolTip>
+                            </Button.ToolTip>
+
                             <DockPanel x:Name="NewsItemContainer"
                                 Margin="0,0,0,5"
                                 >
-                                <TextBlock x:Name="RecentItemName"
+                                <TextBlock x:Name="NewsItemName"
                                     Margin="0,0,0,2"
                                     DockPanel.Dock="Top"
                                     FontFamily="{StaticResource DefaultFont}"
@@ -162,7 +168,7 @@
                                     TextWrapping="NoWrap"
                                     />
 
-                                <TextBlock x:Name="RecentItemDescription"
+                                <TextBlock x:Name="NewsItemDescription"
                                     MaxHeight="45"
                                     DockPanel.Dock="Top"
                                     FontFamily="{StaticResource DefaultFont}"
