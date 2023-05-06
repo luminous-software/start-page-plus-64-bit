@@ -42,6 +42,10 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 	[private issue #8]: https://github.com/yannduran/start-page-plus-64-bit/issues/8
 
+- Group settings/options into 'Appearance' & 'Behavior'[[#30](https://github.com/luminous-software/start-page-plus-64-bit/issues/30)]
+
+	[private issue #13]: https://github.com/yannduran/start-page-plus-64-bit/issues/13
+
 ### v0.20 - 2023-04-27
 
 #### Bug Fixes
