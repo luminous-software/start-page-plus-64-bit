@@ -8,30 +8,30 @@ namespace StartPagePlus.UI.ViewModels
 {
     using Interfaces;
 
-    using Methods;
+    using StartPagePlus.Core;
+    using StartPagePlus.UI.Services;
 
     public class ViewModelBase : ObservableRecipient, IViewModel
     {
-        //--- IMessageMethods
+        private readonly IAsyncMethodService _methodService;
 
-        public virtual void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
-            where TMessage : class, new()
-            => MessageMethods.ListenFor(recipient, action);
+        //---
 
-        public virtual void SendMessage<TMessage>()
-            where TMessage : class, new()
-            => MessageMethods.SendMessage<TMessage>();
+        protected ViewModelBase()
+        {
+            _methodService = ServiceManager.AsyncMethodService ?? throw new ArgumentNullException(nameof(ServiceManager.AsyncMethodService));
+        }
 
-        public virtual void SendMessage<TMessage>(TMessage message)
-            where TMessage : class, new()
-            => MessageMethods.SendMessage(message);
+        //---
 
-        //--- IRunMethods
+        protected void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
+            where TMessage : class //, new()
+            => Messenger.Register(recipient, action);
 
-        public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
-            => RunMethods.RunMethod(asyncMethod);
+        public bool Run(Func<Task<bool>> asyncMethod)
+            => _methodService.Run(asyncMethod);
 
-        public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
-            => RunMethods.RunMethod(asyncMethod);
+        public bool? Run(Func<Task<bool?>> asyncMethod)
+            => _methodService.Run(asyncMethod);
     }
 }

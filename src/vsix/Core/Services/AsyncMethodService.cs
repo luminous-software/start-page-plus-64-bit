@@ -4,12 +4,27 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.Shell;
 
-namespace StartPagePlus.UI.Methods
+namespace StartPagePlus.Core.Services
 {
-    internal sealed class RunMethods
+    using Interfaces;
+
+    /// <summary>
+    /// A service to ensure that when async code needs to be run synchronously, that it will all use the same methodology
+    /// (if the methodology  needs to be changed, it only needs to be changed in one place)
+    /// </summary>
+    internal sealed class AsyncMethodService : IAsyncMethodService
     {
+        private readonly IDialogService _dialogService;
+
+        public AsyncMethodService(IDialogService dialogService)
+        {
+            _dialogService = dialogService;
+        }
+
+        //--- methods
+
         [SuppressMessage("Usage", "VSTHRD102:Implement internal logic asynchronously", Justification = "Required")]
-        public static bool RunMethod(Func<Task<bool>> asyncMethod)
+        public bool Run(Func<Task<bool>> asyncMethod)
         {
             var result = false;
 
@@ -18,10 +33,10 @@ namespace StartPagePlus.UI.Methods
                 result = ThreadHelper.JoinableTaskFactory.Run(async () => await asyncMethod());
 
             }
-            catch (Exception) // ex)
+            catch (Exception ex)
             {
-                //YD: can ServiceManager.DialogService.ShowException be added back?
-                //ServiceManager.DialogService.ShowException(ex); // get only if required, not ahead of time
+                _dialogService.ShowException(ex);
+
                 result = false;
             }
 
@@ -29,7 +44,7 @@ namespace StartPagePlus.UI.Methods
         }
 
         [SuppressMessage("Usage", "VSTHRD102:Implement internal logic asynchronously", Justification = "Required")]
-        public static bool? RunMethod(Func<Task<bool?>> asyncMethod)
+        public bool? Run(Func<Task<bool?>> asyncMethod)
         {
             bool? result = false;
 
@@ -37,10 +52,10 @@ namespace StartPagePlus.UI.Methods
             {
                 result = ThreadHelper.JoinableTaskFactory.Run(async () => result = await asyncMethod());
             }
-            catch (Exception) // ex) 
+            catch (Exception ex)
             {
-                //YD: can ServiceManager.DialogService.ShowException be added back?
-                //ServiceManager.DialogService.ShowException(ex); // get only if required, not aahead of time
+                _dialogService.ShowException(ex);
+
                 result = false;
             }
 

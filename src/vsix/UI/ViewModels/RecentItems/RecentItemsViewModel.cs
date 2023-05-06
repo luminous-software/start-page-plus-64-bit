@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
-using Microsoft.VisualStudio.Shell;
-
 using CommunityToolkit.Mvvm.Messaging;
+
+using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus.UI.ViewModels.RecentItems
 {
@@ -19,9 +19,11 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
 
     public class RecentItemsViewModel : ColumnViewModel
     {
-        private const string HEADING = "Open Recent Item";
+        private const string _heading = "Open Recent Item";
 
         private ObservableCollection<RecentItemViewModel> items = new();
+        private readonly IVisualStudioService _visualStudioService;
+
         private RecentItemViewModel selectedItem;
         private bool refreshed;
 
@@ -37,21 +39,21 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             ActionService = actionService;
             CommandService = commandService;
             DialogService = dialogService;
-            VisualStudioService = visualStudioService;
+            _visualStudioService = visualStudioService;
 
-            Heading = HEADING;
-            IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
+            Heading = _heading;
+            //IsVisible = RecentItemsOptions.Instance.DisplayRecentItems;
 
             GetCommands();
             Refresh();
 
-            Messenger.Register<RecentItemsRefresh>(this, RefreshRequested);
-            Messenger.Register<RecentItemSelected>(this, SelectItem);
-            Messenger.Register<RecentItemTogglePinned>(this, TogglePinned);
-            Messenger.Register<RecentItemRemove>(this, RemoveItem);
-            Messenger.Register<RecentItemCopyPath>(this, CopyItemPath);
-            Messenger.Register<RecentItemEditPath>(this, EditItemPath);
-            Messenger.Register<RecentItemOpenInVS>(this, OpenInVS);
+            ListenFor<RecentItemsRefresh>(this, RefreshRequested);
+            ListenFor<RecentItemSelected>(this, SelectItem);
+            ListenFor<RecentItemTogglePinned>(this, TogglePinned);
+            ListenFor<RecentItemRemove>(this, RemoveItem);
+            ListenFor<RecentItemCopyPath>(this, CopyItemPath);
+            ListenFor<RecentItemEditPath>(this, EditItemPath);
+            ListenFor<RecentItemOpenInVS>(this, OpenInVS);
         }
 
         public IRecentItemActionService ActionService { get; }
@@ -61,8 +63,6 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         public IRecentItemCommandService CommandService { get; }
 
         public IDialogService DialogService { get; }
-
-        public IVisualStudioService VisualStudioService { get; }
 
         public ObservableCollection<RecentItemViewModel> Items
         {
@@ -395,11 +395,12 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                 var itemsToDisplay = options.ItemsToDisplay;
                 var showExtensions = options.ShowFileExtensions;
                 var showPaths = options.ShowFilePaths;
+                var showCsProjFiles = options.ShowCsProjFiles;
 
                 //YD: replace all of these with RunMethod calls
                 ThreadHelper.JoinableTaskFactory.Run(async () =>
                 {
-                    var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths);
+                    var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths, showCsProjFiles);
 
                     // Note: setting `Items = items` directly causes the view to lose its grouping/sorting/filter
                     // YD: what if 'items' was declared outside JTF.Run?
@@ -424,6 +425,6 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             => Refresh();
 
         private void OpenSettings()
-            => VisualStudioService.ShowOptions<OptionsProvider.RecentItems>();
+            => _visualStudioService.ShowOptions<OptionsProvider.RecentItems>();
     }
 }

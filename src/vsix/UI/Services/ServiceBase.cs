@@ -7,30 +7,31 @@ namespace StartPagePlus.UI.Services
 {
     using Core.Interfaces;
 
-    using Methods;
+    using StartPagePlus.Core;
 
     internal abstract class ServiceBase : IService
     {
-        //--- IRunMethods
+        private readonly IAsyncMethodService _methodService;
 
-        public virtual bool RunMethod(Func<Task<bool>> asyncMethod)
-            => RunMethods.RunMethod(asyncMethod);
+        //---
 
-        public virtual bool? RunMethod(Func<Task<bool?>> asyncMethod)
-            => RunMethods.RunMethod(asyncMethod);
+        protected ServiceBase(IAsyncMethodService methodService, IMessenger messenger)
+        {
+            _methodService = methodService ?? throw new ArgumentNullException(nameof(methodService));
 
-        //--- IMessageMethods
+            Messenger = messenger ?? throw new ArgumentNullException(nameof(methodService));
+        }
 
-        public virtual void ListenFor<TMessage>(object recipient, MessageHandler<object, TMessage> action)
-            where TMessage : class, new()
-            => MessageMethods.ListenFor(recipient, action);
+        //---
 
-        public virtual void SendMessage<T>()
-            where T : class, new()
-            => MessageMethods.SendMessage<T>();
+        protected IMessenger Messenger { get; }
 
-        public virtual void SendMessage<TMessage>(TMessage message)
-            where TMessage : class, new()
-            => MessageMethods.SendMessage(message);
+        //---
+
+        protected bool Run(Func<Task<bool>> asyncMethod)
+            => _methodService.Run(asyncMethod);
+
+        protected bool? Run(Func<Task<bool?>> asyncMethod)
+            => _methodService.Run(asyncMethod);
     }
 }

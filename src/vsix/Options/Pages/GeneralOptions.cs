@@ -32,19 +32,33 @@
         [Description("Installed '" + PackageName + "' version")]
         public string PackageVersion { get; } = Vsix.Version;
 
-        [Category(H2 + PageConstants.Settings)]
+        //--- appearance
+
+        [Category(H2 + PageConstants.Appearance)]
         [DisplayName(MaxWidthDisplayName)]
         [Description(MaxWidthDescription)]
         public int MaxWidth { get; set; } = MaxWidthDefault;
 
-        [Category(H2 + PageConstants.Settings)]
+        [Category(H2 + PageConstants.Appearance)]
         [DisplayName(ShowStartTabTitleDisplayName)]
         [Description(ShowStartTabTitleDescription)]
         public bool ShowStartTabTitle { get; set; } = ShowStartTabTitleDefault;
 
-        [Category(H2 + PageConstants.Settings)]
+        [Category(H2 + PageConstants.Appearance)]
         [DisplayName(StartTabTitleTextDisplayName)]
         [Description(StartTabTitleTextDescription)]
         public string StartTabTitleText { get; set; } = StartTabTitleDefault;
+
+        //--- behavior
+
+        [Category(H3 + PageConstants.Behavior)]
+        [DisplayName(HideOnSolutionOpenDisplayName)]
+        [Description(HideOnSolutionOpenDescription)]
+        public bool HideOnSolutionOpen { get; set; } = HideOnSolutionOpenDefault;
+
+        [Category(H3 + PageConstants.Behavior)]
+        [DisplayName(RestoreOnSolutionCloseDisplayName)]
+        [Description(RestoreOnSolutionCloseDescription)]
+        public bool RestoreOnSolutionClose { get; set; } = RestoreOnSolutionCloseDefault;
     }
 }

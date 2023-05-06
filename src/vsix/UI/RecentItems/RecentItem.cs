@@ -33,6 +33,7 @@
             var type = path.CalculateRecentItemType();
             var moniker = type.ToImageMoniker();
 
+            //YD: I shouldn't be manually newing up vew models (AddTransient<IRecentItemViewModel> in RegisterViewModels?)
             return new RecentItemViewModel
             {
                 Name = name,

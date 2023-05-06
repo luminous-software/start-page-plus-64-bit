@@ -8,10 +8,13 @@
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
+    using CommunityToolkit.Mvvm.Messaging;
+
+    using StartPagePlus.Core;
     using StartPagePlus.UI.Interfaces.NewsItems;
     using StartPagePlus.UI.ViewModels.NewsItems;
 
-    internal class NewsItemDataService : INewsItemDataService
+    internal class NewsItemDataService : ServiceBase, INewsItemDataService
     {
         private const string ITEM_ELEMENT_NAME = "item";
         private const string NO_ANGLE_BRACKETS_AND_NO_EXTENSION = "<.*?>|&.*?;";
@@ -21,7 +24,8 @@
         private const string LINK_ELEMENT_NAME = "link";
         private const string PUB_DATE_ELEMENT_NAME = "pubDate";
 
-        public NewsItemDataService()
+        public NewsItemDataService(IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
         { }
 
         public async Task<List<NewsItemViewModel>> GetItemsAsync(string feedUrl, int itemsToDisplay)

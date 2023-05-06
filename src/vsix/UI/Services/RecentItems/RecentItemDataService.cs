@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace StartPagePlus.UI.Services.RecentItems
 {
+    using System.Collections.Generic;
+    using System.IO;
+
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Core.Interfaces;
 
+    using StartPagePlus.Core;
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.ViewModels.RecentItems;
 
@@ -14,11 +20,13 @@ namespace StartPagePlus.UI.Services.RecentItems
     {
         public RecentItemDataService(
             IMruService mruService,
-            IDateTimeService dateTimeService
+            IDateTimeService dateTimeService,
             //IClipboardService clipboardService,
             //IRecentItemDialogService recentItemDialogService,
             //IVisualStudioService visualStudioService
-            )
+            IAsyncMethodService methodService,
+            IMessenger messenger
+            ) : base(methodService, messenger)
         {
             MruService = mruService;
             DateTimeService = dateTimeService;
@@ -37,20 +45,33 @@ namespace StartPagePlus.UI.Services.RecentItems
 
         //public IVisualStudioService VisualStudioService { get; }
 
-        public async Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(int itemsToDisplay, bool showExtensions, bool showPaths)
+        public async Task<ObservableCollection<RecentItemViewModel>> GetItemsAsync(
+            int itemsToDisplay,
+            bool showExtensions,
+            bool showPaths,
+            bool includeCsProjFiles
+            )
         {
-            var items = new ObservableCollection<RecentItemViewModel>();
+            var viewModels = new List<RecentItemViewModel>();
             var today = DateTimeService.Today.Date;
             var recentItems = await MruService.GetItemsAsync();
 
-            recentItems
-                // YD: .OrderByDescending(x => x.Value.LastAccessed) not needed because of grouping/sorting?
-                .Take(itemsToDisplay)
-                .ToList()
-                .ForEach((recentItem)
-                    => items.Add(recentItem.CreateViewModel(today, showExtensions, showPaths)));
+            //YD: is there a simpler or more per4formant way of doing this?
 
-            return items;
+            // convert List<RecentItems> to List<RecentItemViewModel>
+            recentItems
+                // Note: .OrderByDescending(x => x.Value.LastAccessed) not needed because of grouping/sorting
+                //.ToList()
+                .ForEach((recentItem)
+                    => viewModels.Add(recentItem.CreateViewModel(today, showExtensions, showPaths)));
+
+            var recentItemViewModels = (
+                from vm in viewModels
+                where (includeCsProjFiles == true) || (Path.GetExtension(vm.Path) != ".csproj") //YD: move to a testable Include(path, includeCsProjFiles) property?
+                select vm
+            ).Take(itemsToDisplay).ToList();
+
+            return new ObservableCollection<RecentItemViewModel>(recentItemViewModels);
         }
 
         public async Task<bool> RemoveItemAsync(RecentItemViewModel viewModel)

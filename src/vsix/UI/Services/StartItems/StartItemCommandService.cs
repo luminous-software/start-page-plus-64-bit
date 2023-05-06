@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace StartPagePlus.UI.Services.StartItems
 {
+    using Core;
+
     using Interfaces.StartItems;
 
     using Options.Pages;
 
     using ViewModels;
 
-    public class StartItemCommandService : IStartItemCommandService
+    internal class StartItemCommandService : ServiceBase, IStartItemCommandService
     {
+        public StartItemCommandService(IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
+        { }
+
         private string VersionNumber
             => GeneralOptions.Instance.PackageVersion;
 

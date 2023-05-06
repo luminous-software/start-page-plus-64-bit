@@ -1,16 +1,22 @@
-﻿namespace StartPagePlus.UI.Services
+﻿using System;
+using System.Collections.Generic;
+
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.UI.Services
 {
-    using System;
-    using System.Collections.Generic;
+    using Core;
 
-    using CommunityToolkit.Mvvm.Input;
+    using Interfaces.NewsItems;
 
-    using StartPagePlus.UI.Interfaces.NewsItems;
+    using ViewModels;
 
-    using StartPagePlus.UI.ViewModels;
-
-    internal class NewsItemCommandService : INewsItemCommandService
+    internal class NewsItemCommandService : ServiceBase, INewsItemCommandService
     {
+        public NewsItemCommandService(IAsyncMethodService methodService, IMessenger messenger) : base(methodService, messenger)
+        { }
+
         public List<CommandViewModel> GetCommands(Action refresh, Action openSettings)
             => new()
             {

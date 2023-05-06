@@ -17,24 +17,33 @@
     {
         public const string Category = "Recent Items";
 
-        [Category(PageConstants.Settings)]
+        //--- appearance
+
+        //[Category(H1 + PageConstants.Appearance)]
+        //[DisplayName(DisplayRecentItemsName)]
+        //[Description(DisplayRecentItemsDescription)]
+        //public bool DisplayRecentItems { get; set; } = DisplayRecentItemsDefault;
+
+        [Category(H1 + PageConstants.Appearance)]
         [DisplayName(RecentItemsToDisplayDisplayName)]
         [Description(RecentItemsToDisplayDescription)]
         public int ItemsToDisplay { get; set; } = RecentItemsToDisplayDefault;
 
-        [Category(PageConstants.Settings)]
+        //--- behavior
+
+        [Category(H2 + PageConstants.Behavior)]
         [DisplayName(ShowFileExtensionsDisplayName)]
         [Description(ShowFileExtensionsDescription)]
         public bool ShowFileExtensions { get; set; } = ShowFileExtensionsDefault;
 
-        [Category(PageConstants.Settings)]
+        [Category(H2 + PageConstants.Behavior)]
         [DisplayName(ShowFilePathsDisplayName)]
         [Description(ShowFilePathsDescription)]
         public bool ShowFilePaths { get; set; } = ShowFilePathsDefault;
 
-        [Category(PageConstants.Settings)]
-        [DisplayName(DisplayRecentItemsName)]
-        [Description(DisplayRecentItemsDescription)]
-        public bool DisplayRecentItems { get; set; } = DisplayRecentItemsDefault;
+        [Category(H2 + PageConstants.Behavior)]
+        [DisplayName(ShowCsProjFilesDisplayName)]
+        [Description(ShowCsProjFilesDescription)]
+        public bool ShowCsProjFiles { get; set; } = ShowCsProjFilesDefault;
     }
 }

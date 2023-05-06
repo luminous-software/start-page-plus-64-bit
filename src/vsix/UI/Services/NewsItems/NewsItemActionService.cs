@@ -1,14 +1,19 @@
-﻿using StartPagePlus.UI.ViewModels.NewsItems;
+﻿using CommunityToolkit.Mvvm.Messaging;
 
 namespace StartPagePlus.UI.Services
 {
     using Core.Interfaces;
 
+    using StartPagePlus.Core;
+
     using UI.Interfaces;
 
-    internal class NewsItemActionService : INewsItemActionService
+    using ViewModels.NewsItems;
+
+    internal class NewsItemActionService : ServiceBase, INewsItemActionService
     {
-        public NewsItemActionService(IVisualStudioService vsService)
+        public NewsItemActionService(IVisualStudioService vsService, IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
             => VisualStudioService = vsService;
 
         public IVisualStudioService VisualStudioService { get; }

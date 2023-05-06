@@ -17,7 +17,7 @@
     public class MainWindow : BaseToolWindow<MainWindow>
     {
         public override string GetTitle(int toolWindowId)
-            => Vsix.Name; //.Replace(" (64 bit)", "");
+            => Vsix.InternalName;
 
         public override Type PaneType
             => typeof(Pane);
@@ -27,12 +27,12 @@
 
         //---
 
-        [Guid("e3be6dd3-f017-4d6e-ae88-2b29319a77a2")]
+        [Guid(PackageGuids.StartPagePlusWindowString)]
         public class Pane : ToolWindowPane
         {
             public Pane()
             {
-                Caption = Vsix.Name;
+                Caption = Vsix.InternalName;
                 BitmapImageMoniker = KnownMonikers.Home;
             }
         }

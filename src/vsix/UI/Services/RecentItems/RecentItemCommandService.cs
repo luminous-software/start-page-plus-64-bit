@@ -1,20 +1,28 @@
-﻿namespace StartPagePlus.UI.Services.RecentItems
+﻿using System;
+using System.Collections.Generic;
+
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+
+using Microsoft.VisualStudio.Imaging;
+
+namespace StartPagePlus.UI.Services.RecentItems
 {
-    using System;
-    using System.Collections.Generic;
+    using Interfaces.RecentItems;
 
-    using CommunityToolkit.Mvvm.Input;
-
-    using Microsoft.VisualStudio.Imaging;
-
-    using StartPagePlus.UI.Interfaces.RecentItems;
+    using StartPagePlus.Core;
 
     using ViewModels;
 
-    internal class RecentItemCommandService : IRecentItemCommandService
+    internal class RecentItemCommandService : ServiceBase, IRecentItemCommandService
     {
+        public RecentItemCommandService(IAsyncMethodService methodService, IMessenger messenger) : base(methodService, messenger)
+        { }
+
+        //---
+
         public List<CommandViewModel> GetCommands(Action refresh, Action showSettings)
-            => new List<CommandViewModel>
+            => new()
             {
                 new CommandViewModel
                 {
@@ -36,7 +44,7 @@
             Func<bool> canEditPath, Action editPath,
             Func<bool> canOpenInVS, Action openInVS
             )
-            => new List<ContextCommandViewModel>
+            => new()
             {
                 new ContextCommandViewModel
                 {

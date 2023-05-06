@@ -2,11 +2,15 @@
 {
     using System.Collections.Generic;
 
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Interfaces.StartItems;
+
+    using StartPagePlus.Core;
 
     using ViewModels.StartItems;
 
-    public class StartItemDataService : IStartItemDataService
+    internal class StartItemDataService : ServiceBase, IStartItemDataService
     {
         private readonly CloneRepositoryViewModel _cloneRepository;
         private readonly OpenFolderViewModel _openFolder;
@@ -21,8 +25,9 @@
             OpenProjectViewModel openProjext,
             CreateProjectViewModel createProject,
             RestartNormalViewModel restartNormal,
-            RestartElevatedViewModel restartElevated
-            )
+            RestartElevatedViewModel restartElevated,
+            IAsyncMethodService methodService, IMessenger messenger)
+            : base(methodService, messenger)
         {
             _cloneRepository = cloneRepository;
             _openFolder = openFolder;

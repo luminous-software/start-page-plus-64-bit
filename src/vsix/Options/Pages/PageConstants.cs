@@ -17,6 +17,8 @@
         public const string EnablesDisables = "Enables/disables";
         public const string EnablesDisablesAll = EnablesDisables + Space + "ALL";
         public const string Settings = "Settings";
+        public const string Appearance = "Appearance";
+        public const string Behavior = "Behavior";
 
         // package
 
@@ -41,13 +43,21 @@
 
         // Start Tab
 
-        public const string ShowStartTabTitleDisplayName = "Show 'Start' Tab Title";
-        public const string ShowStartTabTitleDescription = "Sets the visibility of the title in the 'Start' tab";
+        public const string ShowStartTabTitleDisplayName = "Show Title";
+        public const string ShowStartTabTitleDescription = "Adds a title above the panes";
         internal const bool ShowStartTabTitleDefault = true;
 
-        public const string StartTabTitleTextDisplayName = "'Start' Tab Title Text";
-        public const string StartTabTitleTextDescription = "Sets the text of the 'Start' tab title";
+        public const string StartTabTitleTextDisplayName = "Title Text";
+        public const string StartTabTitleTextDescription = "Sets the text of the title (a welcome message, or a company name etc)";
         internal const string StartTabTitleDefault = "What would you like to do today?";
+
+        public const string HideOnSolutionOpenDisplayName = "Hide Window on Solution Load";
+        public const string HideOnSolutionOpenDescription = "Hides the 'Start Page+' window when a solution is loaded";
+        internal const bool HideOnSolutionOpenDefault = false;
+
+        public const string RestoreOnSolutionCloseDisplayName = "Show Window on Solution Close";
+        public const string RestoreOnSolutionCloseDescription = "Shows the 'Start Page+' window when a solution is closed";
+        internal const bool RestoreOnSolutionCloseDefault = false;
 
         // Recent Items
 
@@ -62,6 +72,10 @@
         public const string ShowFilePathsDisplayName = "Show File Paths";
         public const string ShowFilePathsDescription = "Sets the visibility of project/solution paths in the 'Recent Items' list";
         internal const bool ShowFilePathsDefault = true;
+
+        public const string ShowCsProjFilesDisplayName = "Show csproj files";
+        public const string ShowCsProjFilesDescription = "Sets the visibility of C# project files in the 'Recent Items' list";
+        internal const bool ShowCsProjFilesDefault = true;
 
         public const string DisplayRecentItemsName = "Display 'Recent Items' list";
         public const string DisplayRecentItemsDescription = "Sets the visibility of the 'Recent Items' list";

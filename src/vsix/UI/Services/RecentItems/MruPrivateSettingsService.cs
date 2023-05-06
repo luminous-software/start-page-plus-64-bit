@@ -6,16 +6,19 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using CommunityToolkit.Mvvm.Messaging;
+
     using Microsoft.VisualStudio.Shell;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
+    using StartPagePlus.Core;
     using StartPagePlus.UI.Interfaces.RecentItems;
     using StartPagePlus.UI.Models;
     using StartPagePlus.UI.ViewModels;
 
-    internal class MruPrivateSettingsService : IMruService
+    internal class MruPrivateSettingsService : ServiceBase, IMruService
     {
         private const string _offlinePath = "/content/indexed/collection[@name='CodeContainers.Offline']";
         private const string _privateSettingsXml = @"\ApplicationPrivateSettings.xml";
@@ -23,6 +26,13 @@
         private string _settingsPath
             //YD: kind of clunky, but it works, for now
             => MainViewModel.Package?.UserDataPath.Replace("Roaming", "Local") + _privateSettingsXml;
+
+        //---
+
+        public MruPrivateSettingsService(IAsyncMethodService methodService, IMessenger messenger) : base(methodService, messenger)
+        { }
+
+        //---
 
         public async Task<List<RecentItem>> GetItemsAsync()
         {

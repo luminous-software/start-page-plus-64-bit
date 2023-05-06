@@ -2,10 +2,11 @@
 
 using Community.VisualStudio.Toolkit;
 
-using Luminous.Code.Extensions.Exceptions;
+using Luminous.Code.Extensions.Exceptions; //YD:???
 
 namespace StartPagePlus.UI.Services
 {
+    using Core;
     using Core.Interfaces;
     using Core.Services;
 
@@ -18,18 +19,25 @@ namespace StartPagePlus.UI.Services
 
     using NewsItems;
 
+    using Other;
+
     using RecentItems;
 
     using StartItems;
 
-    using Other;
-
-    internal static class ServiceManager
+    internal class ServiceManager
     {
         private static StartPagePlusContainer _container;
 
-        //public static IDialogService DialogService
-        //    => GetService<IDialogService>();
+        //---
+
+        public static IAsyncMethodService AsyncMethodService
+            => GetService<IAsyncMethodService>();
+
+        public static IDialogService DialogService
+            => GetService<IDialogService>();
+
+        //---
 
         public static void RegisterServices(StartPagePlusContainer container)
         {
@@ -37,10 +45,11 @@ namespace StartPagePlus.UI.Services
             {
                 _container = container ?? throw new ArgumentNullException(nameof(container));
 
-                //--- other (kepp these first)
+                //--- other (keep these first)
 
                 _container.AddSingleton<IDateTimeService, DateTimeService>();
                 _container.AddSingleton<IDialogService, ToolkitDialogService>();
+                _container.AddSingleton<IAsyncMethodService, AsyncMethodService>();
                 _container.AddSingleton<IVisualStudioService, ToolkitVisualStudioService>();
 
                 //--- recent items
@@ -64,18 +73,21 @@ namespace StartPagePlus.UI.Services
             }
             catch (Exception ex)
             {
+                //YD: it might be better to get an instance of the DialogService & store it in a field to do this, for consistency?
                 VS.MessageBox.ShowError(ex.ExtendedMessage());
             }
         }
 
-        // WARNING: only use these properties when constructor injection is not possible
+        //---
 
-        //private static T GetService<T>()
-        //    where T : ISimpleService
-        //{
-        //    return (_container is null)
-        //        ? throw new ArgumentNullException(nameof(_container))
-        //        : _container.GetInstance<T>();
-        //}
+        // NOTE: only use properties that use GetService when constructor injection is not possible (like in UserControls, or static constructors)
+
+        private static T GetService<T>()
+            where T : ISimpleService
+        {
+            return (_container is null)
+                ? throw new NullReferenceException(nameof(_container))
+                : _container.GetInstance<T>();
+        }
     }
 }

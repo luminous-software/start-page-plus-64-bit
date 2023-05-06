@@ -17,29 +17,33 @@
     {
         public const string Category = @"News Items";
 
-        [Category(PageConstants.Settings)]
-        [DisplayName(ClearListBeforeRefreshDisplayName)]
-        [Description(ClearListBeforeRefreshDescription)]
-        public bool ClearListBeforeRefresh { get; set; } = ClearListBeforeRefreshDefault;
+        //--- appearance
 
-        [Category(PageConstants.Settings)]
+        [Category(H1 + PageConstants.Appearance)]
         [DisplayName(NewsItemsFeedUrlDisplayName)]
         [Description(NewsItemsFeedUrlDescription)]
         public string NewsItemsFeedUrl { get; set; } = NewsItemsFeedUrlDefault;
 
-        [Category(PageConstants.Settings)]
+        [Category(H1 + PageConstants.Appearance)]
         [DisplayName(NewsItemsToDisplayDisplayName)]
         [Description(NewsItemsToDisplayDescription)]
         public int NewsItemsToDisplay { get; set; } = NewsItemsToDisplayDefault;
 
-        [Category(PageConstants.Settings)]
+        //[Category(H1 + PageConstants.Appearance)]
+        //[DisplayName(DisplayNewsItemsName)]
+        //[Description(DisplayNewsItemsDescription)]
+        //public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
+
+        //--- behavior
+
+        [Category(H2 + PageConstants.Behavior)]
+        [DisplayName(ClearListBeforeRefreshDisplayName)]
+        [Description(ClearListBeforeRefreshDescription)]
+        public bool ClearListBeforeRefresh { get; set; } = ClearListBeforeRefreshDefault;
+
+        [Category(H2 + PageConstants.Behavior)]
         [DisplayName(OpenLinksInVsDisplayName)]
         [Description(OpenLinksInVsDescription)]
         public bool OpenLinksInVS { get; set; } = OpenLinksInVsDefault;
-
-        [Category(PageConstants.Settings)]
-        [DisplayName(DisplayNewsItemsName)]
-        [Description(DisplayNewsItemsDescription)]
-        public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
     }
 }
