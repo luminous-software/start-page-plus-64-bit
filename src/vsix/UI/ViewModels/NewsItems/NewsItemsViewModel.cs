@@ -34,7 +34,7 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             _visualStudioService = visualStudioService;
 
             Heading = HEADING;
-            IsVisible = true;
+            IsVisible = NewsItemsOptions.Instance.DisplayNewsItems;
 
             GetCommands();
             Refresh();

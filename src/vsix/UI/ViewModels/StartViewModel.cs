@@ -15,12 +15,23 @@ namespace StartPagePlus.UI.ViewModels
             Name = "Start";
             Title = GeneralOptions.Instance.StartTabTitleText;
             TabVisible = false;
-            Columns = new ObservableCollection<ColumnViewModel>
+            if (NewsItemsOptions.Instance.DisplayNewsItems)
             {
-                recentItemsViewModel,
-                startItemsViewModel,
-                newsItemsViewModel
-            };
+                Columns = new ObservableCollection<ColumnViewModel>
+                {
+                    recentItemsViewModel,
+                    startItemsViewModel,
+                    newsItemsViewModel
+                };
+            }
+            else
+            {
+                Columns = new ObservableCollection<ColumnViewModel>
+                {
+                    recentItemsViewModel,
+                    startItemsViewModel
+                };
+            }
         }
 
         public ObservableCollection<ColumnViewModel> Columns { get; set; }
