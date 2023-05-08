@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:StartPagePlus.UI.Converters"
+    xmlns:pui="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
     >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/start-page-plus-64-bit;component/Resources/Brushes.xaml"/>
@@ -31,7 +32,6 @@
         <Setter Property="Margin" Value="10,10,10,5"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
-
 
     <!-- Items -->
 
@@ -122,6 +122,33 @@
     </Style>
 
     <!-- https://stackoverflow.com/questions/5122334/how-do-i-make-a-wpf-button-look-like-a-link/5122377 -->
+
+    <Style x:Key="NewsItemTitleStyle" TargetType="TextBlock"
+        >
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource ItemNameBrush}"/>
+    </Style>
+
+    <Style x:Key="NewsItemDescriptionStyle" TargetType="TextBlock"
+        >
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Foreground" Value="{DynamicResource ItemDescriptionBrush}"/>
+    </Style>
+
+    <Style x:Key="NewsItemLinkStyle" TargetType="TextBlock"
+        >
+        <Setter Property="Margin" Value="0,4,0,2"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Foreground" Value="{DynamicResource ItemDateBrush}"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+    </Style>
 
     <!-- Commands -->
 

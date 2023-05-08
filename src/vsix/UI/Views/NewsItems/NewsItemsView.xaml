@@ -146,45 +146,62 @@
                             Command="{Binding SelectItemCommand}"
                             IsTabStop="False"
                             Style="{StaticResource ColumnListItemStyle}"
+                            ToolTipService.InitialShowDelay="1000"
+                            ToolTipService.ShowDuration="7000"
+                            ToolTipService.BetweenShowDelay="2000"
+                            ToolTipService.Placement="Bottom" 
+                            ToolTipService.HasDropShadow="true"
+                            ToolTipService.ShowOnDisabled="true" 
+                            ToolTipService.IsEnabled="{Binding ShowTooltip}"
                             >
                             <Button.ToolTip>
-                                <ToolTip>
-                                    <Label Content="{Binding Link}" />
+                                <ToolTip x:Name="NewsItemTooltip" 
+                                    MaxWidth="500" 
+                                    MaxHeight="500"
+                                    >
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock 
+                                            Style="{StaticResource NewsItemTitleStyle}"
+                                            Text="{Binding Title}"
+                                            TextWrapping="WrapWithOverflow"
+                                            />
+                                        <TextBlock Text="{Binding Description}"
+                                            Style="{StaticResource NewsItemDescriptionStyle}"
+                                            TextWrapping="WrapWithOverflow"
+                                            />
+                                        <TextBlock Text="{Binding Link}"
+                                            Style="{StaticResource NewsItemLinkStyle}"
+                                            />
+                                    </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
 
                             <DockPanel x:Name="NewsItemContainer"
                                 Margin="0,0,0,5"
                                 >
-                                <TextBlock x:Name="NewsItemName"
-                                    Margin="0,0,0,2"
+                                <TextBlock x:Name="NewsItemTitle"
+                                    Style="{StaticResource NewsItemTitleStyle}"
                                     DockPanel.Dock="Top"
-                                    FontFamily="{StaticResource DefaultFont}"
-                                    FontSize="15"
-                                    FontWeight="SemiBold"
-                                    Foreground="{DynamicResource ItemNameBrush}"
                                     Text="{Binding Title}"
                                     TextTrimming="WordEllipsis"
                                     TextWrapping="NoWrap"
                                     />
 
                                 <TextBlock x:Name="NewsItemDescription"
-                                    MaxHeight="45"
+                                    Style="{StaticResource NewsItemDescriptionStyle}"
                                     DockPanel.Dock="Top"
-                                    FontFamily="{StaticResource DefaultFont}"
-                                    FontSize="13"
-                                    Foreground="{DynamicResource ItemDescriptionBrush}"
-                                    Text="{Binding Description}"
+                                    MaxHeight="50"
+                                    Text="{Binding Description}"        
                                     TextTrimming="WordEllipsis"
                                     TextWrapping="Wrap"
                                     />
 
-                                <StackPanel x:Name="DatePanelStyle"
+                                <StackPanel x:Name="DatePanel"
                                     Margin="0,4,0,0"
                                     DockPanel.Dock="Top"
                                     Orientation="Horizontal"
                                     >
-                                    <TextBlock x:Name="New"
+                                    <TextBlock x:Name="NewsItemNewIndicator"
                                         FontFamily="{StaticResource DefaultFont}"
                                         FontSize="10"
                                         Foreground="Orange"
@@ -192,7 +209,7 @@
                                         Visibility="Collapsed"
                                         />
 
-                                    <TextBlock x:Name="Date"
+                                    <TextBlock x:Name="NewsItenDate"
                                         FontFamily="{StaticResource DefaultFont}"
                                         FontSize="11"
                                         FontWeight="Medium"
