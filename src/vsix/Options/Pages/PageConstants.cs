@@ -99,8 +99,16 @@
         public const string OpenLinksInVsDescription = "Determines if news links are opened in VS or in the default browser";
         internal const bool OpenLinksInVsDefault = true;
 
-        public const string DisplayNewsItemsName = "Display 'News Items' list";
-        public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
-        internal const bool DisplayNewsItemsDefault = true;
+        public const string ShowNewsItemTooltipDisplayName = "Show News Item Tooltips";
+        public const string ShowNewsItemTooltipDescription = "Determines if news links have a tooltip displaying the Link ";
+        internal const bool ShowNewsItemTooltipDefault = false;
+
+        public const string NewsItemTooltipDelayDisplayName = "Tooltip Delay (in seconds)";
+        public const string NewsItemTooltipDelayDescription = "The number of seconds you need to hover your mouse over the item before the tooltip displays";
+        internal const int NewsItemTooltipDelayDefault = 5;
+
+        //public const string DisplayNewsItemsName = "Display 'News Items' list";
+        //public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
+        //internal const bool DisplayNewsItemsDefault = true;
     }
 }

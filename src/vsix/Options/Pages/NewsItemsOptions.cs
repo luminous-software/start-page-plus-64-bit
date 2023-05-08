@@ -45,5 +45,15 @@
         [DisplayName(OpenLinksInVsDisplayName)]
         [Description(OpenLinksInVsDescription)]
         public bool OpenLinksInVS { get; set; } = OpenLinksInVsDefault;
+
+        [Category(H2 + PageConstants.Behavior)]
+        [DisplayName(ShowNewsItemTooltipDisplayName)]
+        [Description(ShowNewsItemTooltipDescription)]
+        public bool ShowNewsItemTooltip { get; set; } = ShowNewsItemTooltipDefault;
+
+        [Category(H2 + PageConstants.Behavior)]
+        [DisplayName(NewsItemTooltipDelayDisplayName)]
+        [Description(NewsItemTooltipDelayDescription)]
+        public int NewsItemTooltipDelay { get; set; } = NewsItemTooltipDelayDefault;
     }
 }
