@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.Shell;
 
-using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus.UI.ViewModels.NewsItems
 {
@@ -34,12 +33,11 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             _visualStudioService = visualStudioService;
 
             Heading = HEADING;
-            IsVisible = NewsItemsOptions.Instance.DisplayNewsItems;
 
             GetCommands();
             Refresh();
 
-            Messenger.Register<NewsItemSelected>(this, OnItemSelected);
+            ListenFor<NewsItemSelected>(this, OnItemSelected);
         }
 
         private void OnItemSelected(object recipient, NewsItemSelected message)
