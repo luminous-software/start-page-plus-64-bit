@@ -14,7 +14,16 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 ## Releases
 
-### v0.21 - 2023-04-??
+### v0.22 - 2023-05-??
+
+#### Bug Fixes
+
+#### New Features
+- Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
+
+	[private issue #9]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
+
+### v0.21 - 2023-05-07
 
 #### Bug Fixes
 - Incorrect wording for Restart Visual Studio start item
