@@ -13,10 +13,8 @@
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (converter == null)
-            {
-                converter = new DummyConverter();
-            }
+            converter ??= new DummyConverter();
+
             return converter ?? (converter = new DummyConverter());
         }
 

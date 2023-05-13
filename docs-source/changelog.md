@@ -34,7 +34,7 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 	[private issue #6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
 
-- After closing a solution refresh the Recent items [[#13](https://github.com/luminous-software/start-page-plus-64-bit/issues/5)]
+- After closing a solution refresh the Recent items [[#13](https://github.com/luminous-software/start-page-plus-64-bit/issues/13)]
 
 	[private issue #5]: https://github.com/yannduran/start-page-plus-64-bit/issues/5
 
