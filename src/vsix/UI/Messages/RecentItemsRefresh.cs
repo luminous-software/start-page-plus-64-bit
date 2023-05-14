@@ -1,8 +1,8 @@
 ﻿namespace StartPagePlus.UI.Messages
 {
-    public sealed class RecentItemsRefresh
+    public sealed class RefreshRecentItems
     {
-        public RecentItemsRefresh()
+        public RefreshRecentItems()
         { }
     }
 }
