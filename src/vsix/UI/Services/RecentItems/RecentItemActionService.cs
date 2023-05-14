@@ -95,6 +95,6 @@ namespace StartPagePlus.UI.Services
         //    => await DataService.SetLastAccessedAsync(path, DateTimeService.Today.Date);
 
         private void SendRefreshMessage()
-            => Messenger.Send(new RecentItemsRefresh());
+            => Messenger.Send(new RefreshRecentItems());
     }
 }

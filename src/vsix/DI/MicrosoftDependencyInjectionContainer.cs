@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-using System;
+﻿using System;
 using System.Linq;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StartPagePlus.DI
 {
@@ -17,6 +17,19 @@ namespace StartPagePlus.DI
             try
             {
                 _serviceCollection.AddSingleton(typeof(TService));
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void AddSingleton<TService>(TService implementation)
+        {
+            try
+            {
+                _serviceCollection.AddSingleton(typeof(TService), implementation);
 
             }
             catch (Exception)

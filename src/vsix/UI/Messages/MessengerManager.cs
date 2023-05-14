@@ -13,7 +13,7 @@ namespace StartPagePlus.UI.Messages
         //---
 
         public static IMessenger Messenger
-            => _container.GetInstance<IMessenger>();
+            => _container?.GetInstance<IMessenger>();
 
         //---
 
@@ -21,7 +21,7 @@ namespace StartPagePlus.UI.Messages
         {
             _container = container ?? throw new ArgumentNullException(nameof(container));
 
-            _container.AddSingleton<IMessenger, WeakReferenceMessenger>();
+            _container.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
         }
     }
 }

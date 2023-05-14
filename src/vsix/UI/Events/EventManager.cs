@@ -52,12 +52,12 @@ namespace StartPagePlus.UI.Events
         {
             if (GeneralOptions.Instance.HideOnSolutionOpen == true)
             {
-                CloseWindow();
+                HideWindow();
             }
 
             //---
 
-            static void CloseWindow()
+            static void HideWindow()
             {
                 _methodService.Run(
                     async () =>
@@ -86,7 +86,7 @@ namespace StartPagePlus.UI.Events
 
         private static void OnAfterCloseSolution()
         {
-            if (GeneralOptions.Instance.HideOnSolutionOpen == true)
+            if (GeneralOptions.Instance.RestoreOnSolutionClose == true)
             {
                 ShowWindow();
             }
@@ -122,7 +122,7 @@ namespace StartPagePlus.UI.Events
             }
 
             static void RefreshRecentItems()
-                => _messenger.Send<RecentItemsRefresh>();
+                => _messenger.Send<RefreshRecentItems>();
         }
     }
 }
