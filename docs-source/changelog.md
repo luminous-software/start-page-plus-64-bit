@@ -17,6 +17,9 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 ### v0.22 - 2023-05-??
 
 #### Bug Fixes
+- After closing a solution the Recent Items list is not refreshed [[#33](https://github.com/luminous-software/start-page-plus-64-bit/issues/33)]
+
+	[private issue #15]: https://github.com/yannduran/start-page-plus-64-bit/issues/15
 
 #### New Features
 - Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
