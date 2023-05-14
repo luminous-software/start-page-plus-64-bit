@@ -2,9 +2,11 @@
 {
     public interface IDependencyInjectionContainer
     {
-        void AddSingleton<TService, TImplementation>();
-
         void AddSingleton<TService>();
+
+        void AddSingleton<TService>(TService implementation);
+
+        void AddSingleton<TService, TImplementation>();
 
         T GetInstance<T>();
     }
