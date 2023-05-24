@@ -168,7 +168,7 @@ namespace StartPagePlus.UI.Services.Other
                 }
                 else
                 {
-                    _dialogService.ShowExclamation($"Unable to find '{path}'"); //YD: all DialogService.ShowXXX should return a bool result
+                    _dialogService.ShowError($"Unable to find '{path}'");
                     return false;
                 }
             }
