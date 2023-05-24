@@ -1,8 +1,13 @@
-﻿namespace StartPagePlus.UI.Messages
+﻿using CommunityToolkit.Mvvm.Messaging.Messages;
+
+namespace StartPagePlus.UI.Messages
 {
-    public sealed class RefreshRecentItems
+    public sealed class RefreshRecentItems : ValueChangedMessage<int>
     {
-        public RefreshRecentItems()
+        public RefreshRecentItems() : base(0)
+        { }
+
+        public RefreshRecentItems(int delay) : base(delay)
         { }
     }
 }
