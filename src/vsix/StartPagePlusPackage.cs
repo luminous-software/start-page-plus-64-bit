@@ -36,6 +36,9 @@ namespace StartPagePlus
     [ProvideOptionPage(typeof(OptionsProvider.RecentItems), Name, RecentItemsOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.RecentItems), Name, RecentItemsOptions.Category, 0, 0, true)]
 
+    [ProvideOptionPage(typeof(OptionsProvider.StartItems), Name, StartItemsOptions.Category, 0, 0, true)]
+    [ProvideProfile(typeof(OptionsProvider.StartItems), Name, StartItemsOptions.Category, 0, 0, true)]
+
     [ProvideOptionPage(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.NewsItems), Name, NewsItemsOptions.Category, 0, 0, true)]
     public sealed class StartPagePlusPackage : ToolkitPackage

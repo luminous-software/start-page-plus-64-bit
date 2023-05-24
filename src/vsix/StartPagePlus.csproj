@@ -58,6 +58,7 @@
     <Compile Include="Core\Dates\DateMethods.cs" />
     <Compile Include="Core\Interfaces\IDependencyInjectionContainer.cs" />
     <Compile Include="DI\MicrosoftDependencyInjectionContainer.cs" />
+    <Compile Include="Options\Pages\StartItemsOptions.cs" />
     <Compile Include="UI\Converters\BoolToStringConverter.cs" />
     <Compile Include="UI\Events\EventManager.cs" />
     <Compile Include="Options\Pages\OptionsProvider.cs" />
