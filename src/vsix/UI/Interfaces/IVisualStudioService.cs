@@ -10,17 +10,23 @@ namespace StartPagePlus.UI.Interfaces
 
         bool OpenWebPage(string url, bool internalBrowser);
 
-        bool CloneRepository();
+        bool CloneRepository(int delay);
 
-        bool OpenFolder(string path);
+        //---
 
-        bool OpenFolder();
+        bool OpenFolder(int delay);
 
-        bool OpenProject(string path);
+        bool OpenFolder(string path, int delay);
 
-        bool OpenProject();
+        //---
 
-        bool CreateNewProject();
+        bool OpenProject(int delay);
+
+        bool OpenProject(string path, int delay);
+
+        //---
+
+        bool CreateNewProject(int delay);
 
         bool Restart(bool confirm = true, bool elevated = false);
 

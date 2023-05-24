@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 using Community.VisualStudio.Toolkit;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 using EnvDTE;
 
 using EnvDTE80;
@@ -22,30 +24,21 @@ using Task = System.Threading.Tasks.Task;
 
 namespace StartPagePlus.UI.Services.Other
 {
-    using CommunityToolkit.Mvvm.Messaging;
-
+    using Core;
     using Core.Interfaces;
-
-    using StartPagePlus.Core;
 
     using UI.Interfaces;
 
+    using static UI.Constants.CommandConstants;
+    using static UI.Constants.VsConstants;
+
     internal class VisualStudioService : ServiceBase, IVisualStudioService
     {
-        private const string VERB_OPEN = "Open";
-
-        private const string FILE_OPEN_FOLDER = "File.OpenFolder";
-        private const string FILE_OPEN_PROJECT = "File.OpenProject";
-        private const string FILE_NEW_PROJECT = "File.NewProject";
-        private const string FILE_CLONE_REPOSITORY = "File.CloneRepository";
-
-        private const string TOOLS_OPTIONS = "Tools.Options";
-
-        private const uint FORCE_NEW_WINDOW = (uint)__VSWBNAVIGATEFLAGS.VSNWB_ForceNew;
-
         public VisualStudioService(IDialogService dialogService, IAsyncMethodService methodService, IMessenger messenger)
             : base(methodService, messenger)
             => DialogService = dialogService;
+
+        //---
 
         private IDialogService DialogService { get; }
 
@@ -53,19 +46,21 @@ namespace StartPagePlus.UI.Services.Other
             => VS.GetRequiredService<SVsWebBrowsingService, IVsWebBrowsingService>();
 
         private static DTE2 Dte
-            => VS.GetRequiredService<_DTE, DTE2>(); //YD: investogate toolkit way for DTE2
+            => VS.GetRequiredService<_DTE, DTE2>();
 
         private IVsShell3 VsShell3
-            => VS.GetRequiredService<SVsShell, IVsShell3>(); //YD: investogate toolkit way for IVsShell3
+            => VS.GetRequiredService<SVsShell, IVsShell3>();
 
         private IVsShell4 VsShell4
-            => VS.GetRequiredService<SVsShell, IVsShell4>(); //YD: investogate toolkit way for IVsShell4
+            => VS.GetRequiredService<SVsShell, IVsShell4>();
+
+        //---
 
         public bool ExecuteCommand(string action, string args = "")
         {
             try
             {
-                VS.Commands.ExecuteAsync(action, args).FireAndForget();
+                VS.Commands.ExecuteAsync(action, args).FireAndForget(); //YD: this class shouldn't be using VS.Commands, only the ToolBoxVisualStudio
                 return true;
             }
             catch (Exception ex)
@@ -75,6 +70,8 @@ namespace StartPagePlus.UI.Services.Other
             }
 
         }
+
+        //---
 
         public bool OpenWebPage(string url, bool openInVS)
         {
@@ -109,7 +106,7 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool CloneRepository()
+        public bool CloneRepository(int delay)
         {
             try
             {
@@ -124,22 +121,12 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool OpenFolder()
-        {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+        //---
 
-                return ExecuteCommand(FILE_OPEN_FOLDER);
-            }
-            catch (ArgumentException ex)
-            {
-                DialogService.ShowException(ex);
-                return false;
-            }
-        }
+        public bool OpenFolder(int delay)
+            => OpenFolder("", delay);
 
-        public bool OpenFolder(string path)
+        public bool OpenFolder(string path, int delay)
         {
             try
             {
@@ -162,22 +149,12 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool OpenProject()
-        {
-            try
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
+        //---
 
-                return ExecuteCommand(FILE_OPEN_PROJECT);
-            }
-            catch (ArgumentException ex)
-            {
-                DialogService.ShowException(ex);
-                return false;
-            }
-        }
+        public bool OpenProject(int delay)
+            => OpenProject("", delay);
 
-        public bool OpenProject(string path)
+        public bool OpenProject(string path, int delay)
         {
             try
             {
@@ -200,7 +177,7 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool CreateNewProject()
+        public bool CreateNewProject(int delay)
         {
             try
             {
@@ -216,6 +193,8 @@ namespace StartPagePlus.UI.Services.Other
                 return false;
             }
         }
+
+        //---
 
         public bool Restart(bool confirm = true, bool elevated = false)
         {
@@ -299,6 +278,8 @@ namespace StartPagePlus.UI.Services.Other
 
             return Task.FromResult(result);
         }
+
+        //---
 
         private Task<bool> OpenProjectOrSolutionInNewInstanceAsync(string path)
         {

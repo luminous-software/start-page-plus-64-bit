@@ -52,6 +52,8 @@ namespace StartPagePlus.UI.Services
         {
             try
             {
+                var delay = 0; // currently there is no delay required for recent items
+
                 ThreadHelper.ThrowIfNotOnUIThread();
                 Assumes.Present(VsService);
 
@@ -61,7 +63,7 @@ namespace StartPagePlus.UI.Services
                 switch (itemType)
                 {
                     case RecentItemType.Folder:
-                        if (VsService.OpenFolder(path))
+                        if (VsService.OpenFolder(path, delay))
                         {
                             // SetLastAccessedAsync(path); //YD: this can be moved into VsService.OpenXXX
                             SendRefreshMessage();
@@ -71,7 +73,7 @@ namespace StartPagePlus.UI.Services
                     case RecentItemType.Solution:
                     case RecentItemType.CSharpProject:
                     case RecentItemType.VisualBasicProject:
-                        if (VsService.OpenProject(path))
+                        if (VsService.OpenProject(path, delay))
                         {
                             //SetLastAccessedAsync(path); //YD: this can be moved into VsService.OpenXXX
                             SendRefreshMessage();
