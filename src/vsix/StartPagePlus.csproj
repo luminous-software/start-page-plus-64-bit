@@ -126,7 +126,7 @@
     <Compile Include="UI\Messages\RecentItemRemove.cs" />
     <Compile Include="UI\Messages\RecentItemsRefreshed.cs" />
     <Compile Include="UI\Messages\RecentItemTogglePinned.cs" />
-    <Compile Include="UI\Messages\RecentItemsRefresh.cs" />
+    <Compile Include="UI\Messages\RefreshRecentItems.cs" />
     <Compile Include="UI\Messages\RecentItemSelected.cs" />
     <Compile Include="UI\Messages\NewsItemSelected.cs" />
     <Compile Include="Core\Services\AsyncMethodService.cs" />
