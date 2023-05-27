@@ -23,7 +23,7 @@ namespace StartPagePlus.UI.Services.StartItems
         private string VersionNumber
             => GeneralOptions.Instance.PackageVersion;
 
-        public List<CommandViewModel> GetCommands(Action openChangelog, Action openWebsite, Action openOptions)
+        public List<CommandViewModel> GetCommands(Action openChangelog, Action openWebsite, Action openSettings)
             => new()
             {
                 new CommandViewModel
@@ -38,8 +38,8 @@ namespace StartPagePlus.UI.Services.StartItems
                 },
                 new CommandViewModel
                 {
-                    Name = "Options",
-                    Command = new RelayCommand(openOptions)
+                    Name = "Settings",
+                    Command = new RelayCommand(openSettings)
                 },
             };
     }
