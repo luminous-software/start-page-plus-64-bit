@@ -28,7 +28,11 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 #### New Features
 - Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
 
-	[p9]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
+	[p09]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
+
+- Rename Start Items Options to Settings (now opens Start Item settings 
+
+	[p16]: https://github.com/yannduran/start-page-plus-64-bit/issues/19
 
 ### v0.21 - 2023-05-07
 
