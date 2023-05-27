@@ -1,10 +1,12 @@
-﻿namespace StartPagePlus.UI.Services
+﻿using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.UI.Services
 {
-    using CommunityToolkit.Mvvm.Messaging;
+    using Core;
 
     using Interfaces;
 
-    using StartPagePlus.Core;
+    using Options.Pages;
 
     internal class StartItemActionService : ServiceBase, IStartItemActionService
     {
@@ -14,21 +16,26 @@
 
         public StartItemActionService(IVisualStudioService visualStudioService, IAsyncMethodService methodService, IMessenger messenger)
             : base(methodService, messenger)
-            => _visualStudioService = visualStudioService;
+        {
+            var _delay = StartItemsOptions.Instance.CloneRepositoryDelay;
+            _visualStudioService = visualStudioService;
+        }
 
         //---
 
         public bool CloneRepository()
-            => _visualStudioService.CloneRepository();
+            => _visualStudioService.CloneRepository(StartItemsOptions.Instance.CloneRepositoryDelay);
 
         public bool CreateNewProject()
-            => _visualStudioService.CreateNewProject();
+            => _visualStudioService.CreateNewProject(StartItemsOptions.Instance.CreateProjectDelay);
 
         public bool OpenFolder()
-            => _visualStudioService.OpenFolder();
+            => _visualStudioService.OpenFolder(StartItemsOptions.Instance.OpenFolderDelay);
 
         public bool OpenProject()
-            => _visualStudioService.OpenProject();
+            => _visualStudioService.OpenProject(StartItemsOptions.Instance.OpenProjectDelay);
+
+        //---
 
         public bool RestartVisualStudio(bool confirm, bool elevated)
             => _visualStudioService.Restart(confirm, elevated);

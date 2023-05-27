@@ -41,7 +41,7 @@
         public const string MaxWidthDescription = "Sets the max width of contents of the Start Page+ window";
         internal const int MaxWidthDefault = 1280;
 
-        // Start Tab
+        // General
 
         public const string ShowStartTabTitleDisplayName = "Show Title";
         public const string ShowStartTabTitleDescription = "Adds a title above the panes";
@@ -80,6 +80,24 @@
         public const string DisplayRecentItemsName = "Display 'Recent Items' list";
         public const string DisplayRecentItemsDescription = "Sets the visibility of the 'Recent Items' list";
         internal const bool DisplayRecentItemsDefault = true;
+
+        // Start Items
+
+        public const string CloneRepositoryDelayDisplayName = "'Clone a Repository' Delay";
+        public const string CloneRepositoryDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int CloneRepositoryDelayDefault = 5;
+
+        public const string OpenFolderDelayDisplayName = "'Open a Local Folder' Delay";
+        public const string OpenFolderDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int OpenFolderDelayDefault = 5;
+
+        public const string OpenProjectDelayDisplayName = "'Open Project/Solution' Delay";
+        public const string OpenProjectDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int OpenProjectDelayDefault = 5;
+
+        public const string CreateProjectDelayDisplayName = "'Create a New Project' Delay";
+        public const string CreateProjectDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int CreateProjectDelayDefault = 5;
 
         // News Items
 
