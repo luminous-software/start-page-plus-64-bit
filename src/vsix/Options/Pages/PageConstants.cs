@@ -41,7 +41,7 @@
         public const string MaxWidthDescription = "Sets the max width of contents of the Start Page+ window";
         internal const int MaxWidthDefault = 1280;
 
-        // Start Tab
+        // General
 
         public const string ShowStartTabTitleDisplayName = "Show Title";
         public const string ShowStartTabTitleDescription = "Adds a title above the panes";
@@ -81,6 +81,24 @@
         public const string DisplayRecentItemsDescription = "Sets the visibility of the 'Recent Items' list";
         internal const bool DisplayRecentItemsDefault = true;
 
+        // Start Items
+
+        public const string CloneRepositoryDelayDisplayName = "'Clone a Repository' Delay";
+        public const string CloneRepositoryDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int CloneRepositoryDelayDefault = 5;
+
+        public const string OpenFolderDelayDisplayName = "'Open a Local Folder' Delay";
+        public const string OpenFolderDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int OpenFolderDelayDefault = 5;
+
+        public const string OpenProjectDelayDisplayName = "'Open Project/Solution' Delay";
+        public const string OpenProjectDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int OpenProjectDelayDefault = 5;
+
+        public const string CreateProjectDelayDisplayName = "'Create a New Project' Delay";
+        public const string CreateProjectDelayDescription = "Sets the number of seconds to delay before refreshing the 'Recent Items' list";
+        public const int CreateProjectDelayDefault = 5;
+
         // News Items
 
         public const string ClearListBeforeRefreshDisplayName = "Clear List Before Refresh";
@@ -99,8 +117,16 @@
         public const string OpenLinksInVsDescription = "Determines if news links are opened in VS or in the default browser";
         internal const bool OpenLinksInVsDefault = true;
 
-        public const string DisplayNewsItemsName = "Display 'News Items' list";
-        public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
-        internal const bool DisplayNewsItemsDefault = true;
+        public const string ShowNewsItemTooltipDisplayName = "Show News Item Tooltips";
+        public const string ShowNewsItemTooltipDescription = "Determines if news links have a tooltip displaying the Link ";
+        internal const bool ShowNewsItemTooltipDefault = false;
+
+        public const string NewsItemTooltipDelayDisplayName = "Tooltip Delay (in seconds)";
+        public const string NewsItemTooltipDelayDescription = "The number of seconds you need to hover your mouse over the item before the tooltip displays";
+        internal const int NewsItemTooltipDelayDefault = 5;
+
+        //public const string DisplayNewsItemsName = "Display 'News Items' list";
+        //public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
+        //internal const bool DisplayNewsItemsDefault = true;
     }
 }

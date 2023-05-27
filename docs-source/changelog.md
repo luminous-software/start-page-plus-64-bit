@@ -14,37 +14,53 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 ## Releases
 
-### v0.21 - 2023-04-??
+### v0.22 - 2023-05-??
+
+#### Bug Fixes
+- After closing a solution the Recent Items list is not refreshed [[#33](https://github.com/luminous-software/start-page-plus-64-bit/issues/33)]
+
+	[p15]: https://github.com/yannduran/start-page-plus-64-bit/issues/15
+
+- Some start items don't refresh the Recent Items list [[#29](https://github.com/luminous-software/start-page-plus-64-bit/issues/29)]
+
+	[p11]: https://github.com/yannduran/start-page-plus-64-bit/issues/11
+
+#### New Features
+- Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
+
+	[p9]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
+
+### v0.21 - 2023-05-07
 
 #### Bug Fixes
 - Incorrect wording for Restart Visual Studio start item
 
-	[private issue #3]: https://github.com/yannduran/start-page-plus-64-bit/issues/3
+	[p3]: https://github.com/yannduran/start-page-plus-64-bit/issues/3
 
 - Recent Items 'Settings' button goes to 'General' instead of 'Recent Items'
 
-	[private issue #2]: https://github.com/yannduran/start-page-plus-64-bit/issues/2
+	[p2]: https://github.com/yannduran/start-page-plus-64-bit/issues/2
 
 #### New Features
 - Hide StartPage+ on solution load (including option, default=false) [[#5](https://github.com/luminous-software/start-page-plus-64-bit/issues/5)]
 
-	[private issue #6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
+	[p6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
 
 - Show StartPage+ on solution close (including option, default=false) [[#5](https://github.com/luminous-software/start-page-plus-64-bit/issues/5)]
 
-	[private issue #6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
+	[p6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
 
-- After closing a solution refresh the Recent items [[#13](https://github.com/luminous-software/start-page-plus-64-bit/issues/5)]
+- After closing a solution refresh the Recent items [[#13](https://github.com/luminous-software/start-page-plus-64-bit/issues/13)]
 
-	[private issue #5]: https://github.com/yannduran/start-page-plus-64-bit/issues/5
+	[p5]: https://github.com/yannduran/start-page-plus-64-bit/issues/5
 
 - Option to show/hide csproj files in Recent Items list (default=true) [[#15](https://github.com/luminous-software/start-page-plus-64-bit/issues/15)]
 
-	[private issue #8]: https://github.com/yannduran/start-page-plus-64-bit/issues/8
+	[p8]: https://github.com/yannduran/start-page-plus-64-bit/issues/8
 
 - Group settings/options into 'Appearance' & 'Behavior'[[#30](https://github.com/luminous-software/start-page-plus-64-bit/issues/30)]
 
-	[private issue #13]: https://github.com/yannduran/start-page-plus-64-bit/issues/13
+	[p13]: https://github.com/yannduran/start-page-plus-64-bit/issues/13
 
 ### v0.20 - 2023-04-27
 

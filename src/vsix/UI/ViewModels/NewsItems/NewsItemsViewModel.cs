@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.Shell;
 
-using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus.UI.ViewModels.NewsItems
 {
@@ -25,6 +24,9 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
 
         private List<NewsItemViewModel> items = new();
         private readonly IVisualStudioService _visualStudioService;
+        private readonly NewsItemsOptions _options = NewsItemsOptions.Instance;
+
+        //---
 
         public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService, INewsItemActionService actionService, IVisualStudioService visualStudioService)
         {
@@ -39,15 +41,10 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             GetCommands();
             Refresh();
 
-            Messenger.Register<NewsItemSelected>(this, OnItemSelected);
+            ListenFor<NewsItemSelected>(this, OnItemSelected);
         }
 
-        private void OnItemSelected(object recipient, NewsItemSelected message)
-        {
-            var openInVS = NewsItemsOptions.Instance.OpenLinksInVS;
-
-            ActionService.DoAction(message.Value, openInVS);
-        }
+        //---
 
         public INewsItemDataService DataService { get; }
 
@@ -61,23 +58,36 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             set => SetProperty(ref items, value);
         }
 
+        //---
+
         public void Refresh()
         {
-            if (NewsItemsOptions.Instance.ClearListBeforeRefresh)
+            if (_options.ClearListBeforeRefresh)
                 Items.Clear();
 
-            var itemsToDisplay = NewsItemsOptions.Instance.NewsItemsToDisplay;
-            var url = NewsItemsOptions.Instance.NewsItemsFeedUrl;
+            var itemsToDisplay = _options.NewsItemsToDisplay;
+            var url = _options.NewsItemsFeedUrl;
+
+            //YD: can't use ViewModelBase.Run here, maybe a new generic method?
 
             ThreadHelper.JoinableTaskFactory.Run(
                 async () => Items = await DataService.GetItemsAsync(url, itemsToDisplay)
                 );
         }
 
+        //---
+
         private void GetCommands()
             => Commands = CommandService.GetCommands(Refresh, OpenSettings);
 
         private void OpenSettings()
             => _visualStudioService.ShowOptions<OptionsProvider.NewsItems>();
+
+        private void OnItemSelected(object recipient, NewsItemSelected message)
+        {
+            var openInVS = NewsItemsOptions.Instance.OpenLinksInVS;
+
+            ActionService.DoAction(message.Value, openInVS);
+        }
     }
 }

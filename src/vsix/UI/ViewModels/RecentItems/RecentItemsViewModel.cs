@@ -47,7 +47,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             GetCommands();
             Refresh();
 
-            ListenFor<RecentItemsRefresh>(this, RefreshRequested);
+            ListenFor<RefreshRecentItems>(this, RefreshItems);
             ListenFor<RecentItemSelected>(this, SelectItem);
             ListenFor<RecentItemTogglePinned>(this, TogglePinned);
             ListenFor<RecentItemRemove>(this, RemoveItem);
@@ -421,7 +421,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
         }
 
-        private void RefreshRequested(object Recipient, RecentItemsRefresh message)
+        private void RefreshItems(object Recipient, RefreshRecentItems message)
             => Refresh();
 
         private void OpenSettings()

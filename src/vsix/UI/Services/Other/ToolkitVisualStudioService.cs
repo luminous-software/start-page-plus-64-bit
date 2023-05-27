@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 using Community.VisualStudio.Toolkit;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 using EnvDTE;
 
 using EnvDTE80;
@@ -19,27 +21,18 @@ using Task = System.Threading.Tasks.Task;
 
 namespace StartPagePlus.UI.Services.Other
 {
-    using CommunityToolkit.Mvvm.Messaging;
-
+    using Core;
     using Core.Interfaces;
 
     using Interfaces;
 
-    using StartPagePlus.Core;
+    using UI.Messages;
+
+    using static UI.Constants.CommandConstants;
+    using static UI.Constants.VsConstants;
 
     internal class ToolkitVisualStudioService : ServiceBase, IVisualStudioService
     {
-        private const string VERB_OPEN = "Open";
-
-        private const string FILE_OPEN_FOLDER = "File.OpenFolder";
-        private const string FILE_OPEN_PROJECT = "File.OpenProject";
-        private const string FILE_NEW_PROJECT = "File.NewProject";
-        private const string FILE_CLONE_REPOSITORY = "File.CloneRepository";
-
-        private const string TOOLS_OPTIONS = "Tools.Options";
-
-        private const uint FORCE_NEW_WINDOW = (uint)__VSWBNAVIGATEFLAGS.VSNWB_ForceNew;
-
         //private const string RUNNING_ELEVATED_MESSAGE = @"VS is currently running elevated (as admin) & will remain elevated if you choose to continue.\n\nDo you want to continue?";
         //private const string VS_MUST_CLOSE_MESSAGE = @"VS is currently running elevated. If you want to return to mom-elevated VS Must close.\\n\\nDo you want to continue?";
 
@@ -47,6 +40,7 @@ namespace StartPagePlus.UI.Services.Other
         //VS will remain non-elevated VS will need to close. Do you want to continue?";
 
         private readonly IDialogService _dialogService;
+        private static readonly IMessenger _messenger;
 
         //---
 
@@ -64,15 +58,23 @@ namespace StartPagePlus.UI.Services.Other
         //private IVsShell4 VsShell4
         //    => VS.GetRequiredService<SVsShell, IVsShell4>(); //YD: investigate toolkit for IVsShell4 alternative
 
-        public bool ExecuteCommand(string action, string args = "")
+        public bool ExecuteCommand(string action, string args = "", int delay = 0)
         {
             var result = false;
 
             try
             {
-                result = ThreadHelper.JoinableTaskFactory.Run(
-                    async () => result = await VS.Commands.ExecuteAsync(action, args)
-                    );
+                result = Run(async ()
+                    => await VS.Commands.ExecuteAsync(action, args)
+                );
+
+                if (result is true)
+                {
+                    var message = new RefreshRecentItems(delay);
+
+                    Send<RefreshRecentItems>(message);
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -118,10 +120,11 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool CloneRepository()
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
+        //--
 
+
+        public bool CloneRepository(int delay)
+        {
             try
             {
                 return ExecuteCommand(FILE_CLONE_REPOSITORY);
@@ -133,13 +136,17 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool OpenFolder() //: YD send message to RecentItemsViewModel to refresh the list
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
+        //--
 
+        public bool OpenFolder(int delay)
+            => OpenFolder("", delay);
+
+
+        public bool OpenFolder(string path, int delay)
+        {
             try
             {
-                return ExecuteCommand(FILE_OPEN_FOLDER); // opens Open Folder dialog
+                return ExecuteCommand(FILE_OPEN_FOLDER); // without a path it displays the Open Folder dialog
             }
             catch (ArgumentException ex)
             {
@@ -148,15 +155,23 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool OpenFolder(string path) //: YD send message to RecentItemsViewModel to refresh the list
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
+        //--
 
+        public bool OpenProject(int delay)
+            => OpenProject("", delay);
+
+        public bool OpenProject(string path, int delay)
+        {
             try
             {
-                if (Directory.Exists(path))
+                ThreadHelper.ThrowIfNotOnUIThread();
+
+                if (path.IsNullOrEmpty())
+                    return ExecuteCommand(FILE_OPEN_PROJECT);
+
+                if (File.Exists(path))
                 {
-                    return ExecuteCommand(FILE_OPEN_FOLDER, path.ToQuotedString());
+                    return ExecuteCommand(FILE_OPEN_PROJECT, path.ToQuotedString());
                 }
                 else
                 {
@@ -171,53 +186,12 @@ namespace StartPagePlus.UI.Services.Other
             }
         }
 
-        public bool OpenProject()
+        //---
+        public bool CreateNewProject(int delay)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
             try
             {
-                return ExecuteCommand(FILE_OPEN_PROJECT); // opens Open Project/Solution dialog
-            }
-            catch (ArgumentException ex)
-            {
-                _dialogService.ShowException(ex);
-                return false;
-            }
-        }
-
-        public bool OpenProject(string path) //: YD send message to RecentItemsViewModel to refresh the list
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            try
-            {
-                if (File.Exists(path))
-                {
-                    return ExecuteCommand(FILE_OPEN_PROJECT, path.ToQuotedString());
-                }
-                else
-                {
-                    _dialogService.ShowExclamation($"Unable to find '{path}'"); //YD: aall DialogService.ShowXXX should return a bool result
-                    return false;
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                _dialogService.ShowException(ex);
-                return false;
-            }
-        }
-
-        public bool CreateNewProject()
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            try
-            {
-                ExecuteCommand(FILE_NEW_PROJECT);
-
-                return true;
+                return ExecuteCommand(FILE_NEW_PROJECT);
             }
             catch (ArgumentException ex)
             {
@@ -240,7 +214,7 @@ namespace StartPagePlus.UI.Services.Other
                 if (restart is true)
                 {
 
-                    RestartAs(elevated: asAdmin);
+                    RestartAs(asAdmin);
 
                     result = true; // won't end up being returned, as VS will have restarted
                 }
@@ -407,10 +381,15 @@ namespace StartPagePlus.UI.Services.Other
         {
             try
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
+                var result = false;
 
-                VS.Settings.OpenAsync<T>().FireAndForget();
-                return true;
+                result = Run(async () =>
+                {
+                    await VS.Settings.OpenAsync<T>();
+                    return true;
+                });
+
+                return result;
             }
             catch (Exception ex)
             {

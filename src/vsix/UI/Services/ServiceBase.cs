@@ -12,21 +12,30 @@ namespace StartPagePlus.UI.Services
     internal abstract class ServiceBase : IService
     {
         private readonly IAsyncMethodService _methodService;
+        private readonly IMessenger _messenger;
 
         //---
 
         protected ServiceBase(IAsyncMethodService methodService, IMessenger messenger)
         {
             _methodService = methodService ?? throw new ArgumentNullException(nameof(methodService));
-
-            Messenger = messenger ?? throw new ArgumentNullException(nameof(methodService));
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         }
 
         //---
 
-        protected IMessenger Messenger { get; }
+        //protected IMessenger Messenger
+        //    => _messenger;
 
         //---
+
+        protected void Send<TService>()
+            where TService : class, new()
+            => _messenger.Send<TService>();
+
+        protected void Send<TService>(TService service)
+            where TService : class, new()
+            => _messenger.Send<TService>(service);
 
         protected bool Run(Func<Task<bool>> asyncMethod)
             => _methodService.Run(asyncMethod);
