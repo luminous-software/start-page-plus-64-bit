@@ -6,7 +6,7 @@ namespace StartPagePlus.UI.Interfaces
 {
     public interface IVisualStudioService
     {
-        bool ExecuteCommand(string action, string args = "");
+        bool ExecuteCommand(string action, string args = "", int delay = 0);
 
         bool OpenWebPage(string url, bool internalBrowser);
 

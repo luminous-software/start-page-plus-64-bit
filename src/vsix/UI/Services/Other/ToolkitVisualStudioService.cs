@@ -26,6 +26,8 @@ namespace StartPagePlus.UI.Services.Other
 
     using Interfaces;
 
+    using UI.Messages;
+
     using static UI.Constants.CommandConstants;
     using static UI.Constants.VsConstants;
 
@@ -38,6 +40,7 @@ namespace StartPagePlus.UI.Services.Other
         //VS will remain non-elevated VS will need to close. Do you want to continue?";
 
         private readonly IDialogService _dialogService;
+        private static readonly IMessenger _messenger;
 
         //---
 
@@ -55,7 +58,7 @@ namespace StartPagePlus.UI.Services.Other
         //private IVsShell4 VsShell4
         //    => VS.GetRequiredService<SVsShell, IVsShell4>(); //YD: investigate toolkit for IVsShell4 alternative
 
-        public bool ExecuteCommand(string action, string args = "")
+        public bool ExecuteCommand(string action, string args = "", int delay = 0)
         {
             var result = false;
 
@@ -64,6 +67,14 @@ namespace StartPagePlus.UI.Services.Other
                 result = Run(async ()
                     => await VS.Commands.ExecuteAsync(action, args)
                 );
+
+                if (result is true)
+                {
+                    var message = new RefreshRecentItems(delay);
+
+                    Send<RefreshRecentItems>(message);
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -111,8 +122,6 @@ namespace StartPagePlus.UI.Services.Other
 
         //--
 
-        public bool CloneRepository()
-            => CloneRepository(0);
 
         public bool CloneRepository(int delay)
         {
@@ -132,8 +141,6 @@ namespace StartPagePlus.UI.Services.Other
         public bool OpenFolder(int delay)
             => OpenFolder("", delay);
 
-        public bool OpenFolder(string path)
-            => OpenFolder(path, 0);
 
         public bool OpenFolder(string path, int delay)
         {
@@ -180,10 +187,6 @@ namespace StartPagePlus.UI.Services.Other
         }
 
         //---
-
-        public bool CreateNewProject()
-            => CreateNewProject(0);
-
         public bool CreateNewProject(int delay)
         {
             try
@@ -211,7 +214,7 @@ namespace StartPagePlus.UI.Services.Other
                 if (restart is true)
                 {
 
-                    RestartAs(elevated: asAdmin);
+                    RestartAs(asAdmin);
 
                     result = true; // won't end up being returned, as VS will have restarted
                 }

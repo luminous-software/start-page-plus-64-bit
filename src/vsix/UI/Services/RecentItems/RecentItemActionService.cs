@@ -1,21 +1,20 @@
 ﻿using System;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 using Microsoft;
 using Microsoft.VisualStudio.Shell;
 
 namespace StartPagePlus.UI.Services
 {
-    using CommunityToolkit.Mvvm.Messaging;
-
+    using Core;
     using Core.Interfaces;
 
     using Interfaces;
     using Interfaces.RecentItems;
 
-    using StartPagePlus.Core;
-    using StartPagePlus.UI.Messages;
-
     using UI.Enums;
+    using UI.Messages;
 
     using ViewModels.RecentItems;
 
@@ -97,6 +96,6 @@ namespace StartPagePlus.UI.Services
         //    => await DataService.SetLastAccessedAsync(path, DateTimeService.Today.Date);
 
         private void SendRefreshMessage()
-            => Messenger.Send(new RefreshRecentItems());
+            => Send<RefreshRecentItems>();
     }
 }

@@ -56,12 +56,13 @@ namespace StartPagePlus.UI.Services.Other
 
         //---
 
-        public bool ExecuteCommand(string action, string args = "")
+        public bool ExecuteCommand(string action, string args = "", int delay = 0)
         {
             try
             {
-                VS.Commands.ExecuteAsync(action, args).FireAndForget(); //YD: this class shouldn't be using VS.Commands, only the ToolBoxVisualStudio
-                return true;
+                return Run(async ()
+                    => await VS.Commands.ExecuteAsync(action, args) //YD: this class shouldn't be using VS.Commands, only the ToolBoxVisualStudio
+                );
             }
             catch (Exception ex)
             {
@@ -384,5 +385,6 @@ namespace StartPagePlus.UI.Services.Other
                 return false;
             }
         }
+
     }
 }
