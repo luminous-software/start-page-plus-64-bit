@@ -1,11 +1,15 @@
-﻿namespace StartPagePlus.Options.Pages
+﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
+
+using Community.VisualStudio.Toolkit;
+
+using Microsoft.VisualStudio.Shell;
+
+namespace StartPagePlus.Options.Pages
 {
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
+    using static Options.Pages.PageConstants;
 
-    using Community.VisualStudio.Toolkit;
-
-    using static StartPagePlus.Options.Pages.PageConstants;
+    //---
 
     internal partial class OptionsProvider
     {
@@ -13,9 +17,18 @@
         public class NewsItems : BaseOptionPage<NewsItemsOptions> { }
     }
 
+    //---
+
     public class NewsItemsOptions : BaseOptionModel<NewsItemsOptions>
     {
         public const string Category = @"News Items";
+
+        //---
+
+        public NewsItemsOptions() : base()
+        {
+            Saved += OnSaved;
+        }
 
         //--- appearance
 
@@ -55,5 +68,12 @@
         [DisplayName(NewsItemTooltipDelayDisplayName)]
         [Description(NewsItemTooltipDelayDescription)]
         public int NewsItemTooltipDelay { get; set; } = NewsItemTooltipDelayDefault;
+
+        //---
+
+        private void OnSaved(NewsItemsOptions options)
+        {
+            VS.StatusBar.ShowMessageAsync("News Items Settings Saved").FireAndForget();
+        }
     }
 }
