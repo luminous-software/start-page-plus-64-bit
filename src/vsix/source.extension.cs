@@ -12,7 +12,7 @@ namespace StartPagePlus
         public const string Name = "Start Page+ (64-bit)";
         public const string Description = @"Bring back Start Page! (a document tab, NOT a modal window)";
         public const string Language = "en-US";
-        public const string Version = "0.21.4.1";
+        public const string Version = "0.21.5";
         public const string Author = "Yann Duran";
         public const string Tags = "Start Page+, start-page-plus, StartPagePlus, 64 bit, 64bit, start page, start-page, startpage, luminous, yannduran, yd";
     }
