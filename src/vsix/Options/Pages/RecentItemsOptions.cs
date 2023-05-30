@@ -3,8 +3,6 @@ using System.Runtime.InteropServices;
 
 using Community.VisualStudio.Toolkit;
 
-using Microsoft.VisualStudio.Shell;
-
 namespace StartPagePlus.Options.Pages
 {
     using static Pages.PageConstants;
@@ -63,7 +61,8 @@ namespace StartPagePlus.Options.Pages
 
         private void OnSaved(RecentItemsOptions options)
         {
-            VS.StatusBar.ShowMessageAsync("Recent Items Settings Saved").FireAndForget();
+            //VS.StatusBar.ShowMessageAsync("Recent Items Settings Saved").FireAndForget();
+
         }
     }
 }

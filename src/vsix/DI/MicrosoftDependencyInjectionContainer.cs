@@ -55,21 +55,22 @@ namespace StartPagePlus.DI
             => _serviceCollection.Any(x => x.ServiceType == serviceType);
 
         public T GetInstance<T>()
-        {
-            try
-            {
-                if (_serviceProvider == null)
-                {
-                    BuildServiceProvider();
-                }
+            => (T)GetInstance(typeof(T));
+        //{
+        //    try
+        //    {
+        //        if (_serviceProvider == null)
+        //        {
+        //            BuildServiceProvider();
+        //        }
 
-                return _serviceProvider.GetService<T>();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //        return _serviceProvider.GetService<T>();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
         public object GetInstance(Type serviceType)
         {

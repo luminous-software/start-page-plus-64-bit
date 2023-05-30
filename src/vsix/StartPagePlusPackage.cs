@@ -75,8 +75,4 @@ namespace StartPagePlus
             return base.GetService(serviceType); // otherwise let VS handle getting the requested service
         }
     }
-
-    //private static void LogService<T>(T service, string message)
-    //    where T : IReportServiceLifetime =>
-    //        Console.WriteLine($"    {typeof(T).Name}: {service.Id} ({message})");
 }
