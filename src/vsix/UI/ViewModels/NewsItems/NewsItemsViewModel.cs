@@ -68,9 +68,7 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             var itemsToDisplay = _options.NewsItemsToDisplay;
             var url = _options.NewsItemsFeedUrl;
 
-            //YD: can't use ViewModelBase.Run here, maybe a new generic method?
-
-            ThreadHelper.JoinableTaskFactory.Run(
+            Run(
                 async () => Items = await DataService.GetItemsAsync(url, itemsToDisplay)
                 );
         }

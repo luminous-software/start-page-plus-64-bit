@@ -178,7 +178,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             try
             {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     if (await DataService.PinItemAsync(viewModel))
                     {
@@ -209,7 +209,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             try
             {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     if (await DataService.UnpinItemAsync(viewModel))
                     {
@@ -240,7 +240,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             try
             {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     if (await DataService.RemoveItemAsync(viewModel))
                     {
@@ -277,7 +277,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             try
             {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     if (await DataService.CopyItemPathAsync(viewModel))
                     {
@@ -314,7 +314,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             try
             {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     var result = await DataService.EditItemPathAsync(viewModel);
 
@@ -358,7 +358,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         {
             try
             {
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     if (await DataService.OpenInVsAsync(viewModel))
                     {
@@ -397,8 +397,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
                 var showPaths = options.ShowFilePaths;
                 var showCsProjFiles = options.ShowCsProjFiles;
 
-                //YD: replace all of these with RunMethod calls
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
+                Run(async () =>
                 {
                     var items = await DataService.GetItemsAsync(itemsToDisplay, showExtensions, showPaths, showCsProjFiles);
 

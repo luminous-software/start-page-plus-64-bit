@@ -7,6 +7,8 @@ namespace StartPagePlus.Core
 
     internal interface IAsyncMethodService : IService
     {
+        void Run(Func<Task> asyncMethod);
+
         bool Run(Func<Task<bool>> asyncMethod);
 
         bool? Run(Func<Task<bool?>> asyncMethod);
