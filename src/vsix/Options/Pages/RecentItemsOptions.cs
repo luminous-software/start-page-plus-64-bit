@@ -3,8 +3,14 @@ using System.Runtime.InteropServices;
 
 using Community.VisualStudio.Toolkit;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace StartPagePlus.Options.Pages
 {
+    using DI;
+
+    using UI.Messages;
+
     using static Pages.PageConstants;
 
     //---
@@ -61,8 +67,10 @@ namespace StartPagePlus.Options.Pages
 
         private void OnSaved(RecentItemsOptions options)
         {
-            //VS.StatusBar.ShowMessageAsync("Recent Items Settings Saved").FireAndForget();
+            var container = StartPagePlusContainer.Instance;
+            var messenger = container.GetInstance<IMessenger>();
 
+            messenger.Send<RefreshRecentItems>();
         }
     }
 }
