@@ -34,7 +34,7 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 	[p09]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
 
-- Rename Start Items Options to Settings (now opens Start Item settings 
+- Rename Start Items Options to Settings (now opens Start Item settings)
 
 	[p16]: https://github.com/yannduran/start-page-plus-64-bit/issues/19
 
