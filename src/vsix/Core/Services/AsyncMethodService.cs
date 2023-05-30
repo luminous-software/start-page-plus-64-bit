@@ -24,6 +24,20 @@ namespace StartPagePlus.Core.Services
         //--- methods
 
         [SuppressMessage("Usage", "VSTHRD102:Implement internal logic asynchronously", Justification = "Required")]
+        public void Run(Func<Task> asyncMethod)
+        {
+            try
+            {
+                ThreadHelper.JoinableTaskFactory.Run(async () => await asyncMethod());
+
+            }
+            catch (Exception ex)
+            {
+                _dialogService.ShowException(ex);
+            }
+        }
+
+        [SuppressMessage("Usage", "VSTHRD102:Implement internal logic asynchronously", Justification = "Required")]
         public bool Run(Func<Task<bool>> asyncMethod)
         {
             var result = false;

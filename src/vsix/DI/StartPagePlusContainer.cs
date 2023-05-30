@@ -1,11 +1,19 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace StartPagePlus.DI
+﻿namespace StartPagePlus.DI
 {
     using UI.Services;
+    using UI.ViewModels;
 
     internal class StartPagePlusContainer : MicrosoftDependencyInjectionContainer
     {
+        private static StartPagePlusContainer _instance;
+
+        //---
+
+        public static StartPagePlusContainer Instance
+            => _instance ??= new StartPagePlusContainer();
+
+        //---
+
         public T GetService<T>()
             where T : ServiceBase
         {
@@ -23,7 +31,7 @@ namespace StartPagePlus.DI
         }
 
         public T GetViewModel<T>()
-            where T : ObservableObject
+            where T : ViewModelBase
         {
             try
             {

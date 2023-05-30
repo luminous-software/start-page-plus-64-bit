@@ -58,6 +58,7 @@
     <Compile Include="Core\Dates\DateMethods.cs" />
     <Compile Include="Core\Interfaces\IDependencyInjectionContainer.cs" />
     <Compile Include="DI\MicrosoftDependencyInjectionContainer.cs" />
+    <Compile Include="UI\Messages\RefreshStartItems.cs" />
     <Compile Include="Options\Pages\StartItemsOptions.cs" />
     <Compile Include="UI\Constants\CommandConstants.cs" />
     <Compile Include="UI\Constants\VsConstants.cs" />
@@ -127,8 +128,10 @@
     <Compile Include="UI\Messages\RecentItemEditPath.cs" />
     <Compile Include="UI\Messages\RecentItemOpenInVS.cs" />
     <Compile Include="UI\Messages\RecentItemRemove.cs" />
+    <Compile Include="UI\Messages\NewsItemsRefreshed.cs" />
     <Compile Include="UI\Messages\RecentItemsRefreshed.cs" />
     <Compile Include="UI\Messages\RecentItemTogglePinned.cs" />
+    <Compile Include="UI\Messages\RefreshNewsItems.cs" />
     <Compile Include="UI\Messages\RefreshRecentItems.cs" />
     <Compile Include="UI\Messages\RecentItemSelected.cs" />
     <Compile Include="UI\Messages\NewsItemSelected.cs" />
@@ -166,6 +169,7 @@
     <Compile Include="UI\ViewModels\StartItems\OpenProjectViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\RestartElevatedViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\RestartNormalViewModel.cs" />
+    <Compile Include="UI\Messages\StartItemsRefreshed.cs" />
     <Compile Include="UI\ViewModels\StartItems\StartItemsViewModel.cs" />
     <Compile Include="UI\ViewModels\StartItems\StartItemViewModel.cs" />
     <Compile Include="UI\ViewModels\StartViewModel.cs" />

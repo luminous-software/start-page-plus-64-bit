@@ -25,6 +25,10 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 	[p11]: https://github.com/yannduran/start-page-plus-64-bit/issues/11
 
+- After modifying a list setting, the list needs a manual refresh [[#28](https://github.com/luminous-software/start-page-plus-64-bit/issues/28)]
+
+	[p12]: https://github.com/yannduran/start-page-plus-64-bit/issues/12
+
 #### New Features
 - Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
 

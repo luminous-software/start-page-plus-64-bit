@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-using Microsoft.VisualStudio.Shell;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace StartPagePlus.UI.ViewModels.NewsItems
 {
@@ -22,17 +23,25 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
     {
         private const string HEADING = "Read News Item";
 
-        private List<NewsItemViewModel> items = new();
+        private List<NewsItemViewModel> _items = new();
+        private bool _refreshed;
+        private readonly IDialogService _dialogService;
         private readonly IVisualStudioService _visualStudioService;
-        private readonly NewsItemsOptions _options = NewsItemsOptions.Instance;
 
         //---
 
-        public NewsItemsViewModel(INewsItemDataService dataService, INewsItemCommandService commandService, INewsItemActionService actionService, IVisualStudioService visualStudioService)
+        public NewsItemsViewModel(
+            INewsItemDataService dataService,
+            INewsItemCommandService commandService,
+            INewsItemActionService actionService,
+            IDialogService dialogService,
+            IVisualStudioService visualStudioService
+            )
         {
             DataService = dataService;
             CommandService = commandService;
             ActionService = actionService;
+            _dialogService = dialogService;
             _visualStudioService = visualStudioService;
 
             Heading = HEADING;
@@ -41,6 +50,7 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             GetCommands();
             Refresh();
 
+            ListenFor<RefreshNewsItems>(this, RefreshItems);
             ListenFor<NewsItemSelected>(this, OnItemSelected);
         }
 
@@ -54,31 +64,57 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
 
         public List<NewsItemViewModel> Items
         {
-            get => items;
-            set => SetProperty(ref items, value);
+            get => _items;
+            set => SetProperty(ref _items, value);
+        }
+
+        public bool Refreshed
+        {
+            get => _refreshed;
+            set
+            {
+                if (SetProperty(ref _refreshed, value) && (value == true))
+                {
+                    Messenger.Send(new NewsItemsRefreshed());
+                }
+            }
         }
 
         //---
 
         public void Refresh()
         {
-            if (_options.ClearListBeforeRefresh)
-                Items.Clear();
+            Refreshed = false;
 
-            var itemsToDisplay = _options.NewsItemsToDisplay;
-            var url = _options.NewsItemsFeedUrl;
+            try
+            {
+                var _options = NewsItemsOptions.Instance;
 
-            //YD: can't use ViewModelBase.Run here, maybe a new generic method?
+                if (_options.ClearListBeforeRefresh)
+                    Items.Clear();
 
-            ThreadHelper.JoinableTaskFactory.Run(
-                async () => Items = await DataService.GetItemsAsync(url, itemsToDisplay)
+                var itemsToDisplay = _options.NewsItemsToDisplay;
+                var url = _options.NewsItemsFeedUrl;
+
+                Run(
+                    async () => Items = await DataService.GetItemsAsync(url, itemsToDisplay)
                 );
+
+                Refreshed = true;
+            }
+            catch (Exception ex)
+            {
+                _dialogService.ShowException(ex);
+            }
         }
 
         //---
 
         private void GetCommands()
             => Commands = CommandService.GetCommands(Refresh, OpenSettings);
+
+        private void RefreshItems(object Recipient, RefreshNewsItems message)
+            => Refresh();
 
         private void OpenSettings()
             => _visualStudioService.ShowOptions<OptionsProvider.NewsItems>();
