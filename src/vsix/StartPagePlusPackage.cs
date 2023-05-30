@@ -46,7 +46,7 @@ namespace StartPagePlus
         private readonly StartPagePlusContainer _container;
 
         public StartPagePlusPackage() : base()
-            => _container = new StartPagePlusContainer();
+            => _container = StartPagePlusContainer.Instance;
 
         //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
 
