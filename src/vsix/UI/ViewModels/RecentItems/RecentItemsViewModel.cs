@@ -4,8 +4,6 @@ using System.Windows.Controls;
 
 using CommunityToolkit.Mvvm.Messaging;
 
-using Microsoft.VisualStudio.Shell;
-
 namespace StartPagePlus.UI.ViewModels.RecentItems
 {
     using Core.Interfaces;
@@ -21,11 +19,13 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
     {
         private const string _heading = "Open Recent Item";
 
-        private ObservableCollection<RecentItemViewModel> items = new();
+        private ObservableCollection<RecentItemViewModel> _items = new();
         private readonly IVisualStudioService _visualStudioService;
 
-        private RecentItemViewModel selectedItem;
-        private bool refreshed;
+        private RecentItemViewModel _selectedItem;
+        private bool _refreshed;
+
+        //---
 
         public RecentItemsViewModel(
             IRecentItemCommandService commandService,
@@ -56,6 +56,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             ListenFor<RecentItemOpenInVS>(this, OpenInVS);
         }
 
+        //---
+
         public IRecentItemActionService ActionService { get; }
 
         public IRecentItemDataService DataService { get; }
@@ -66,22 +68,22 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
 
         public ObservableCollection<RecentItemViewModel> Items
         {
-            get => items;
-            set => SetProperty(ref items, value);
+            get => _items;
+            set => SetProperty(ref _items, value);
         }
 
         public RecentItemViewModel SelectedItem
         {
-            get => selectedItem;
-            set => SetProperty(ref selectedItem, value);
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
         }
 
         public bool Refreshed
         {
-            get => refreshed;
+            get => _refreshed;
             set
             {
-                if (SetProperty(ref refreshed, value) && (value == true))
+                if (SetProperty(ref _refreshed, value) && (value == true))
                 {
                     Messenger.Send(new RecentItemsRefreshed());
                 }
@@ -129,6 +131,8 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         //    //}
         //}
 
+        //---
+
         private void GetCommands()
             => Commands = CommandService.GetCommands(Refresh, OpenSettings);
 
@@ -148,7 +152,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
         private void DeselectItem()
             => SelectedItem = null;
 
-        ////---
+        //---
 
         private void TogglePinned(object recipient, RecentItemTogglePinned message)
         {
@@ -166,7 +170,7 @@ namespace StartPagePlus.UI.ViewModels.RecentItems
             }
         }
 
-        ////---
+        //---
 
         private Func<bool> CanPinItem
             => () => (SelectedItem?.Pinned == false);

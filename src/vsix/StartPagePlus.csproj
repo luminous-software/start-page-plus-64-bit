@@ -127,8 +127,10 @@
     <Compile Include="UI\Messages\RecentItemEditPath.cs" />
     <Compile Include="UI\Messages\RecentItemOpenInVS.cs" />
     <Compile Include="UI\Messages\RecentItemRemove.cs" />
+    <Compile Include="UI\Messages\NewsItemsRefreshed.cs" />
     <Compile Include="UI\Messages\RecentItemsRefreshed.cs" />
     <Compile Include="UI\Messages\RecentItemTogglePinned.cs" />
+    <Compile Include="UI\Messages\RefreshNewsItems.cs" />
     <Compile Include="UI\Messages\RefreshRecentItems.cs" />
     <Compile Include="UI\Messages\RecentItemSelected.cs" />
     <Compile Include="UI\Messages\NewsItemSelected.cs" />

@@ -3,10 +3,14 @@ using System.Runtime.InteropServices;
 
 using Community.VisualStudio.Toolkit;
 
-using Microsoft.VisualStudio.Shell;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace StartPagePlus.Options.Pages
 {
+    using DI;
+
+    using UI.Messages;
+
     using static Options.Pages.PageConstants;
 
     //---
@@ -73,7 +77,10 @@ namespace StartPagePlus.Options.Pages
 
         private void OnSaved(NewsItemsOptions options)
         {
-            VS.StatusBar.ShowMessageAsync("News Items Settings Saved").FireAndForget();
+            var container = StartPagePlusContainer.Instance;
+            var messenger = container.GetInstance<IMessenger>();
+
+            messenger.Send<RefreshNewsItems>();
         }
     }
 }
