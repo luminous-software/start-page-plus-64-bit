@@ -46,10 +46,10 @@ namespace StartPagePlus.Options.Pages
         [Description(NewsItemsToDisplayDescription)]
         public int NewsItemsToDisplay { get; set; } = NewsItemsToDisplayDefault;
 
-        //[Category(H1 + PageConstants.Appearance)]
-        //[DisplayName(DisplayNewsItemsName)]
-        //[Description(DisplayNewsItemsDescription)]
-        //public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
+        [Category(H1 + PageConstants.Appearance)]
+        [DisplayName(DisplayNewsItemsName)]
+        [Description(DisplayNewsItemsDescription)]
+        public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
 
         //--- behavior
 
