@@ -24,6 +24,7 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
         private const string HEADING = "Read News Item";
 
         private List<NewsItemViewModel> _items = new();
+        private NewsItemViewModel _selectedItem;
         private bool _refreshed;
         private readonly IDialogService _dialogService;
         private readonly IVisualStudioService _visualStudioService;
@@ -68,6 +69,12 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             set => SetProperty(ref _items, value);
         }
 
+        public NewsItemViewModel SelectedItem
+        {
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
+        }
+
         public bool Refreshed
         {
             get => _refreshed;
@@ -75,6 +82,8 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             {
                 if (SetProperty(ref _refreshed, value) && (value == true))
                 {
+                    SelectedItem = null;
+
                     Messenger.Send(new NewsItemsRefreshed());
                 }
             }
@@ -105,6 +114,10 @@ namespace StartPagePlus.UI.ViewModels.NewsItems
             catch (Exception ex)
             {
                 _dialogService.ShowException(ex);
+            }
+            finally
+            {
+                SelectedItem = null;
             }
         }
 

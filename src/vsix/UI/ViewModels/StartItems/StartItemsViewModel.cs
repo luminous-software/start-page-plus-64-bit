@@ -21,6 +21,7 @@ namespace StartPagePlus.UI.ViewModels.StartItems
         private const string CHANGELOG_URL = WEBSITE_URL + "/changelog";
 
         private List<StartItemViewModel> _items = new();
+        private StartItemViewModel _selectedItem;
         private readonly IStartItemCommandService _commandService;
         private readonly IStartItemDataService _dataService;
         private readonly IDialogService _dialogService;
@@ -56,6 +57,12 @@ namespace StartPagePlus.UI.ViewModels.StartItems
         {
             get => _items;
             set => SetProperty(ref _items, value);
+        }
+
+        public StartItemViewModel SelectedItem
+        {
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
         }
 
         public bool Refreshed
@@ -98,6 +105,10 @@ namespace StartPagePlus.UI.ViewModels.StartItems
             catch (Exception ex)
             {
                 _dialogService.ShowException(ex);
+            }
+            finally
+            {
+                SelectedItem = null;
             }
         }
 
