@@ -17,24 +17,28 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 ### v0.22 - 2023-05-??
 
 #### Bug Fixes
-- After closing a solution the Recent Items list is not refreshed [[#33](https://github.com/luminous-software/start-page-plus-64-bit/issues/33)]
+- After modifying a list setting, the list needs a manual refresh [[#28](https://github.com/luminous-software/start-page-plus-64-bit/issues/28)]
 
-	[p15]: https://github.com/yannduran/start-page-plus-64-bit/issues/15
+	[p12]: https://github.com/yannduran/start-page-plus-64-bit/issues/12
 
 - Some start items don't refresh the Recent Items list [[#29](https://github.com/luminous-software/start-page-plus-64-bit/issues/29)]
 
 	[p11]: https://github.com/yannduran/start-page-plus-64-bit/issues/11
 
-- After modifying a list setting, the list needs a manual refresh [[#28](https://github.com/luminous-software/start-page-plus-64-bit/issues/28)]
+- After closing a solution the Recent Items list is not refreshed [[#33](https://github.com/luminous-software/start-page-plus-64-bit/issues/33)]
 
-	[p12]: https://github.com/yannduran/start-page-plus-64-bit/issues/12
+	[p15]: https://github.com/yannduran/start-page-plus-64-bit/issues/15
+
+- Saving a list's settings leaves the first item selected
+
+	[p17]: https://github.com/yannduran/start-page-plus-64-bit/issues/17
 
 #### New Features
 - Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
 
 	[p09]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
 
-- Rename Start Items Options to Settings (now opens Start Item settings)
+- In Start Items rename Options to Settings (it now opens the settings)
 
 	[p16]: https://github.com/yannduran/start-page-plus-64-bit/issues/19
 
