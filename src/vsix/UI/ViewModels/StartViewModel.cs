@@ -12,10 +12,12 @@ namespace StartPagePlus.UI.ViewModels
     {
         public StartViewModel(RecentItemsViewModel recentItemsViewModel, StartItemsViewModel startItemsViewModel, NewsItemsViewModel newsItemsViewModel) : base()
         {
-            Name = "Start";
-            Title = GeneralOptions.Instance.StartTabTitleText;
+            var options = GeneralOptions.Instance;
 
-            if (NewsItemsOptions.Instance.DisplayNewsItems)
+            Name = "Start";
+            Title = options.StartTabTitleText;
+
+            if (options.DisplayNewsItems)
             {
                 Columns = new ObservableCollection<ColumnViewModel>
                 {
@@ -34,9 +36,8 @@ namespace StartPagePlus.UI.ViewModels
             }
         }
 
-        public ObservableCollection<ColumnViewModel> Columns { get; set; }
+        //---
 
-        public bool ShowStartTabTitle
-            => GeneralOptions.Instance.ShowStartTabTitle;
+        public ObservableCollection<ColumnViewModel> Columns { get; set; }
     }
 }
