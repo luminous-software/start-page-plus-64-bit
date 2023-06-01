@@ -16,6 +16,10 @@
 
     public class MainWindow : BaseToolWindow<MainWindow>
     {
+        //public static MainWindow Instance { get; private set; }
+
+        public static MainView View { get; private set; }
+
         public override string GetTitle(int toolWindowId)
             => Vsix.InternalName;
 
@@ -23,7 +27,11 @@
             => typeof(Pane);
 
         public override Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
-            => Task.FromResult<FrameworkElement>(new MainView(Package));
+        {
+            View = new MainView(Package);
+
+            return Task.FromResult<FrameworkElement>(View);
+        }
 
         //---
 

@@ -80,15 +80,15 @@ namespace StartPagePlus.UI.ViewModels.StartItems
         //---
 
         private void GetCommands()
-            => Commands = _commandService.GetCommands(OpenChangelog, OpenWebsite, OpenSettings);
+            => Commands = _commandService.GetCommands(OpenChangelog, OpenGeneralSettings, OpenStartItemsSettings);
 
         private void OpenChangelog()
             => _visualStudioService.OpenWebPage(CHANGELOG_URL, true);
 
-        private void OpenWebsite()
-            => _visualStudioService.OpenWebPage(WEBSITE_URL, true);
+        private void OpenGeneralSettings()
+            => _visualStudioService.ShowOptions<OptionsProvider.General>();
 
-        private void OpenSettings()
+        private void OpenStartItemsSettings()
             => _visualStudioService.ShowOptions<OptionsProvider.StartItems>();
 
         private void Refresh()

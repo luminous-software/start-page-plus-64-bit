@@ -1,9 +1,16 @@
-﻿namespace StartPagePlus.Options.Pages
-{
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
-    using Community.VisualStudio.Toolkit;
+using Community.VisualStudio.Toolkit;
+
+namespace StartPagePlus.Options.Pages
+{
+    using Core.Interfaces;
+
+    using StartPagePlus.UI.Services;
+
+    using UI.ToolWindows;
 
     using static StartPagePlus.Options.Pages.PageConstants;
 
@@ -16,6 +23,18 @@
     public class GeneralOptions : BaseOptionModel<GeneralOptions>
     {
         public const string Category = "General";
+        private readonly IDialogService _dialogService;
+
+        //---
+
+        public GeneralOptions() : base()
+        {
+            _dialogService = ServiceManager.DialogService;
+
+            Saved += OnSaved;
+        }
+
+        //---
 
         [Category(H1 + PackageName)]
         [DisplayName(EnableStartPagePlusDispayName)]
@@ -49,6 +68,11 @@
         [Description(StartTabTitleTextDescription)]
         public string StartTabTitleText { get; set; } = StartTabTitleDefault;
 
+        [Category(H2 + PageConstants.Appearance)]
+        [DisplayName(DisplayNewsItemsName)]
+        [Description(DisplayNewsItemsDescription)]
+        public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
+
         //--- behavior
 
         [Category(H3 + PageConstants.Behavior)]
@@ -60,5 +84,20 @@
         [DisplayName(RestoreOnSolutionCloseDisplayName)]
         [Description(RestoreOnSolutionCloseDescription)]
         public bool RestoreOnSolutionClose { get; set; } = RestoreOnSolutionCloseDefault;
+
+        //---
+
+        private void OnSaved(GeneralOptions options)
+        {
+            try
+            {
+                MainWindow.View.InvalidateVisual();
+
+            }
+            catch (Exception ex)
+            {
+                _dialogService.ShowException(ex);
+            }
+        }
     }
 }
