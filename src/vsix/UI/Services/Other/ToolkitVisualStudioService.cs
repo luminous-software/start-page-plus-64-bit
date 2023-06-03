@@ -40,7 +40,6 @@ namespace StartPagePlus.UI.Services.Other
         //VS will remain non-elevated VS will need to close. Do you want to continue?";
 
         private readonly IDialogService _dialogService;
-        private static readonly IMessenger _messenger;
 
         //---
 

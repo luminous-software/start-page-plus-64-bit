@@ -1,11 +1,19 @@
-﻿namespace StartPagePlus.Options.Pages
+﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
+
+using Community.VisualStudio.Toolkit;
+
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.Options.Pages
 {
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
+    using DI;
 
-    using Community.VisualStudio.Toolkit;
+    using UI.Messages;
 
-    using static StartPagePlus.Options.Pages.PageConstants;
+    using static Pages.PageConstants;
+
+    //---
 
     internal partial class OptionsProvider
     {
@@ -13,9 +21,18 @@
         public class RecentItems : BaseOptionPage<RecentItemsOptions> { }
     }
 
+    //---
+
     public class RecentItemsOptions : BaseOptionModel<RecentItemsOptions>
     {
         public const string Category = "Recent Items";
+
+        //---
+
+        public RecentItemsOptions() : base()
+        {
+            Saved += OnSaved;
+        }
 
         //--- appearance
 
@@ -45,5 +62,15 @@
         [DisplayName(ShowCsProjFilesDisplayName)]
         [Description(ShowCsProjFilesDescription)]
         public bool ShowCsProjFiles { get; set; } = ShowCsProjFilesDefault;
+
+        //---
+
+        private void OnSaved(RecentItemsOptions options)
+        {
+            var container = StartPagePlusContainer.Instance;
+            var messenger = container.GetInstance<IMessenger>();
+
+            messenger.Send<RefreshRecentItems>();
+        }
     }
 }

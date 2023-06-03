@@ -1,11 +1,19 @@
-﻿namespace StartPagePlus.Options.Pages
+﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
+
+using Community.VisualStudio.Toolkit;
+
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.Options.Pages
 {
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
+    using DI;
 
-    using Community.VisualStudio.Toolkit;
+    using UI.Messages;
 
-    using static StartPagePlus.Options.Pages.PageConstants;
+    using static Options.Pages.PageConstants;
+
+    //---
 
     internal partial class OptionsProvider
     {
@@ -13,9 +21,18 @@
         public class NewsItems : BaseOptionPage<NewsItemsOptions> { }
     }
 
+    //---
+
     public class NewsItemsOptions : BaseOptionModel<NewsItemsOptions>
     {
         public const string Category = @"News Items";
+
+        //---
+
+        public NewsItemsOptions() : base()
+        {
+            Saved += OnSaved;
+        }
 
         //--- appearance
 
@@ -28,11 +45,6 @@
         [DisplayName(NewsItemsToDisplayDisplayName)]
         [Description(NewsItemsToDisplayDescription)]
         public int NewsItemsToDisplay { get; set; } = NewsItemsToDisplayDefault;
-
-        //[Category(H1 + PageConstants.Appearance)]
-        //[DisplayName(DisplayNewsItemsName)]
-        //[Description(DisplayNewsItemsDescription)]
-        //public bool DisplayNewsItems { get; set; } = DisplayNewsItemsDefault;
 
         //--- behavior
 
@@ -55,5 +67,15 @@
         [DisplayName(NewsItemTooltipDelayDisplayName)]
         [Description(NewsItemTooltipDelayDescription)]
         public int NewsItemTooltipDelay { get; set; } = NewsItemTooltipDelayDefault;
+
+        //---
+
+        private void OnSaved(NewsItemsOptions options)
+        {
+            var container = StartPagePlusContainer.Instance;
+            var messenger = container.GetInstance<IMessenger>();
+
+            messenger.Send<RefreshNewsItems>();
+        }
     }
 }

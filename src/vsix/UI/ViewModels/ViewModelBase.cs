@@ -28,6 +28,9 @@ namespace StartPagePlus.UI.ViewModels
             where TMessage : class //, new()
             => Messenger.Register(recipient, action);
 
+        public void Run(Func<Task> asyncMethod)
+            => _methodService.Run(asyncMethod);
+
         public bool Run(Func<Task<bool>> asyncMethod)
             => _methodService.Run(asyncMethod);
 

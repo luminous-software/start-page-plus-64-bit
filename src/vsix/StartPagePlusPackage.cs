@@ -46,7 +46,7 @@ namespace StartPagePlus
         private readonly StartPagePlusContainer _container;
 
         public StartPagePlusPackage() : base()
-            => _container = new StartPagePlusContainer();
+            => _container = StartPagePlusContainer.Instance;
 
         //YD: move XAML styles in situ where possible to help debugging experience, or does that work already?
 
@@ -75,8 +75,4 @@ namespace StartPagePlus
             return base.GetService(serviceType); // otherwise let VS handle getting the requested service
         }
     }
-
-    //private static void LogService<T>(T service, string message)
-    //    where T : IReportServiceLifetime =>
-    //        Console.WriteLine($"    {typeof(T).Name}: {service.Id} ({message})");
 }

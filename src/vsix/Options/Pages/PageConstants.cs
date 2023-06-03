@@ -125,8 +125,8 @@
         public const string NewsItemTooltipDelayDescription = "The number of seconds you need to hover your mouse over the item before the tooltip displays";
         internal const int NewsItemTooltipDelayDefault = 5;
 
-        //public const string DisplayNewsItemsName = "Display 'News Items' list";
-        //public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
-        //internal const bool DisplayNewsItemsDefault = true;
+        public const string DisplayNewsItemsName = "Display 'News Items' list";
+        public const string DisplayNewsItemsDescription = "Sets the visibility of the 'News Items' list";
+        internal const bool DisplayNewsItemsDefault = true;
     }
 }

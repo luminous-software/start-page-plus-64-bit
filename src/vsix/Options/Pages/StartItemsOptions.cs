@@ -1,11 +1,19 @@
-﻿namespace StartPagePlus.Options.Pages
+﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
+
+using Community.VisualStudio.Toolkit;
+
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace StartPagePlus.Options.Pages
 {
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
+    using DI;
 
-    using Community.VisualStudio.Toolkit;
+    using UI.Messages;
 
-    using static StartPagePlus.Options.Pages.PageConstants;
+    using static Pages.PageConstants;
+
+    //---
 
     internal partial class OptionsProvider
     {
@@ -13,9 +21,20 @@
         public class StartItems : BaseOptionPage<StartItemsOptions> { }
     }
 
+    //---
+
     public class StartItemsOptions : BaseOptionModel<StartItemsOptions>
     {
         public const string Category = "Start Items";
+
+        //---
+
+        public StartItemsOptions() : base()
+        {
+            Saved += OnSaved;
+        }
+
+        //---
 
         [Category(H1 + PageConstants.Behavior)]
         [DisplayName(CloneRepositoryDelayDisplayName)]
@@ -36,5 +55,15 @@
         [DisplayName(CreateProjectDelayDisplayName)]
         [Description(CreateProjectDelayDescription)]
         public int CreateProjectDelay { get; set; } = CreateProjectDelayDefault;
+
+        //---
+
+        private void OnSaved(StartItemsOptions options)
+        {
+            var container = StartPagePlusContainer.Instance;
+            var messenger = container.GetInstance<IMessenger>();
+
+            messenger.Send<RefreshStartItems>();
+        }
     }
 }

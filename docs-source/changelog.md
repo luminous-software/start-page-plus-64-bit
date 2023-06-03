@@ -1,12 +1,12 @@
 For a list of known issues go to the [Known Issues][known-issues-url]
-page on the [Start Page+ (64-bit)][start-page-plus-64-bit-url] website.
+page on the [_**Start Page+**_ (64-bit)][start-page-plus-64-bit-url] website.
 
 Microsoft didn't make it easy to have a 32-bit & 64-bit extension be able to be
 **_written once and run in both_**, so this new 64-bit version will ONLY run in 
 **VS 2022 or higher**.
 
-To use *Start Page+ 1.x* in VSS 2017 or 2019, plese refer to 
-the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
+To use _**Start Page+ 1.x**_ in VSS 2017 or 2019, plese refer to 
+the original [_**Start Page+**_ (32-bit)][start-page-plus-32-bit-url] website.
 
 [start-page-plus-64-bit-url]: https://luminous-software.solutions/start-page-plus-64-bit
 [start-page-plus-32-bit-url]: https://luminous-software.solutions/start-page-plus
@@ -14,68 +14,106 @@ the original [Start Page+ (32-bit)][start-page-plus-32-bit-url] website.
 
 ## Releases
 
-### v0.22 - 2023-05-??
+### v0.22 - 2023-06-03
 
 #### Bug Fixes
-- After closing a solution the Recent Items list is not refreshed [[#33](https://github.com/luminous-software/start-page-plus-64-bit/issues/33)]
+- Saving a list's settings requires a _manual_ refresh [#28][#28]
 
-	[p15]: https://github.com/yannduran/start-page-plus-64-bit/issues/15
+[#28]: https://github.com/luminous-software/start-page-plus-64-bit/issues/28
+[p12]: https://github.com/yannduran/start-page-plus-64-bit/issues/12
 
-- Some start items don't refresh the Recent Items list [[#29](https://github.com/luminous-software/start-page-plus-64-bit/issues/29)]
+- Some start items don't refresh the **Recent Items** list [#29][#29]
 
-	[p11]: https://github.com/yannduran/start-page-plus-64-bit/issues/11
+[#29]: https://github.com/luminous-software/start-page-plus-64-bit/issues/29
+[p11]: https://github.com/yannduran/start-page-plus-64-bit/issues/11
+
+- After closing a solution, the **Recent Items** list is not refreshed [#33][#33]
+
+[#33]: https://github.com/luminous-software/start-page-plus-64-bit/issues/33
+[p15]: https://github.com/yannduran/start-page-plus-64-bit/issues/15
+
+- Saving a list's settings causes the first item to appear _selected_
+	- normally list items do not stay _selected_, even after clicking them
+
+[p17]: https://github.com/yannduran/start-page-plus-64-bit/issues/17
 
 #### New Features
-- Add tooltips for News Items [[#16](https://github.com/luminous-software/start-page-plus-64-bit/issues/16)]
+- Setting to show the **News Items** pane (default=true) [#2][#02]
 
-	[p9]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
+[#02]: https://github.com/luminous-software/start-page-plus-64-bit/issues/2
+[p07]: https://github.com/yannduran/start-page-plus-64-bit/issues/7
+
+- Tooltips in the **News Items** list [#16][#16]
+
+[#16]: https://github.com/luminous-software/start-page-plus-64-bit/issues/16
+[p09]: https://github.com/yannduran/start-page-plus-64-bit/issues/9
+
+- In the **Start Items** pane, the **Options** button has been renamed to **Settings**
+	- now opens the the **Start Items** tab in settings
+	- instead of the **General** tab
+
+[p16]: https://github.com/yannduran/start-page-plus-64-bit/issues/16
+
+#### Contributions
+- thanks to @MagicAndre1981 for his pull request
 
 ### v0.21 - 2023-05-07
 
 #### Bug Fixes
-- Incorrect wording for Restart Visual Studio start item
+- Incorrect wording for the **Restart Visual Studio** start item
 
-	[p3]: https://github.com/yannduran/start-page-plus-64-bit/issues/3
+[p03]: https://github.com/yannduran/start-page-plus-64-bit/issues/3
 
-- Recent Items 'Settings' button goes to 'General' instead of 'Recent Items'
+- In the **Recent Items** pane, the **Settings** button goes to the **General** tab
+instead of the **Recent Items** tab
 
-	[p2]: https://github.com/yannduran/start-page-plus-64-bit/issues/2
+[p02]: https://github.com/yannduran/start-page-plus-64-bit/issues/2
 
 #### New Features
-- Hide StartPage+ on solution load (including option, default=false) [[#5](https://github.com/luminous-software/start-page-plus-64-bit/issues/5)]
+- Setting to hide _**Start Page+**_ on solution load (default=false) [#5][#05]
 
-	[p6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
+[#05]: https://github.com/luminous-software/start-page-plus-64-bit/issues/5
+[p06]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
 
-- Show StartPage+ on solution close (including option, default=false) [[#5](https://github.com/luminous-software/start-page-plus-64-bit/issues/5)]
+- Setting to show _**Start Page+**_ on solution close (default=false) [#5][#05]
 
-	[p6]: https://github.com/yannduran/start-page-plus-64-bit/issues/6
+- Auto-refresh the **Recent Items** list after closing a solution [#13][#13]
 
-- After closing a solution refresh the Recent items [[#13](https://github.com/luminous-software/start-page-plus-64-bit/issues/13)]
+[#13]: (https://github.com/luminous-software/start-page-plus-64-bit/issues/13)
+[p05]: https://github.com/yannduran/start-page-plus-64-bit/issues/5
 
-	[p5]: https://github.com/yannduran/start-page-plus-64-bit/issues/5
+- Setting to show `csproj` files in the **Recent Items** list (default=true) [#15][#15]
 
-- Option to show/hide csproj files in Recent Items list (default=true) [[#15](https://github.com/luminous-software/start-page-plus-64-bit/issues/15)]
+[#15]: https://github.com/luminous-software/start-page-plus-64-bit/issues/15
+[p08]: https://github.com/yannduran/start-page-plus-64-bit/issues/8
 
-	[p8]: https://github.com/yannduran/start-page-plus-64-bit/issues/8
+- Group settings into **Appearance** & **Behavior** sections [#30][#30]
 
-- Group settings/options into 'Appearance' & 'Behavior'[[#30](https://github.com/luminous-software/start-page-plus-64-bit/issues/30)]
-
-	[p13]: https://github.com/yannduran/start-page-plus-64-bit/issues/13
+[#30]: https://github.com/luminous-software/start-page-plus-64-bit/issues/30
+[p13]: https://github.com/yannduran/start-page-plus-64-bit/issues/13
 
 ### v0.20 - 2023-04-27
 
 #### Bug Fixes
-- NullReferenceException in LoadAsync() ([#1](https://github.com/luminous-software/start-page-plus-64-bit/issues/1))
+- Fix `NullReferenceException` in `LoadAsync()` [#1][#01]
 
-- Recent list shows no path, only project name ([#6](https://github.com/luminous-software/start-page-plus-64-bit/issues/6))
+[#01]: https://github.com/luminous-software/start-page-plus-64-bit/issues/1
 
-- Downgrade Community Toolkit NuGet Packages ([#10](https://github.com/luminous-software/start-page-plus-64-bit/pull/11))
+- **Recent Items** list shows no paths, only project names [#6][#06]
+
+[#06]: https://github.com/luminous-software/start-page-plus-64-bit/issues/6
+
+- Downgrade the **Community VS Toolkit** NuGet Packages [#11][#11]
+
+[#11]: https://github.com/luminous-software/start-page-plus-64-bit/pull/11
 
 #### New Features
-- arm64 support ([#8](https://github.com/luminous-software/start-page-plus-64-bit/pull/8))
+- arm64 support [#8][#08]
+
+[#08]: https://github.com/luminous-software/start-page-plus-64-bit/pull/8
 
 #### Contributions
 - thanks to @MagicAndre1981 for his 3 pull requests
 
 ### v0.19 - 2023-04-21
-- first public release
+- first public preview of basic functionality
