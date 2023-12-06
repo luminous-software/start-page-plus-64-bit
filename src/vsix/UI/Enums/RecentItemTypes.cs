@@ -24,6 +24,8 @@
 
                 "sln" => RecentItemType.Solution,
 
+                "slnf" => RecentItemType.Solution,
+
                 "vcxproj" => RecentItemType.CPlusPlusProject,
 
                 "vcxitems" => RecentItemType.CPlusPlusSharedProject,
